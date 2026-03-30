@@ -119,7 +119,7 @@
         <p style="margin-top: 60px; font-size: 0.95rem; color: #888;">用一个真实项目，把整套最佳实践串起来。</p>
     </div>
 
-    <!-- Slide 2: The Example Project -->
+    <!-- Slide 2: The Example 项目 -->
     <div class="slide" data-slide="2">
         <h1>示例项目：TodoApp</h1>
         <div class="trigger-box">
@@ -153,7 +153,7 @@ todoapp/
             </div>
             <div>
                 <h3 style="text-align: center; color: #2e7d32; margin-bottom: 16px;">之后（Agentic Engineering）</h3>
-                <div class="code-block"><span class="comment"># With Claude Code Best Practices</span>
+                <div class="code-block"><span class="comment"># With Claude Code 最佳实践s</span>
 todoapp/
   <span class="claude-file">.claude/</span>                  <span class="claude-file comment"># Claude Code config</span>
     <span class="claude-file">agents/</span>               <span class="claude-file comment"># Custom subagents</span>
@@ -185,7 +185,7 @@ todoapp/
       api.ts
     <span class="claude-file">CLAUDE.md</span>             <span class="claude-file comment"># Frontend instructions</span>
   <span class="claude-file">.mcp.json</span>               <span class="claude-file comment"># Managed MCP servers</span>
-  <span class="claude-file">CLAUDE.md</span>               <span class="claude-file comment"># Project instructions</span></div>
+  <span class="claude-file">CLAUDE.md</span>               <span class="claude-file comment"># 项目 instructions</span></div>
             </div>
         </div>
     </div>
@@ -222,7 +222,7 @@ todoapp/
             <p>Each section adds techniques that move you from vibe coding toward fully agentic engineering.</p>
         </div>
         <div class="toc-list" style="margin-top: 24px;">
-            <div class="toc-item" onclick="goToSlide(5)"><span class="toc-number">1</span><span class="toc-name">Prerequisites</span></div>
+            <div class="toc-item" onclick="goToSlide(5)"><span class="toc-number">1</span><span class="toc-name">准备工作</span></div>
             <div class="toc-item" onclick="goToSlide(10)"><span class="toc-number">2</span><span class="toc-name">更好的提示词 &mdash; 低阶</span></div>
             <div class="toc-item" onclick="goToSlide(18)"><span class="toc-number">3</span><span class="toc-name">项目记忆 &mdash; 中阶</span></div>
             <div class="toc-item" onclick="goToSlide(25)"><span class="toc-number">4</span><span class="toc-name">结构化工作流 &mdash; 中阶</span></div>
@@ -243,13 +243,13 @@ todoapp/
             <p>Homebrew must be installed on your Mac.</p>
         </div>
         <div class="how-to-trigger">
-            <h4>Install via Homebrew</h4>
+            <h4>通过 Homebrew 安装</h4>
             <p>Run this in your terminal:</p>
             <div class="code-block">brew install claude-code</div>
         </div>
-        <h3>Verify Installation</h3>
+        <h3>验证安装</h3>
         <div class="code-block">claude --version</div>
-        <h3>Update Later</h3>
+        <h3>后续更新</h3>
         <div class="code-block">brew upgrade claude-code</div>
         <p style="margin-top: 24px; color: #666;">Run <code>/doctor</code> anytime to check your installation health.</p>
     </div>
@@ -261,7 +261,7 @@ todoapp/
         <div class="code-block"><span class="cmd">claude</span>
 <span class="comment"># Select "Claude.ai" at the login prompt</span>
 <span class="comment"># Opens browser for OAuth</span></div>
-        <h3>Subscription Tiers</h3>
+        <h3>订阅档位</h3>
         <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 8px;">
             <thead>
                 <tr style="border-bottom: 2px solid #ddd; text-align: left;">
@@ -303,7 +303,7 @@ todoapp/
     <div class="slide" data-slide="7">
         <h1>登录方式 B：API Key</h1>
         <p>Pay per token with an Anthropic API key &mdash; no weekly caps:</p>
-        <h3>Token Pricing <span style="font-weight: 400; font-size: 0.8rem; color: #888;">(per million tokens)</span></h3>
+        <h3>Token 定价 <span style="font-weight: 400; font-size: 0.8rem; color: #888;">(每百万 tokens)</span></h3>
         <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 8px;">
             <thead>
                 <tr style="border-bottom: 2px solid #ddd; text-align: left;">
@@ -339,23 +339,23 @@ todoapp/
             <div class="code-block"><span class="cmd">export</span> ANTHROPIC_API_KEY=sk-ant-...
 <span class="cmd">claude</span></div>
         </div>
-        <p><strong>Best for:</strong> Heavy usage, CI/CD pipelines, teams needing predictable billing</p>
+        <p><strong>最适合：</strong> Heavy usage, CI/CD pipelines, teams needing predictable billing</p>
     </div>
 
-    <!-- Slide 8: First Session (this IS vibe coding) -->
+    <!-- Slide 8: First 会话 (this IS vibe coding) -->
     <div class="slide" data-slide="8">
         <h1>你的第一个会话</h1>
         <div class="how-to-trigger">
-            <h4>Start Claude Code</h4>
+            <h4>启动 Claude Code</h4>
             <p>Navigate to your project and run:</p>
             <div class="code-block"><span class="cmd">cd</span> ~/todoapp
 <span class="cmd">claude</span></div>
         </div>
         <div class="trigger-box">
-            <h4>What Happens</h4>
+            <h4>会发生什么</h4>
             <p>Claude Code scans your project structure, reads CLAUDE.md (if it exists), and opens an interactive REPL where you can type prompts.</p>
         </div>
-        <h3>This IS Vibe Coding</h3>
+        <h3>这就是 Vibe Coding</h3>
         <p>Right now, with no CLAUDE.md, no skills, no agents — you're at the <strong>Low</strong> level. Claude will guess at everything. That's okay. We'll fix it step by step.</p>
     </div>
 
@@ -365,11 +365,11 @@ todoapp/
         <div class="code-block"><span class="comment">+-----------------------------------------+</span>
 <span class="comment">|</span>  <span class="string">Claude Code</span> v2.1.33
 <span class="comment">|</span>  Model: claude-opus-4-6
-<span class="comment">|</span>  Project: ~/todoapp
+<span class="comment">|</span>  项目: ~/todoapp
 <span class="comment">+-----------------------------------------+</span>
 
 <span class="cmd">&gt;</span> Type your prompt here...</div>
-        <h3>Quick Reference</h3>
+        <h3>快速参考</h3>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#9000;</span><div class="use-case-text"><strong>Enter</strong><span>Submit your prompt</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#8629;</span><div class="use-case-text"><strong>Shift+Enter or \</strong><span>New line (multiline input)</span></div></div>
@@ -389,16 +389,16 @@ todoapp/
         <p class="section-desc">等级：低阶。目标是让你的提示词真正产出可落地、可交付的结果。</p>
     </div>
 
-    <!-- Slide 11: Your First Prompt -->
+    <!-- Slide 11: 你的第一个 Prompt -->
     <div class="slide" data-slide="11">
-        <h1>Your First Prompt</h1>
+        <h1>你的第一个 Prompt</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <p>Start simple &mdash; ask Claude to understand your project:</p>
             <div class="code-block"><span class="cmd">&gt;</span> Read the README.md and give me a summary of this project</div>
         </div>
         <p>Claude will use the <strong>Read</strong> tool to open the file, then summarize it. You'll see the tool call in the output.</p>
-        <h3>What Just Happened?</h3>
+        <h3>刚刚发生了什么？</h3>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>Claude read your prompt</strong><span>Understood you want a summary</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">2&#65039;&#8419;</span><div class="use-case-text"><strong>Used the Read tool</strong><span>Opened README.md from your project</span></div></div>
@@ -406,9 +406,9 @@ todoapp/
         </div>
     </div>
 
-    <!-- Slide 12: Good vs Bad Prompts -->
+    <!-- Slide 12: 好 Prompt vs 坏 Prompt -->
     <div class="slide" data-slide="12">
-        <h1>Good vs Bad Prompts</h1>
+        <h1>好 Prompt vs 坏 Prompt</h1>
         <p>The difference between vibe coding and professional usage &mdash; shown on our TodoApp:</p>
         <div class="two-col">
             <div class="col-card bad">
@@ -418,7 +418,7 @@ todoapp/
                 <p style="color: #c62828;">Vague, no context, no constraints.</p>
             </div>
             <div class="col-card good">
-                <h4>Professional</h4>
+                <h4>更专业的写法</h4>
                 <div class="code-block"><span class="cmd">&gt;</span> In backend/routes/todos.py, add a
    PUT /api/todos/{id}/complete endpoint.
    Follow the existing route pattern and
@@ -429,22 +429,22 @@ todoapp/
         </div>
     </div>
 
-    <!-- Slide 13: Providing Context -->
+    <!-- Slide 13: 怎么给上下文 -->
     <div class="slide" data-slide="13">
-        <h1>Providing Context</h1>
+        <h1>怎么给上下文</h1>
         <div class="trigger-box">
-            <h4>Key Rule</h4>
+            <h4>关键规则</h4>
             <p>The more context you give, the better Claude performs. Use <code>@</code> to reference files directly in your prompt.</p>
         </div>
         <div class="how-to-trigger">
-            <h4>TodoApp Example</h4>
+            <h4>TodoApp 示例</h4>
             <div class="code-block"><span class="cmd">&gt;</span> Look at @backend/routes/todos.py and @backend/models/todo.py
    Add a priority field to the Todo model and update
    the create endpoint to accept it.</div>
         </div>
-        <h3>Context Tips</h3>
+        <h3>上下文技巧</h3>
         <div class="use-cases">
-            <div class="use-case-item"><span class="use-case-icon">&#128196;</span><div class="use-case-text"><strong>@file/path</strong><span>Reference specific files for Claude to read</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">&#128196;</span><div class="use-case-text"><strong>@file/path</strong><span>参考区 specific files for Claude to read</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128248;</span><div class="use-case-text"><strong>Paste screenshots</strong><span>Ctrl+V to paste images of errors or UI</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128203;</span><div class="use-case-text"><strong>Paste error logs</strong><span>Copy the full error message into your prompt</span></div></div>
         </div>
@@ -452,64 +452,64 @@ todoapp/
 
     <!-- Slide 14: Context Window & /compact -->
     <div class="slide" data-slide="14">
-        <h1>Context Window &amp; /compact</h1>
+        <h1>上下文窗口与 /compact</h1>
         <div class="trigger-box">
-            <h4>Key Concept</h4>
+            <h4>关键概念</h4>
             <p>Claude has a <strong>context window</strong> &mdash; a limit on how much conversation it can remember. Every prompt, file read, and response fills it up.</p>
         </div>
         <div class="info-grid">
             <div class="info-card">
-                <h4>What Fills Context</h4>
+                <h4>什么会占满上下文</h4>
                 <p>Your prompts and messages</p>
                 <p>Every file Claude reads</p>
                 <p>Bash command output</p>
                 <p>Claude's own responses</p>
             </div>
             <div class="info-card">
-                <h4>/compact &mdash; The Fix</h4>
+                <h4>/compact &mdash; 应对方法</h4>
                 <div class="code-block"><span class="cmd">&gt;</span> /compact</div>
                 <p>Compresses conversation history into a summary. Claude continues from that summary.</p>
             </div>
         </div>
         <div class="warning-box">
-            <h4>Best Practice</h4>
+            <h4>最佳实践</h4>
             <p>Run <code>/compact</code> manually at <strong>~50% context usage</strong>. Don't wait until it auto-compacts &mdash; you lose control over what gets preserved.</p>
         </div>
     </div>
 
     <!-- Slide 15: /plan mode -->
     <div class="slide" data-slide="15">
-        <h1>/plan &mdash; Plan Before Code</h1>
+        <h1>/plan &mdash; 先计划，再写代码</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /plan
 <span class="cmd">&gt;</span> Add user authentication to the TodoApp backend</div>
         </div>
         <div class="two-col">
             <div class="col-card bad">
-                <h4>Without /plan</h4>
+                <h4>不用 /plan</h4>
                 <p>Claude writes code immediately</p>
                 <p>Wrong approach &mdash; redo everything</p>
                 <p>50% of context gone before real work starts</p>
             </div>
             <div class="col-card good">
-                <h4>With /plan</h4>
+                <h4>用了 /plan</h4>
                 <p>Claude explores codebase read-only</p>
                 <p>Proposes approach for your approval</p>
                 <p>Right approach from the start</p>
             </div>
         </div>
         <div class="trigger-box">
-            <h4>Rule of Thumb</h4>
+            <h4>经验法则</h4>
             <p>Always start with plan mode for any task that touches more than 2-3 files or involves architectural decisions.</p>
         </div>
     </div>
 
-    <!-- Slide 16: Plan Mode in Practice -->
+    <!-- Slide 16: Plan Mode 怎么落地 -->
     <div class="slide" data-slide="16">
-        <h1>Plan Mode in Practice</h1>
+        <h1>Plan Mode 怎么落地</h1>
         <div class="how-to-trigger">
-            <h4>Step by Step</h4>
+            <h4>一步一步来</h4>
             <div class="code-block"><span class="comment"># Step 1: Enter plan mode</span>
 <span class="cmd">&gt;</span> /plan
 
@@ -523,18 +523,18 @@ todoapp/
 <span class="comment"># Claude then executes the approved plan</span></div>
         </div>
         <div class="trigger-box">
-            <h4>TodoApp Benefit</h4>
+            <h4>对 TodoApp 的收益</h4>
             <p>In plan mode, Claude discovers your existing SQLAlchemy pagination pattern before writing a single line &mdash; no reinventing the wheel.</p>
         </div>
     </div>
 
-    <!-- Slide 17: Prompting Best Practices -->
+    <!-- Slide 17: Prompting 最佳实践s -->
     <div class="slide" data-slide="17">
-        <h1>Prompting Best Practices</h1>
+        <h1>Prompting 最佳实践s</h1>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#127919;</span><div class="use-case-text"><strong>Be specific about files</strong><span>"In backend/routes/todos.py" not "in the backend code"</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128270;</span><div class="use-case-text"><strong>Describe the problem, not just the fix</strong><span>"The API returns 500 when..." not "make it work"</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">&#128208;</span><div class="use-case-text"><strong>Reference existing patterns</strong><span>"Follow the pattern in routes/todos.py" gives Claude a template</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">&#128208;</span><div class="use-case-text"><strong>参考区 existing patterns</strong><span>"Follow the pattern in routes/todos.py" gives Claude a template</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#129513;</span><div class="use-case-text"><strong>One task at a time</strong><span>Small, focused requests get better results than mega-prompts</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#9989;</span><div class="use-case-text"><strong>Ask Claude to verify</strong><span>"Run pytest after making changes" catches errors early</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128248;</span><div class="use-case-text"><strong>Provide screenshots for UI issues</strong><span>A picture is worth a thousand words of description</span></div></div>
@@ -545,7 +545,7 @@ todoapp/
     <!-- PART 3: PROJECT MEMORY (Slides 18-24, 20% -> 40%)           -->
     <!-- ============================================================ -->
 
-    <!-- Slide 18: Section Divider - Project Memory -->
+    <!-- Slide 18: Section Divider - 项目 Memory -->
     <div class="slide section-slide" data-slide="18" data-level="medium">
         <p class="section-number">Part 3</p>
         <h1>项目记忆</h1>
@@ -554,19 +554,19 @@ todoapp/
 
     <!-- Slide 19: CLAUDE.md & /init -->
     <div class="slide" data-slide="19">
-        <h1>CLAUDE.md &amp; /init</h1>
+        <h1>CLAUDE.md 与 /init</h1>
         <div class="trigger-box">
-            <h4>Key Concept</h4>
+            <h4>关键概念</h4>
             <p>CLAUDE.md is a markdown file that Claude reads at the <strong>start of every session</strong>. It's your project's instruction manual for Claude.</p>
         </div>
         <div class="how-to-trigger">
-            <h4>Create It</h4>
+            <h4>怎么创建</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /init</div>
         </div>
-        <h3>TodoApp CLAUDE.md</h3>
+        <h3>TodoApp 的 CLAUDE.md</h3>
         <div class="code-block"><span class="comment"># CLAUDE.md</span>
 
-<span class="key">## Project</span>
+<span class="key">## 项目</span>
 TodoApp monorepo: FastAPI backend + Next.js frontend.
 
 <span class="key">## Structure</span>
@@ -586,13 +586,13 @@ TodoApp monorepo: FastAPI backend + Next.js frontend.
 - Always add tests for new endpoints</div>
     </div>
 
-    <!-- Slide 20: What to Include in CLAUDE.md -->
+    <!-- Slide 20: CLAUDE.md 里该放什么 -->
     <div class="slide" data-slide="20">
-        <h1>What to Include in CLAUDE.md</h1>
+        <h1>CLAUDE.md 里该放什么</h1>
         <div class="two-col">
             <div class="col-card good">
-                <h4>Include</h4>
-                <p>Project architecture overview</p>
+                <h4>建议放</h4>
+                <p>项目 architecture overview</p>
                 <p>Build and test commands</p>
                 <p>Key file locations</p>
                 <p>Coding conventions</p>
@@ -600,7 +600,7 @@ TodoApp monorepo: FastAPI backend + Next.js frontend.
                 <p>Critical do's and don'ts</p>
             </div>
             <div class="col-card bad">
-                <h4>Avoid</h4>
+                <h4>尽量别放</h4>
                 <p>Entire API documentation</p>
                 <p>Long code examples</p>
                 <p>Secrets or API keys</p>
@@ -609,34 +609,34 @@ TodoApp monorepo: FastAPI backend + Next.js frontend.
             </div>
         </div>
         <div class="warning-box">
-            <h4>Critical Rule</h4>
+            <h4>关键规则</h4>
             <p>Keep CLAUDE.md under <strong>150 lines</strong>. Longer files dilute the instructions &mdash; Claude may ignore parts of it. Use Rules and Skills for detail.</p>
         </div>
     </div>
 
     <!-- Slide 21: Keep Under 150 Lines -->
     <div class="slide" data-slide="21">
-        <h1>Keep It Under 150 Lines</h1>
-        <h3>If You Need More Space</h3>
+        <h1>尽量控制在 150 行以内</h1>
+        <h3>如果你真的需要更多空间</h3>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#128196;</span><div class="use-case-text"><strong>Use Rules</strong><span>Put topic-specific instructions in <code>.claude/rules/*.md</code> files</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128218;</span><div class="use-case-text"><strong>Use Skills</strong><span>Put domain knowledge in <code>.claude/skills/</code> &mdash; loaded on demand</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">&#128279;</span><div class="use-case-text"><strong>Reference files</strong><span>Point to docs rather than inlining content</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">&#128279;</span><div class="use-case-text"><strong>参考区 files</strong><span>Point to docs rather than inlining content</span></div></div>
         </div>
         <div class="trigger-box">
-            <h4>The Hierarchy</h4>
+            <h4>层级关系</h4>
             <p><strong>CLAUDE.md</strong> (always loaded, &lt;150 lines) &rarr; <strong>Rules</strong> (path-scoped, auto-loaded) &rarr; <strong>Skills</strong> (on-demand, any length).</p>
         </div>
     </div>
 
     <!-- Slide 22: Rules -->
     <div class="slide" data-slide="22">
-        <h1>Rules (.claude/rules/)</h1>
+        <h1>Rules（.claude/rules/）</h1>
         <div class="trigger-box">
-            <h4>What Are Rules?</h4>
+            <h4>Rules 是什么？</h4>
             <p>Modular, topic-specific instructions in individual markdown files. Unlike CLAUDE.md, rules can be <strong>scoped to specific paths</strong>.</p>
         </div>
-        <h3>TodoApp Backend Testing Rule</h3>
+        <h3>TodoApp 后端测试 Rule</h3>
         <div class="code-block"><span class="comment"># .claude/rules/backend-testing.md</span>
 ---
 <span class="key">globs</span>: [<span class="string">"backend/tests/**"</span>]
@@ -655,26 +655,26 @@ When writing tests for the backend:
 
     <!-- Slide 23: /memory & Hierarchy [MERGED] -->
     <div class="slide" data-slide="23">
-        <h1>/memory &amp; Memory Hierarchy</h1>
+        <h1>/memory 与记忆层级</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /memory</div>
         </div>
         <p>Opens your CLAUDE.md memory files in an editor. Changes here persist across all sessions.</p>
-        <h3>Three Scopes (loaded in order)</h3>
+        <h3>三个作用域（按加载顺序）</h3>
         <div class="code-block"><span class="comment"># All combined at session start:</span>
 ~/.claude/CLAUDE.md           <span class="comment"># Global &mdash; all projects</span>
-.claude/CLAUDE.md             <span class="comment"># Project &mdash; shared with team via git</span>
+.claude/CLAUDE.md             <span class="comment"># 项目 &mdash; shared with team via git</span>
 .claude/CLAUDE.local.md       <span class="comment"># Local &mdash; personal, git-ignored</span></div>
         <div class="trigger-box">
-            <h4>TodoApp Tip</h4>
-            <p>Put your TodoApp CLAUDE.md in the repo root so the whole team shares it. Put personal preferences (editor, style) in <code>CLAUDE.local.md</code>.</p>
+            <h4>TodoApp 提示</h4>
+            <p>Put your TodoApp 的 CLAUDE.md in the repo root so the whole team shares it. Put personal preferences (editor, style) in <code>CLAUDE.local.md</code>.</p>
         </div>
     </div>
 
-    <!-- Slide 24: Memory Best Practices -->
+    <!-- Slide 24: Memory 最佳实践s -->
     <div class="slide" data-slide="24">
-        <h1>Memory Best Practices</h1>
+        <h1>Memory 最佳实践s</h1>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#128207;</span><div class="use-case-text"><strong>CLAUDE.md under 150 lines</strong><span>Brief, focused, high-signal instructions</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128194;</span><div class="use-case-text"><strong>Use rules for specifics</strong><span>Path-scoped rules in .claude/rules/ for targeted guidance</span></div></div>
@@ -695,9 +695,9 @@ When writing tests for the backend:
         <p class="section-desc">等级：中阶。用系统化流程减少无效返工。</p>
     </div>
 
-    <!-- Slide 26: Task Lists -->
+    <!-- Slide 26: 任务清单 -->
     <div class="slide" data-slide="26">
-        <h1>Task Lists</h1>
+        <h1>任务清单</h1>
         <p>For complex tasks, Claude creates a <strong>task list</strong> to track progress:</p>
         <div class="code-block"><span class="cmd">&gt;</span> Add user authentication to the TodoApp:
    - POST /api/register endpoint
@@ -707,16 +707,16 @@ When writing tests for the backend:
    - Tests for all auth endpoints</div>
         <p>Claude breaks this into individual tasks and shows progress as it works through each one.</p>
         <div class="trigger-box">
-            <h4>Best Practice</h4>
+            <h4>最佳实践</h4>
             <p>Break subtasks small enough that each can be completed in under <strong>50% context</strong>. Commit after each subtask.</p>
         </div>
     </div>
 
     <!-- Slide 27: /model Selection -->
     <div class="slide" data-slide="27">
-        <h1>/model &mdash; Model Selection</h1>
+        <h1>/model &mdash; 模型选择</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /model</div>
         </div>
         <p>Opens the model picker. Match the model to the task:</p>
@@ -726,14 +726,14 @@ When writing tests for the backend:
             <div class="use-case-item"><span class="use-case-icon">&#127950;</span><div class="use-case-text"><strong>Haiku 4.5</strong><span>Simple tasks &mdash; "Read backend/routes/todos.py and summarize the endpoints"</span></div></div>
         </div>
         <div class="trigger-box">
-            <h4>Pro Tip</h4>
+            <h4>进阶提示</h4>
             <p>Use <code>Option+P</code> (Mac) or <code>Alt+P</code> to quickly switch models. Use <code>/fast</code> for faster Opus output on non-complex tasks.</p>
         </div>
     </div>
 
-    <!-- Slide 28: Workflow Best Practices -->
+    <!-- Slide 28: Workflow 最佳实践s -->
     <div class="slide" data-slide="28">
-        <h1>Workflow Best Practices</h1>
+        <h1>Workflow 最佳实践s</h1>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#128506;</span><div class="use-case-text"><strong>Always start with plan mode</strong><span>For any non-trivial task</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#129513;</span><div class="use-case-text"><strong>Break tasks into small pieces</strong><span>Each subtask should complete in under 50% context</span></div></div>
@@ -756,12 +756,12 @@ When writing tests for the backend:
 
     <!-- Slide 30: What Are Skills -->
     <div class="slide" data-slide="30">
-        <h1>What Are Skills?</h1>
+        <h1>Skills 是什么？</h1>
         <div class="trigger-box">
-            <h4>Key Concept</h4>
+            <h4>关键概念</h4>
             <p>Skills are markdown files that contain <strong>domain knowledge</strong> &mdash; instructions, patterns, or workflows that Claude can load when needed. Think of them as micro-manuals.</p>
         </div>
-        <h3>Why Skills?</h3>
+        <h3>为什么要有 Skills？</h3>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#128218;</span><div class="use-case-text"><strong>Progressive Disclosure</strong><span>Knowledge loaded only when relevant &mdash; doesn't bloat every session</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#9851;</span><div class="use-case-text"><strong>Reusable</strong><span>Same skill works across agents and workflows</span></div></div>
@@ -775,8 +775,8 @@ When writing tests for the backend:
 
     <!-- Slide 31: Creating Skills - TodoApp -->
     <div class="slide" data-slide="31">
-        <h1>Creating Skills: TodoApp Frontend</h1>
-        <h3>Frontend Conventions Skill</h3>
+        <h1>怎么创建 Skill：TodoApp 前端示例</h1>
+        <h3>前端约定 Skill</h3>
         <div class="code-block"><span class="comment"># .claude/skills/frontend-conventions/SKILL.md</span>
 ---
 <span class="key">name</span>: <span class="string">frontend-conventions</span>
@@ -787,7 +787,7 @@ When writing tests for the backend:
 
 When creating or modifying frontend components:
 
-<span class="key">## Sidebar Navigation</span>
+<span class="key">## Sidebar 导航</span>
 - Add new page routes to frontend/components/Sidebar.tsx
 - Use the existing NavLink pattern with icon + label
 - Keep alphabetical order in the nav list
@@ -806,8 +806,8 @@ When creating or modifying frontend components:
 
     <!-- Slide 32: Skill Frontmatter & Invocation -->
     <div class="slide" data-slide="32">
-        <h1>Skill Frontmatter &amp; Invocation</h1>
-        <h3>Frontmatter Options</h3>
+        <h1>Skill Frontmatter 与调用方式</h1>
+        <h3>Frontmatter 选项</h3>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#128220;</span><div class="use-case-text"><strong>name</strong><span>Skill identifier (uses directory name if omitted)</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128221;</span><div class="use-case-text"><strong>description</strong><span>When to invoke &mdash; helps Claude auto-discover the skill</span></div></div>
@@ -815,7 +815,7 @@ When creating or modifying frontend components:
             <div class="use-case-item"><span class="use-case-icon">&#128295;</span><div class="use-case-text"><strong>allowed-tools</strong><span>Restrict which tools the skill can use</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128257;</span><div class="use-case-text"><strong>context: fork</strong><span>Run the skill in an isolated subagent context for complex workflows</span></div></div>
         </div>
-        <h3>Invocation &amp; Execution Modes</h3>
+        <h3>调用与执行模式</h3>
         <div class="code-block"><span class="comment"># 1. Manual: slash command</span>
 <span class="cmd">&gt;</span> /frontend-conventions
 
@@ -830,18 +830,18 @@ When creating or modifying frontend components:
 <span class="key">context</span>: <span class="string">fork</span></div>
     </div>
 
-    <!-- Slide 33: Skills Summary -->
+    <!-- Slide 33: Skills 小结 -->
     <div class="slide" data-slide="33">
-        <h1>Skills Summary</h1>
+        <h1>Skills 小结</h1>
         <div class="info-grid">
             <div class="info-card">
-                <h4>What They Are</h4>
+                <h4>它们是什么</h4>
                 <p>Markdown files with domain knowledge</p>
                 <p>Live in <code>.claude/skills/</code></p>
                 <p>Have SKILL.md + optional supporting files</p>
             </div>
             <div class="info-card">
-                <h4>How to Use</h4>
+                <h4>怎么用</h4>
                 <p><code>/skill-name</code> &mdash; manual invoke</p>
                 <p>Auto-discovered by description</p>
                 <p>Preloaded into agents via <code>skills:</code></p>
@@ -870,20 +870,20 @@ When creating or modifying frontend components:
 
     <!-- Slide 35: What Are Agents -->
     <div class="slide" data-slide="35">
-        <h1>What Are Agents?</h1>
+        <h1>Agents 是什么？</h1>
         <div class="trigger-box">
-            <h4>Key Concept</h4>
+            <h4>关键概念</h4>
             <p>Agents are markdown files in <code>.claude/agents/</code> that define a <strong>custom Claude persona</strong> with its own tools, model, skills, and behavior.</p>
         </div>
-        <h3>Two Ways to Use Agents</h3>
+        <h3>两种使用方式</h3>
         <div class="two-col">
             <div class="col-card">
-                <h4>As Main Agent</h4>
+                <h4>作为主 Agent</h4>
                 <p>Replaces default Claude for your conversation.</p>
                 <div class="code-block"><span class="cmd">$</span> claude --agent frontend-engineer</div>
             </div>
             <div class="col-card">
-                <h4>As Subagent</h4>
+                <h4>作为子 Agent</h4>
                 <p>Spawned in an isolated context via Agent tool.</p>
                 <div class="code-block">Task(
   subagent_type=<span class="string">"frontend-engineer"</span>
@@ -893,12 +893,12 @@ When creating or modifying frontend components:
         </div>
     </div>
 
-    <!-- Slide 36: Frontend Engineer Agent -->
+    <!-- Slide 36: 前端工程师 Agent -->
     <div class="slide" data-slide="36">
-        <h1>Frontend Engineer Agent</h1>
+        <h1>前端工程师 Agent</h1>
         <div class="two-col">
             <div class="col-card bad">
-                <h4>Without Agent</h4>
+                <h4>不用 Agent</h4>
                 <p><code>&gt; add a settings page</code></p>
                 <p>Claude creates <code>pages/settings.tsx</code> with:</p>
                 <p>&bull; Inline CSS (no Tailwind)</p>
@@ -907,7 +907,7 @@ When creating or modifying frontend components:
                 <p style="color: #c62828;">Standalone page that doesn't fit the app.</p>
             </div>
             <div class="col-card good">
-                <h4>With Agent</h4>
+                <h4>用了 Agent</h4>
                 <p>Frontend agent already knows:</p>
                 <p>&bull; Use Tailwind tokens from the design system</p>
                 <p>&bull; Import API functions from <code>lib/api.ts</code></p>
@@ -931,19 +931,19 @@ Use the existing API client in lib/api.ts.
 Follow TodoList.tsx as your reference component.</div>
     </div>
 
-    <!-- Slide 37: Backend Engineer Agent -->
+    <!-- Slide 37: 后端工程师 Agent -->
     <div class="slide" data-slide="37">
-        <h1>Backend Engineer Agent</h1>
+        <h1>后端工程师 Agent</h1>
         <div class="two-col">
             <div class="col-card bad">
-                <h4>Without Agent</h4>
+                <h4>不用 Agent</h4>
                 <p><code>&gt; add a tags feature</code></p>
                 <p>Claude creates random endpoint structure</p>
                 <p>Different error handling than existing routes</p>
                 <p>No tests, no model validation</p>
             </div>
             <div class="col-card good">
-                <h4>With Agent</h4>
+                <h4>用了 Agent</h4>
                 <p>Backend agent follows existing patterns:</p>
                 <p>&bull; Route structure from <code>routes/todos.py</code></p>
                 <p>&bull; SQLAlchemy model like <code>models/todo.py</code></p>
@@ -985,7 +985,7 @@ Use Pydantic schemas for request/response validation.</div>
 You are a code reviewer. Check for security issues,
 performance problems, and suggest improvements.
 Review your memory for patterns you've seen before.</div>
-        <h3>Key Fields</h3>
+        <h3>关键字段</h3>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#128295;</span><div class="use-case-text"><strong>tools</strong><span>What the agent can do (Read, Write, Edit, Bash, etc.)</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128218;</span><div class="use-case-text"><strong>skills</strong><span>Knowledge preloaded at startup</span></div></div>
@@ -995,8 +995,8 @@ Review your memory for patterns you've seen before.</div>
 
     <!-- Slide 39: Agent Tools & Skills -->
     <div class="slide" data-slide="39">
-        <h1>Agent Tools &amp; Skills</h1>
-        <h3>Restricting Tools</h3>
+        <h1>Agent 的 Tools 与 Skills</h1>
+        <h3>如何限制工具</h3>
         <div class="code-block"><span class="comment"># Read-only agent &mdash; can't modify anything</span>
 <span class="key">tools</span>: <span class="string">Read, Grep, Glob</span>
 
@@ -1006,10 +1006,10 @@ Review your memory for patterns you've seen before.</div>
 <span class="comment"># Research-only agent</span>
 <span class="key">tools</span>: <span class="string">Read, Grep, Glob, WebSearch, WebFetch</span></div>
         <div class="trigger-box">
-            <h4>Key Pattern</h4>
+            <h4>关键模式</h4>
             <p>Skills provide <strong>static knowledge</strong> (what to do). Agents provide <strong>execution context</strong> (how to do it, with which tools). Together, they're powerful.</p>
         </div>
-        <h3>Choosing a Model</h3>
+        <h3>怎么选模型</h3>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#129504;</span><div class="use-case-text"><strong>opus</strong><span>Complex reasoning, architecture decisions</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#9889;</span><div class="use-case-text"><strong>sonnet</strong><span>Good balance of speed and capability</span></div></div>
@@ -1019,9 +1019,9 @@ Review your memory for patterns you've seen before.</div>
 
     <!-- Slide 40: Subagents -->
     <div class="slide" data-slide="40">
-        <h1>Subagents via Task Tool</h1>
+        <h1>通过 Task Tool 调用 Subagents</h1>
         <div class="trigger-box">
-            <h4>Key Concept</h4>
+            <h4>关键概念</h4>
             <p>Subagents run in an <strong>isolated context</strong> &mdash; separate from the main conversation. They do their work, return a summary, and their context is discarded.</p>
         </div>
         <div class="code-block"><span class="comment"># Claude spawns a subagent automatically or you can ask:</span>
@@ -1032,7 +1032,7 @@ Task(
   subagent_type=<span class="string">"frontend-engineer"</span>,
   prompt=<span class="string">"Add a user settings page to the TodoApp"</span>
 )</div>
-        <h3>Built-in Subagent Types</h3>
+        <h3>内置 Subagent 类型</h3>
         <p>
             <span class="matcher-tag">Explore</span>
             <span class="matcher-tag">Plan</span>
@@ -1043,7 +1043,7 @@ Task(
 
     <!-- Slide 41: Commands & Orchestration -->
     <div class="slide" data-slide="41">
-        <h1>Commands &amp; Orchestration</h1>
+        <h1>Commands 与编排</h1>
         <p>Commands are the entry points for complex workflows &mdash; the <strong>Command &rarr; Agent &rarr; Skills</strong> pattern:</p>
         <div class="code-block"><span class="comment"># .claude/commands/add-feature.md</span>
 ---
@@ -1061,7 +1061,7 @@ Task(
 4. Run tests to verify: pytest + npm test
 5. Summarize what was built</div>
         <div class="trigger-box">
-            <h4>Invoke It</h4>
+            <h4>怎么触发</h4>
             <p>Commands live in <code>.claude/commands/</code>. Users invoke them as slash commands: <code>&gt; /add-feature</code></p>
         </div>
     </div>
@@ -1076,7 +1076,7 @@ Task(
                 <p><strong>PreToolUse</strong> &mdash; validate commands</p>
                 <p><strong>PostToolUse</strong> &mdash; auto-format code</p>
                 <p><strong>Stop</strong> &mdash; check task completion</p>
-                <p><strong>SessionStart</strong> &mdash; load context</p>
+                <p><strong>会话Start</strong> &mdash; load context</p>
                 <p style="margin-top: 12px; color: #666;">16 hook events, 5 can block execution.</p>
             </div>
             <div class="col-card">
@@ -1090,7 +1090,7 @@ Task(
         </div>
     </div>
 
-    <!-- Slide 43: Full Architecture -->
+    <!-- Slide 43: Full 架构位置 -->
     <div class="slide" data-slide="43">
         <h1>Command &rarr; Agent &rarr; Skills</h1>
         <p>The full architecture pattern for complex workflows:</p>
@@ -1107,7 +1107,7 @@ Task(
 <span class="comment">|</span>    (Skill)                (Skill)                <span class="comment">|</span>
 <span class="comment">+-----------------------------------------------+</span></div>
         <div class="trigger-box">
-            <h4>Why It Works</h4>
+            <h4>为什么这套结构有效</h4>
             <p><strong>Commands</strong> = entry point. <strong>Agents</strong> = orchestration. <strong>Skills</strong> = domain knowledge. Clean separation, maximum reusability.</p>
         </div>
     </div>
@@ -1115,7 +1115,7 @@ Task(
     <!-- Slide 44: The High Level Slide -->
     <div class="slide section-slide" data-slide="44">
         <p class="celebration">&#127881;</p>
-        <h1>High &mdash; Agentic Engineering</h1>
+        <h1>高阶：Agentic Engineering</h1>
         <p class="section-desc">Your TodoApp now has: CLAUDE.md for project context, Rules for path-scoped conventions, Skills for domain knowledge, Agents for consistent execution, Commands for orchestrated workflows, Hooks for lifecycle automation, and MCP servers for external tools.</p>
     </div>
 
@@ -1123,7 +1123,7 @@ Task(
     <div class="slide" data-slide="45">
         <h1>Agent Memory</h1>
         <div class="trigger-box">
-            <h4>Key Feature</h4>
+            <h4>关键能力</h4>
             <p>Agents can <strong>learn across sessions</strong>. Add <code>memory: user</code> to the frontmatter and the agent builds its own persistent knowledge store.</p>
         </div>
         <div class="code-block"><span class="comment"># Agent remembers patterns it discovers</span>
@@ -1131,7 +1131,7 @@ Task(
   MEMORY.md                <span class="comment"># First 200 lines auto-loaded</span>
   react-patterns.md        <span class="comment"># Topic-specific notes</span>
   security-checklist.md    <span class="comment"># Learned over time</span></div>
-        <h3>Memory Scopes</h3>
+        <h3>Memory 作用域</h3>
         <p>
             <span class="matcher-tag">user &mdash; cross-project</span>
             <span class="matcher-tag">project &mdash; team-shared</span>
@@ -1139,30 +1139,30 @@ Task(
         </p>
     </div>
 
-    <!-- Slide 46: Agents Summary -->
+    <!-- Slide 46: Agents 小结 -->
     <div class="slide" data-slide="46">
-        <h1>Agents Summary</h1>
+        <h1>Agents 小结</h1>
         <div class="info-grid">
             <div class="info-card">
-                <h4>Creating Agents</h4>
+                <h4>怎么创建</h4>
                 <p>Drop <code>.md</code> files in <code>.claude/agents/</code></p>
                 <p>Set name, tools, model, skills, memory</p>
                 <p>Use <code>/agents</code> to manage interactively</p>
             </div>
             <div class="info-card">
-                <h4>Using Agents</h4>
+                <h4>怎么使用</h4>
                 <p><strong>Main agent:</strong> <code>"agent"</code> in settings.json</p>
                 <p><strong>Subagent:</strong> Agent tool spawns it</p>
                 <p><strong>CLI:</strong> <code>--agent name</code></p>
             </div>
             <div class="info-card">
-                <h4>Best Practices</h4>
+                <h4>最佳实践s</h4>
                 <p>Feature-specific agents, not generic ones</p>
                 <p>Preload skills for domain knowledge</p>
                 <p>Use haiku model for simple focused tasks</p>
             </div>
             <div class="info-card">
-                <h4>Architecture</h4>
+                <h4>架构位置</h4>
                 <p>Command &rarr; Agent &rarr; Skills</p>
                 <p>Progressive disclosure of knowledge</p>
                 <p>Single execution context per agent</p>
@@ -1177,17 +1177,17 @@ Task(
     <!-- Slide 47: Section Divider - Appendix -->
     <div class="slide section-slide" data-slide="47">
         <p class="section-number">Appendix</p>
-        <h1>Reference</h1>
-        <p class="section-desc">Command references, workflows, settings, and customization options.</p>
+        <h1>参考区</h1>
+        <p class="section-desc">命令参考、工作流、settings 和定制项汇总。</p>
     </div>
 
-    <!-- Slide 48: How Claude Uses Tools -->
+    <!-- Slide 48: Claude 怎么用工具 -->
     <div class="slide" data-slide="48">
-        <h1>How Claude Uses Tools</h1>
+        <h1>Claude 怎么用工具</h1>
         <p>Claude Code doesn't just generate text &mdash; it <strong>takes actions</strong> using tools:</p>
         <div class="info-grid">
             <div class="info-card">
-                <h4>File Tools</h4>
+                <h4>文件类工具</h4>
                 <p><strong>Read</strong> &mdash; Read file contents</p>
                 <p><strong>Edit</strong> &mdash; Modify existing files</p>
                 <p><strong>Write</strong> &mdash; Create new files</p>
@@ -1195,7 +1195,7 @@ Task(
                 <p><strong>Grep</strong> &mdash; Search file contents</p>
             </div>
             <div class="info-card">
-                <h4>Action Tools</h4>
+                <h4>动作类工具</h4>
                 <p><strong>Bash</strong> &mdash; Run shell commands</p>
                 <p><strong>Task</strong> &mdash; Spawn subagents</p>
                 <p><strong>WebFetch</strong> &mdash; Fetch URLs</p>
@@ -1204,39 +1204,39 @@ Task(
             </div>
         </div>
         <div class="warning-box">
-            <h4>Important</h4>
+            <h4>重要提醒</h4>
             <p>Claude asks for permission before running potentially dangerous commands. Always review what it's about to do.</p>
         </div>
     </div>
 
-    <!-- Slide 49: File Operations -->
+    <!-- Slide 49: 文件操作 -->
     <div class="slide" data-slide="49">
-        <h1>File Operations</h1>
-        <h3>Reading Files</h3>
+        <h1>文件操作</h1>
+        <h3>读文件</h3>
         <div class="code-block"><span class="cmd">&gt;</span> Read the package.json file</div>
-        <h3>Editing Files</h3>
+        <h3>改文件</h3>
         <div class="code-block"><span class="cmd">&gt;</span> In src/utils/format.ts, change the date format from MM/DD to DD/MM</div>
-        <h3>Creating Files</h3>
+        <h3>新建文件</h3>
         <div class="code-block"><span class="cmd">&gt;</span> Create a new test file for the user service at tests/user.test.ts</div>
         <div class="trigger-box">
-            <h4>Pro Tip</h4>
+            <h4>进阶提示</h4>
             <p>Always tell Claude <strong>which file</strong> to edit. Don't say "fix the bug" &mdash; say "fix the null check in <code>src/handlers/auth.ts</code> line 42".</p>
         </div>
     </div>
 
     <!-- Slide 50: Bash & Search -->
     <div class="slide" data-slide="50">
-        <h1>Bash Commands &amp; Search</h1>
-        <h3>Running Commands</h3>
+        <h1>Bash 命令与搜索</h1>
+        <h3>跑命令</h3>
         <div class="code-block"><span class="cmd">&gt;</span> Run the test suite: npm test
 <span class="cmd">&gt;</span> Check which port the server is using
 <span class="cmd">&gt;</span> Install express as a dependency</div>
-        <h3>Searching the Codebase</h3>
+        <h3>搜索代码库</h3>
         <div class="code-block"><span class="cmd">&gt;</span> Find all files that import the UserService class
 <span class="cmd">&gt;</span> Search for any TODO comments in the src directory
 <span class="cmd">&gt;</span> Find where the API_KEY environment variable is used</div>
         <div class="trigger-box">
-            <h4>Pro Tip</h4>
+            <h4>进阶提示</h4>
             <p>Use <code>!</code> prefix for quick bash commands: <code>!git status</code> runs the command and shows output without Claude analyzing it.</p>
         </div>
     </div>
@@ -1245,20 +1245,20 @@ Task(
     <div class="slide" data-slide="51">
         <h1>/help</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /help</div>
         </div>
         <p>Shows all available slash commands. This is your starting point when you forget a command.</p>
         <div class="info-grid">
             <div class="info-card">
-                <h4>Daily Use</h4>
+                <h4>日常使用</h4>
                 <p><code>/model</code> &mdash; Switch models</p>
                 <p><code>/plan</code> &mdash; Plan before coding</p>
                 <p><code>/compact</code> &mdash; Free up context</p>
                 <p><code>/cost</code> &mdash; Check spending</p>
             </div>
             <div class="info-card">
-                <h4>Project Setup</h4>
+                <h4>项目初始化</h4>
                 <p><code>/init</code> &mdash; Create CLAUDE.md</p>
                 <p><code>/memory</code> &mdash; Edit memory</p>
                 <p><code>/config</code> &mdash; Settings</p>
@@ -1269,10 +1269,10 @@ Task(
 
     <!-- Slide 52: Effort Level -->
     <div class="slide" data-slide="52">
-        <h1>/model &mdash; Effort Level</h1>
+        <h1>/model &mdash; 推理强度</h1>
         <p>When Opus 4.6 is selected, you can adjust the <strong>effort level</strong>:</p>
         <div class="how-to-trigger">
-            <h4>How to Set</h4>
+            <h4>怎么设置</h4>
             <p>Run <code>/model</code>, select Opus, then use <code>&larr; &rarr;</code> arrow keys to change effort.</p>
         </div>
         <div class="use-cases">
@@ -1284,28 +1284,28 @@ Task(
 
     <!-- Slide 53: /fast -->
     <div class="slide" data-slide="53">
-        <h1>/fast &mdash; Faster Output</h1>
+        <h1>/fast &mdash; 更快输出</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /fast</div>
         </div>
         <div class="trigger-box">
-            <h4>What It Does</h4>
+            <h4>它会做什么</h4>
             <p>Toggles fast mode &mdash; same Opus 4.6 model with faster token output. It does NOT switch to a different model.</p>
         </div>
     </div>
 
     <!-- Slide 54: /context & /cost -->
     <div class="slide" data-slide="54">
-        <h1>/context &amp; /cost</h1>
+        <h1>/context 与 /cost</h1>
         <div class="two-col">
             <div class="col-card">
-                <h4>/context &mdash; Visualize Usage</h4>
+                <h4>/context &mdash; 看上下文使用量</h4>
                 <div class="code-block"><span class="cmd">&gt;</span> /context</div>
                 <p>Shows a colored grid of your context window &mdash; how much is used, what's taking space.</p>
             </div>
             <div class="col-card">
-                <h4>/cost &mdash; Track Spending</h4>
+                <h4>/cost &mdash; 看消耗</h4>
                 <div class="code-block"><span class="cmd">&gt;</span> /cost</div>
                 <p>Shows token usage and cost for the current session.</p>
             </div>
@@ -1314,30 +1314,30 @@ Task(
 
     <!-- Slide 55: /clear & /rewind -->
     <div class="slide" data-slide="55">
-        <h1>/clear &amp; /rewind</h1>
+        <h1>/clear 与 /rewind</h1>
         <div class="two-col">
             <div class="col-card">
-                <h4>/clear &mdash; Fresh Start</h4>
+                <h4>/clear &mdash; 清空重新开始</h4>
                 <div class="code-block"><span class="cmd">&gt;</span> /clear</div>
                 <p>Clears conversation history completely. Use when switching tasks.</p>
             </div>
             <div class="col-card">
-                <h4>/rewind &mdash; Go Back</h4>
+                <h4>/rewind &mdash; 回到之前</h4>
                 <div class="code-block"><span class="cmd">&gt;</span> /rewind</div>
                 <p>Rewinds conversation and/or code to an earlier point.</p>
             </div>
         </div>
         <div class="trigger-box">
-            <h4>When to Use Which</h4>
+            <h4>什么时候该用哪个</h4>
             <p><strong>/clear</strong> = new topic. <strong>/rewind</strong> = same topic, wrong turn. <strong>/compact</strong> = same topic, low on context.</p>
         </div>
     </div>
 
     <!-- Slide 56: /resume -->
     <div class="slide" data-slide="56">
-        <h1>/resume &mdash; Resume Sessions</h1>
+        <h1>/resume &mdash; 继续历史会话</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="comment"># Resume most recent session</span>
 <span class="cmd">$</span> claude --resume
 
@@ -1349,9 +1349,9 @@ Task(
 
     <!-- Slide 57: /doctor -->
     <div class="slide" data-slide="57">
-        <h1>/doctor &mdash; Diagnostics</h1>
+        <h1>/doctor &mdash; 诊断问题</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /doctor</div>
         </div>
         <p>Checks the health of your Claude Code installation:</p>
@@ -1365,9 +1365,9 @@ Task(
 
     <!-- Slide 58: /config -->
     <div class="slide" data-slide="58">
-        <h1>/config &mdash; Configuration</h1>
+        <h1>/config &mdash; 配置中心</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /config</div>
         </div>
         <p>Opens the interactive settings UI. Key things you can configure:</p>
@@ -1381,9 +1381,9 @@ Task(
 
     <!-- Slide 59: /permissions -->
     <div class="slide" data-slide="59">
-        <h1>/permissions &mdash; Tool Access Control</h1>
+        <h1>/permissions &mdash; 工具权限控制</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /permissions</div>
         </div>
         <p>Manage what Claude can do without asking. Supports <strong>wildcard syntax</strong>:</p>
@@ -1399,44 +1399,44 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
 
     <!-- Slide 60: /sandbox -->
     <div class="slide" data-slide="60">
-        <h1>/sandbox &mdash; Sandboxing</h1>
+        <h1>/sandbox &mdash; 沙箱</h1>
         <div class="how-to-trigger">
-            <h4>Try This</h4>
+            <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /sandbox</div>
         </div>
         <div class="trigger-box">
-            <h4>What It Does</h4>
+            <h4>它会做什么</h4>
             <p>Enables file and network isolation for bash commands. Safer, with fewer permission prompts.</p>
         </div>
     </div>
 
-    <!-- Slide 61: Commands Cheat Sheet -->
+    <!-- Slide 61: Commands 速查表 -->
     <div class="slide" data-slide="61">
-        <h1>Commands Cheat Sheet</h1>
+        <h1>Commands 速查表</h1>
         <div class="info-grid">
             <div class="info-card">
-                <h4>Session</h4>
+                <h4>会话</h4>
                 <p><code>/clear</code> &mdash; Fresh start</p>
                 <p><code>/compact</code> &mdash; Free context</p>
                 <p><code>/resume</code> &mdash; Continue session</p>
                 <p><code>/rewind</code> &mdash; Undo changes</p>
             </div>
             <div class="info-card">
-                <h4>Model &amp; Mode</h4>
+                <h4>模型与模式</h4>
                 <p><code>/model</code> &mdash; Switch models</p>
                 <p><code>/fast</code> &mdash; Toggle speed</p>
                 <p><code>/plan</code> &mdash; Plan mode</p>
                 <p><code>/config</code> &mdash; Settings</p>
             </div>
             <div class="info-card">
-                <h4>Project</h4>
+                <h4>项目</h4>
                 <p><code>/init</code> &mdash; Create CLAUDE.md</p>
                 <p><code>/memory</code> &mdash; Edit memory</p>
                 <p><code>/permissions</code> &mdash; Tool access</p>
                 <p><code>/sandbox</code> &mdash; Sandboxing</p>
             </div>
             <div class="info-card">
-                <h4>Info &amp; Debug</h4>
+                <h4>信息与调试</h4>
                 <p><code>/context</code> &mdash; Context usage</p>
                 <p><code>/cost</code> &mdash; Token spending</p>
                 <p><code>/doctor</code> &mdash; Health check</p>
@@ -1447,9 +1447,9 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
 
     <!-- Slide 62: Commit Workflow -->
     <div class="slide" data-slide="62">
-        <h1>The Commit Workflow</h1>
+        <h1>Commit 工作流</h1>
         <div class="how-to-trigger">
-            <h4>Ask Claude to Commit</h4>
+            <h4>让 Claude 帮你提交</h4>
             <div class="code-block"><span class="cmd">&gt;</span> Commit these changes with a descriptive message</div>
         </div>
         <p>Claude will:</p>
@@ -1462,9 +1462,9 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
 
     <!-- Slide 63: PR Workflow -->
     <div class="slide" data-slide="63">
-        <h1>The PR Workflow</h1>
+        <h1>PR 工作流</h1>
         <div class="how-to-trigger">
-            <h4>Ask Claude to Create a PR</h4>
+            <h4>让 Claude 帮你创建 PR</h4>
             <div class="code-block"><span class="cmd">&gt;</span> Create a pull request for these changes</div>
         </div>
         <p>Claude will:</p>
@@ -1477,28 +1477,28 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
 
     <!-- Slide 64: Default Main Agent -->
     <div class="slide" data-slide="64">
-        <h1>Setting a Default Agent</h1>
+        <h1>设置默认 Agent</h1>
         <div class="how-to-trigger">
-            <h4>Via settings.json</h4>
+            <h4>通过 settings.json</h4>
             <div class="code-block"><span class="comment">// .claude/settings.json</span>
 {
   <span class="key">"agent"</span>: <span class="string">"frontend-engineer"</span>
 }</div>
         </div>
         <p>Now every time you run <code>claude</code> in this project, you'll talk to the <code>frontend-engineer</code> agent instead of default Claude.</p>
-        <h3>Per-Session Override</h3>
+        <h3>Per-会话 Override</h3>
         <div class="code-block"><span class="cmd">$</span> claude --agent backend-engineer</div>
         <div class="trigger-box">
-            <h4>Manage Agents</h4>
+            <h4>管理 Agents</h4>
             <p>Run <code>/agents</code> to view, create, edit, or delete agents interactively.</p>
         </div>
     </div>
 
     <!-- Slide 65: settings.json -->
     <div class="slide" data-slide="65">
-        <h1>settings.json Overview</h1>
+        <h1>settings.json 总览</h1>
         <div class="trigger-box">
-            <h4>Settings Hierarchy</h4>
+            <h4>Settings 层级</h4>
             <p>Settings cascade from most specific to least specific. Higher priority wins.</p>
         </div>
         <div class="code-block"><span class="comment"># User-writable override order (highest to lowest):</span>
@@ -1536,7 +1536,7 @@ managed-settings.json              <span class="comment"># Organization policy (
         <h1>Status Line</h1>
         <p>A custom info bar below the composer showing model, context, cost, git branch, etc.</p>
         <div class="how-to-trigger">
-            <h4>Quick Setup</h4>
+            <h4>快速设置</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /statusline</div>
         </div>
         <div class="code-block"><span class="comment">// .claude/settings.json</span>
@@ -1552,7 +1552,7 @@ managed-settings.json              <span class="comment"># Organization policy (
     <div class="slide" data-slide="68">
         <h1>Output Styles</h1>
         <div class="how-to-trigger">
-            <h4>Set via /config</h4>
+            <h4>通过 /config 设置</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /config
 <span class="comment"># Navigate to Output Style</span></div>
         </div>
@@ -1567,18 +1567,18 @@ managed-settings.json              <span class="comment"># Organization policy (
     <div class="slide" data-slide="69">
         <h1>Keybindings</h1>
         <div class="how-to-trigger">
-            <h4>Customize Keys</h4>
+            <h4>自定义按键</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /keybindings</div>
         </div>
         <div class="info-grid">
             <div class="info-card">
-                <h4>Navigation</h4>
+                <h4>导航</h4>
                 <p><code>Option+P</code> &mdash; Switch model</p>
                 <p><code>Ctrl+L</code> &mdash; Clear screen</p>
                 <p><code>Esc Esc</code> &mdash; Rewind</p>
             </div>
             <div class="info-card">
-                <h4>Editing</h4>
+                <h4>编辑</h4>
                 <p><code>Ctrl+G</code> &mdash; Open in editor</p>
                 <p><code>Ctrl+V</code> &mdash; Paste image</p>
                 <p><code>Shift+Tab</code> &mdash; Toggle permissions</p>
@@ -1603,19 +1603,19 @@ managed-settings.json              <span class="comment"># Organization policy (
         </div>
     </div>
 
-    <!-- Slide 71: Customization Summary -->
+    <!-- Slide 71: 定制化小结 -->
     <div class="slide" data-slide="71">
-        <h1>Customization Summary</h1>
+        <h1>定制化小结</h1>
         <div class="info-grid">
             <div class="info-card">
-                <h4>Quick Wins</h4>
+                <h4>快速收益项</h4>
                 <p><code>spinnerVerbs</code> &mdash; Fun loading messages</p>
                 <p><code>/statusline</code> &mdash; Info bar</p>
                 <p><code>/config</code> &rarr; Output Style</p>
                 <p><code>/keybindings</code> &mdash; Custom keys</p>
             </div>
             <div class="info-card">
-                <h4>Power Features</h4>
+                <h4>高阶能力</h4>
                 <p>Hooks &mdash; Custom lifecycle scripts</p>
                 <p>Plugins &mdash; Installable packages</p>
                 <p>MCP Servers &mdash; External tools</p>
@@ -1624,9 +1624,9 @@ managed-settings.json              <span class="comment"># Organization policy (
         </div>
     </div>
 
-    <!-- Slide 72: Debugging Tips -->
+    <!-- Slide 72: 调试建议 -->
     <div class="slide" data-slide="72">
-        <h1>Debugging Tips</h1>
+        <h1>调试建议</h1>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#129658;</span><div class="use-case-text"><strong>Run /doctor</strong><span>First thing to try when something isn't working</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128421;</span><div class="use-case-text"><strong>Background tasks for logs</strong><span>Ask Claude to run the server as a background task so you can see logs while working</span></div></div>
@@ -1637,7 +1637,7 @@ managed-settings.json              <span class="comment"># Organization policy (
 
     <!-- Slide 73: Golden Rules -->
     <div class="slide" data-slide="73">
-        <h1>The Golden Rules</h1>
+        <h1>黄金规则</h1>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>Always start with plan mode</strong><span>For any non-trivial task. Review the plan before Claude writes code.</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">2&#65039;&#8419;</span><div class="use-case-text"><strong>Keep CLAUDE.md under 150 lines</strong><span>Longer instructions get diluted. Use skills and rules for detail.</span></div></div>
@@ -1648,9 +1648,9 @@ managed-settings.json              <span class="comment"># Organization policy (
         </div>
     </div>
 
-    <!-- Slide 74: Resources -->
+    <!-- Slide 74: 延伸资源 -->
     <div class="slide" data-slide="74">
-        <h1>Resources</h1>
+        <h1>延伸资源</h1>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#128214;</span><div class="use-case-text"><strong>Claude Code Docs</strong><span>code.claude.com/docs/en</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128161;</span><div class="use-case-text"><strong>Boris Cherny's 12 Tips</strong><span>tips/claude-boris-12-tips-12-feb-26.md</span></div></div>
@@ -1661,7 +1661,7 @@ managed-settings.json              <span class="comment"># Organization policy (
 
     <!-- Slide 75: Next Steps -->
     <div class="slide" data-slide="75">
-        <h1>Your Next Steps</h1>
+        <h1>你的下一步</h1>
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>Install &amp; Login</strong><span>Get Claude Code running on your machine today</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">2&#65039;&#8419;</span><div class="use-case-text"><strong>Run /init on your project</strong><span>Create a CLAUDE.md &mdash; give Claude context about your codebase</span></div></div>
@@ -1676,8 +1676,8 @@ managed-settings.json              <span class="comment"># Organization policy (
         <div class="title-logo">
             <img src="../!/claude-jumping.svg" alt="Claude Code mascot jumping" />
         </div>
-        <h1>Thank You!</h1>
-        <p class="subtitle">Questions?</p>
+        <h1>谢谢！</h1>
+        <p class="subtitle">欢迎提问</p>
         <p style="margin-top: 40px; font-size: 1rem; color: #666;">github.com/shanraisshan/claude-code-best-practice</p>
     </div>
 
@@ -1732,7 +1732,7 @@ managed-settings.json              <span class="comment"># Organization policy (
             const lvl = LEVELS[levelKey];
             fill.style.height = lvl.height;
             fill.style.backgroundColor = lvl.color;
-            if (labelEl) { labelEl.innerHTML = 'Current = <strong style="color:' + lvl.color + '">' + lvl.label + '</strong>'; }
+            if (labelEl) { labelEl.innerHTML = '当前等级 = <strong style="color:' + lvl.color + '">' + lvl.label + '</strong>'; }
 
             // Show level badge when level changes
             document.querySelectorAll('.level-badge').forEach(b => b.remove());
