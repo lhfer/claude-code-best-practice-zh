@@ -9,6 +9,7 @@
 [![Sync Status](https://img.shields.io/badge/sync-major%20content%20done-8250df?style=flat)](SYNC_STATUS.md)
 [![Validator](https://img.shields.io/badge/validator-protected%20runtime-2f855a?style=flat)](scripts/validate_localization.py)
 [![Learning PDF](https://img.shields.io/badge/pdf-learning%20guide-d97706?style=flat)](output/pdf/claude-code-best-practice-zh-learning-guide.pdf)
+[![Complete PDF](https://img.shields.io/badge/pdf-complete%20handbook-b91c1c?style=flat)](output/pdf/claude-code-best-practice-zh-complete-handbook.pdf)
 
 ## 你来这个仓库能得到什么
 
@@ -16,6 +17,13 @@
 - 快上手：从安装、概念、样例到 workflow 都有清晰入口
 - 能照抄：仓库里不只是讲概念，还有可运行样例和结构化实现思路
 - 能进阶：当你不满足于“让 Claude 写两行代码”时，这里会告诉你怎么往工程化、团队化继续走
+
+## PDF 下载
+
+- [快速学习版 PDF](output/pdf/claude-code-best-practice-zh-learning-guide.pdf)
+  适合第一次快速过一遍学习路径。
+- [完整手册 PDF](output/pdf/claude-code-best-practice-zh-complete-handbook.pdf)
+  适合脱离 GitHub 仓库、离线系统阅读。
 
 ## 这个仓库最适合谁
 
