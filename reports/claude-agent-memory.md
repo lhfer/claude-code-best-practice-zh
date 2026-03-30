@@ -1,108 +1,64 @@
-# Claude Code: Agent Memory Frontmatter
+# Claude Code 的 Agent Memory
 
-Persistent memory for subagents — enabling agents to learn, remember, and build knowledge across sessions.
+> 中文重编版
+> 上游原文：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/reports/claude-agent-memory.md>
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+## 这篇报告回答什么
 
----
+`memory` frontmatter 到底有什么用？
 
-## Overview
+它的核心价值是：
 
-Introduced in **Claude Code v2.1.33** (February 2026), the `memory` frontmatter field gives each subagent its own persistent markdown-based knowledge store. Before this, every agent invocation started from scratch.
+> 让某个 agent 不再每次都从零开始。
 
-```yaml
----
-name: code-reviewer
-description: Reviews code for quality and best practices
-tools: Read, Write, Edit, Bash
-model: sonnet
-memory: user
----
+## 它解决的问题
 
-You are a code reviewer. As you review code, update your agent memory with
-patterns, conventions, and recurring issues you discover.
-```
+没有 memory 时，agent 每次调用都像第一次来这个仓库。
 
----
+有了 memory 之后，它可以跨会话积累：
 
-## Memory Scopes
+- 代码风格模式
+- 常见问题
+- review 经验
+- 项目习惯
 
-| Scope | Storage Location | Version Controlled | Shared | Best For |
-|-------|-----------------|-------------------|--------|----------|
-| `user` | `~/.claude/agent-memory/<agent-name>/` | No | No | Cross-project knowledge (recommended default) |
-| `project` | `.claude/agent-memory/<agent-name>/` | Yes | Yes | Project-specific knowledge the team should share |
-| `local` | `.claude/agent-memory-local/<agent-name>/` | No (git-ignored) | No | Project-specific knowledge that's personal |
+## 三种作用域
 
-These scopes mirror the settings hierarchy (`~/.claude/settings.json` → `.claude/settings.json` → `.claude/settings.local.json`).
+| Scope | 更适合什么 |
+|---|---|
+| `user` | 你个人跨项目的长期经验 |
+| `project` | 这个项目团队应该共享的经验 |
+| `local` | 只属于你自己的项目内经验 |
 
----
+## 什么时候值得用
 
-## How It Works
+- code review agent
+- 文档审校 agent
+- 某类长期重复的质量检查 agent
 
-1. **On startup**: First 200 lines of `MEMORY.md` are injected into the agent's system prompt
-2. **Tool access**: `Read`, `Write`, `Edit` are auto-enabled so the agent can manage its memory
-3. **During execution**: The agent reads/writes to its memory directory freely
-4. **Curation**: If `MEMORY.md` exceeds 200 lines, the agent moves details into topic-specific files
+## 什么时候别急着用
 
-```
-~/.claude/agent-memory/code-reviewer/     # user scope example
-├── MEMORY.md                              # Primary file (first 200 lines loaded)
-├── react-patterns.md                      # Topic-specific file
-└── security-checklist.md                  # Topic-specific file
-```
+- 你只是做一次性任务
+- agent 的边界还没稳定
+- 你还没想清楚应该记住什么、不该记住什么
 
----
+## 它和其他 memory 机制的区别
 
-## Agent Memory vs Other Memory Systems
+- `CLAUDE.md`：项目级共享工作记忆
+- `rules`：路径级模块化约束
+- `agent memory`：某个 agent 自己长期积累的经验
 
-| System | Who Writes | Who Reads | Scope |
-|--------|-----------|-----------|-------|
-| **CLAUDE.md** | You (manually) | Main Claude + all agents | Project |
-| **Auto-memory** | Main Claude (auto) | Main Claude only | Per-project per-user |
-| **`/memory` command** | You (via editor) | Main Claude only | Per-project per-user |
-| **Agent memory** | The agent itself | That specific agent only | Configurable (user/project/local) |
+这三者不要混。
 
-These systems are **complementary** — an agent reads both CLAUDE.md (project context) and its own memory (agent-specific knowledge).
+## 中文团队最有价值的用法
 
----
+如果你有一个 review agent，最值得记住的是：
 
-## Practical Example
+- 项目常见问题模式
+- 反复被指出的约定
+- 某些模块的历史坑
 
-```yaml
----
-name: api-developer
-description: Implement API endpoints following team conventions
-tools: Read, Write, Edit, Bash
-model: sonnet
-memory: project
-skills:
-  - api-conventions
-  - error-handling-patterns
----
+## 一句话总结
 
-Implement API endpoints. Follow the conventions from your preloaded skills.
-As you work, save architectural decisions and patterns to your memory.
-```
-
-This combines **skills** (static knowledge at startup) with **memory** (dynamic knowledge built over time).
-
----
-
-## Tips
-
-- **Prompt memory usage** — Include explicit instructions: `"Before starting, review your memory. After completing, update your memory with what you learned."`
-- **Request memory checks** when invoking agents: `"Review this PR, and check your memory for patterns you've seen before."`
-- **Choose the right scope** — `user` for cross-project, `project` for team-shared, `local` for personal
-
----
-
-## Sources
-
-- [Create custom subagents — Claude Code Docs](https://code.claude.com/docs/en/sub-agents)
-- [Manage Claude's memory — Claude Code Docs](https://code.claude.com/docs/en/memory)
-- [Claude Code v2.1.33 Release Notes](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md)
+agent memory 最适合那些“会重复看同一类问题”的 agent。
+如果任务不重复，memory 的收益就不会太大。

@@ -29,9 +29,8 @@
 | `best-practice/claude-commands.md` | 已中文化 | v1 重编 |
 | `best-practice/claude-settings.md` | 已中文化 | v1 重编 |
 | `best-practice/claude-memory.md` | 已中文化 | v1 重编 |
-| `reports/claude-agent-command-skill.md` | 已中文化 | v1 重编 |
-| `reports/claude-global-vs-project-settings.md` | 已中文化 | v1 重编 |
-| `reports/claude-skills-for-larger-mono-repos.md` | 已中文化 | v1 重编 |
+| `reports/README.md` | 已中文化 | 报告层索引 |
+| `reports/*.md` | 已中文化 | 关键长文已完成中文重编 |
 | `implementation/` weather 相关说明 | 已中文化 | 仅说明层 |
 | `orchestration-workflow/` 说明层 | 已中文化 | 仅说明层 |
 | `tips/README.md` | 已中文化 | 社区经验索引 |

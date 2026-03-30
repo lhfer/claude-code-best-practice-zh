@@ -100,9 +100,16 @@
 
 ### 关键解释层
 
+- [reports/README.md](reports/README.md)
 - [reports/claude-agent-command-skill.md](reports/claude-agent-command-skill.md)
 - [reports/claude-global-vs-project-settings.md](reports/claude-global-vs-project-settings.md)
 - [reports/claude-skills-for-larger-mono-repos.md](reports/claude-skills-for-larger-mono-repos.md)
+- [reports/claude-agent-memory.md](reports/claude-agent-memory.md)
+- [reports/claude-usage-and-rate-limits.md](reports/claude-usage-and-rate-limits.md)
+- [reports/claude-advanced-tool-use.md](reports/claude-advanced-tool-use.md)
+- [reports/claude-in-chrome-v-chrome-devtools-mcp.md](reports/claude-in-chrome-v-chrome-devtools-mcp.md)
+- [reports/claude-agent-sdk-vs-cli-system-prompts.md](reports/claude-agent-sdk-vs-cli-system-prompts.md)
+- [reports/llm-day-to-day-degradation.md](reports/llm-day-to-day-degradation.md)
 
 ### 样例链路层
 
