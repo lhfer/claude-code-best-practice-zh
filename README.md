@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/license-MIT-2ea44f?style=flat)](LICENSE)
 [![Chinese First](https://img.shields.io/badge/docs-Chinese%20first-ffb703?style=flat)](#推荐阅读顺序)
 [![Keep Runtime in English](https://img.shields.io/badge/runtime-English%20unchanged-6c757d?style=flat)](LOCALIZATION_POLICY.md)
-[![Sync Status](https://img.shields.io/badge/sync-v1%20in%20progress-8250df?style=flat)](SYNC_STATUS.md)
+[![Sync Status](https://img.shields.io/badge/sync-major%20content%20done-8250df?style=flat)](SYNC_STATUS.md)
 [![Validator](https://img.shields.io/badge/validator-protected%20runtime-2f855a?style=flat)](scripts/validate_localization.py)
 
 ## 这仓库是什么

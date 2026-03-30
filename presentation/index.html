@@ -124,7 +124,7 @@
         <h1>示例项目：TodoApp</h1>
         <div class="trigger-box">
             <h4>贯穿全程的示例</h4>
-            <p>整份演示都会围绕一个 <strong>TodoApp monorepo</strong> 展开，展示它如何从“普通项目”一步步长成“带完整 Claude Code 配置的项目”。</p>
+            <p>整份演示都会围绕一个 <strong>TodoApp 单仓示例</strong> 展开，展示它如何从“普通项目”一步步长成“带完整 Claude Code 配置的项目”。</p>
         </div>
         <div class="two-col">
             <div>
@@ -641,7 +641,7 @@ TodoApp monorepo：FastAPI backend + Next.js frontend。
 ---
 <span class="key">globs</span>: [<span class="string">"backend/tests/**"</span>]
 ---
-When writing tests for the backend:
+编写后端测试时：
 - Use pytest with the existing conftest.py fixtures
 - Follow the pattern in test_todos.py:
   - Use TestClient from FastAPI
@@ -660,7 +660,7 @@ When writing tests for the backend:
             <h4>可以先试这个</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /memory</div>
         </div>
-        <p>Opens your CLAUDE.md memory files in an editor. Changes here persist across all sessions.</p>
+        <p>它会把 memory 相关文件打开给你编辑，这里的改动会持续保留到后续会话里。</p>
         <h3>三个作用域（按加载顺序）</h3>
         <div class="code-block"><span class="comment"># All combined at session start:</span>
 ~/.claude/CLAUDE.md           <span class="comment"># Global &mdash; all projects</span>
@@ -962,7 +962,7 @@ Follow TodoList.tsx as your reference component.</div>
 ---
 You are a backend engineer for the TodoApp.
 Follow the route patterns in routes/todos.py.
-Create SQLAlchemy models matching models/todo.py.
+创建与 models/todo.py 风格一致的 SQLAlchemy models。
 Always add pytest tests for new endpoints.
 Use Pydantic schemas for request/response validation.</div>
     </div>
@@ -1037,7 +1037,7 @@ Task(
             <span class="matcher-tag">Explore</span>
             <span class="matcher-tag">档位</span>
             <span class="matcher-tag">Bash</span>
-            <span class="matcher-tag">Your Custom Agents</span>
+            <span class="matcher-tag">你的自定义 Agents</span>
         </p>
     </div>
 
@@ -1072,7 +1072,7 @@ Task(
         <div class="two-col">
             <div class="col-card">
                 <h4>Hooks</h4>
-                <p>Custom scripts at specific moments in Claude's lifecycle:</p>
+                <p>在 Claude 生命周期的特定时刻运行自定义脚本：</p>
                 <p><strong>PreToolUse</strong> &mdash; validate commands</p>
                 <p><strong>PostToolUse</strong> &mdash; auto-format code</p>
                 <p><strong>Stop</strong> &mdash; check task completion</p>
@@ -1412,7 +1412,7 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
 
     <!-- Slide 61: Commands 速查表 -->
     <div class="slide" data-slide="61">
-        <h1>Commands 速查表</h1>
+        <h1>命令速查表</h1>
         <div class="info-grid">
             <div class="info-card">
                 <h4>会话</h4>
@@ -1425,7 +1425,7 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
                 <h4>模型与模式</h4>
                 <p><code>/model</code> &mdash; 切模型</p>
                 <p><code>/fast</code> &mdash; 切速度模式</p>
-                <p><code>/plan</code> &mdash; 档位 mode</p>
+                <p><code>/plan</code> &mdash; 规划模式</p>
                 <p><code>/config</code> &mdash; 设置中心</p>
             </div>
             <div class="info-card">
@@ -1454,8 +1454,8 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
         </div>
         <p>Claude will:</p>
         <div class="use-cases">
-            <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>Run git status &amp; diff</strong><span>Reviews all staged and unstaged changes</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">2&#65039;&#8419;</span><div class="use-case-text"><strong>Draft a commit message</strong><span>Focuses on "why" not "what", following your repo's style</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>先跑 git status 与 diff</strong><span>检查所有已暂存和未暂存的改动</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">2&#65039;&#8419;</span><div class="use-case-text"><strong>起一条 commit message</strong><span>重点写“为什么改”，而不只是“改了什么”，并尽量贴合仓库风格</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">3&#65039;&#8419;</span><div class="use-case-text"><strong>Stage and commit</strong><span>Adds specific files (not git add -A) and creates the commit</span></div></div>
         </div>
     </div>
@@ -1469,9 +1469,9 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
         </div>
         <p>Claude will:</p>
         <div class="use-cases">
-            <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>Review all commits on the branch</strong><span>Analyzes the full diff from base branch</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>检查分支上的所有提交</strong><span>从 base branch 开始看完整 diff</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">2&#65039;&#8419;</span><div class="use-case-text"><strong>Write PR title &amp; description</strong><span>Summary, test plan, and changes overview</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">3&#65039;&#8419;</span><div class="use-case-text"><strong>Push and create PR via gh CLI</strong><span>Uses GitHub CLI to create the pull request</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">3&#65039;&#8419;</span><div class="use-case-text"><strong>通过 gh CLI 推送并创建 PR</strong><span>用 GitHub CLI 真正创建 pull request</span></div></div>
         </div>
     </div>
 
@@ -1486,7 +1486,7 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
 }</div>
         </div>
         <p>现在你在这个项目里每次运行 <code>claude</code>，默认对话的就会是 <code>frontend-engineer</code>，而不是原始 Claude。</p>
-        <h3>Per-会话 Override</h3>
+        <h3>按会话覆盖</h3>
         <div class="code-block"><span class="cmd">$</span> claude --agent backend-engineer</div>
         <div class="trigger-box">
             <h4>管理 Agents</h4>
@@ -1514,7 +1514,7 @@ managed-settings.json              <span class="comment"># Organization policy (
 
     <!-- Slide 66: Spinner Verbs -->
     <div class="slide" data-slide="66">
-        <h1>Spinner Verbs</h1>
+        <h1>加载提示词</h1>
         <p>你可以自定义 Claude 思考时看到的加载提示语：</p>
         <div class="code-block"><span class="comment">// .claude/settings.json</span>
 {
@@ -1533,7 +1533,7 @@ managed-settings.json              <span class="comment"># Organization policy (
 
     <!-- Slide 67: Status Line -->
     <div class="slide" data-slide="67">
-        <h1>Status Line</h1>
+        <h1>状态栏</h1>
         <p>这是输入框下方的一条信息栏，可以显示模型、上下文、成本、git 分支等信息。</p>
         <div class="how-to-trigger">
             <h4>快速设置</h4>
@@ -1548,9 +1548,9 @@ managed-settings.json              <span class="comment"># Organization policy (
 }</div>
     </div>
 
-    <!-- Slide 68: 输出风格s -->
+    <!-- Slide 68: 输出风格 -->
     <div class="slide" data-slide="68">
-        <h1>输出风格s</h1>
+        <h1>输出风格</h1>
         <div class="how-to-trigger">
             <h4>通过 /config 设置</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /config
@@ -1573,15 +1573,15 @@ managed-settings.json              <span class="comment"># Organization policy (
         <div class="info-grid">
             <div class="info-card">
                 <h4>导航</h4>
-                <p><code>Option+P</code> &mdash; Switch model</p>
-                <p><code>Ctrl+L</code> &mdash; Clear screen</p>
+                <p><code>Option+P</code> &mdash; 切换模型</p>
+                <p><code>Ctrl+L</code> &mdash; 清屏</p>
                 <p><code>Esc Esc</code> &mdash; Rewind</p>
             </div>
             <div class="info-card">
                 <h4>编辑</h4>
                 <p><code>Ctrl+G</code> &mdash; Open in editor</p>
-                <p><code>Ctrl+V</code> &mdash; Paste image</p>
-                <p><code>Shift+Tab</code> &mdash; Toggle permissions</p>
+                <p><code>Ctrl+V</code> &mdash; 粘贴图片</p>
+                <p><code>Shift+Tab</code> &mdash; 切换权限模式</p>
             </div>
         </div>
     </div>
