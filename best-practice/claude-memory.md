@@ -1,121 +1,79 @@
-# Claude Memory
+# Memory Best Practice
 
-Persistent context via CLAUDE.md files — how to write them and how they load in monorepos.
+> 中文重编版
+> 上游原文：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/best-practice/claude-memory.md>
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+## 先讲人话
 
----
+在 Claude Code 里，memory 最常见的误解是：
 
-## 1. Writing a Good CLAUDE.md
+> “只要有一个巨长的 `CLAUDE.md`，Claude 就应该永远记得所有事。”
 
-A well-structured CLAUDE.md is the single most impactful way to improve Claude Code's output for your project. Humanlayer has an excellent guide covering what to include, how to structure it, and common pitfalls.
+现实不是这样。
 
-- [Humanlayer - Writing a good Claude.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md)
+更实用的理解是：
 
----
+- `CLAUDE.md` 是项目记忆入口
+- `rules` 是可拆分的局部规则
+- 子目录的 `CLAUDE.md` 是更细颗粒度的上下文
 
-## 2. CLAUDE.md in Large Monorepos
+关键不是“写多长”，而是“放在哪一层”。
 
-When working with Claude Code in a monorepo, understanding how CLAUDE.md files are loaded into context is crucial for organizing your project instructions effectively.
+## root `CLAUDE.md` 该放什么
 
-<p align="center">
-  <a href="https://x.com/bcherny/status/2016339448863355206"><img src="assets/claude-memory/claude-memory-monorepo.jpg" alt="CLAUDE.md loading in monorepos" width="600"></a>
-</p>
+- 项目级工作方式
+- 共享约束
+- 哪些目录有特殊规则
+- 回答问题时的优先信息源
 
-### The Two Loading Mechanisms
+不建议塞进去的：
 
-Claude Code uses two distinct mechanisms for loading CLAUDE.md files:
+- 冗长历史背景
+- 一次性任务说明
+- 很细的局部页面规范
 
-#### Ancestor Loading (UP the directory tree)
+## 子目录 `CLAUDE.md` 什么时候有用
 
-When you start Claude Code, it walks **upward** from your current working directory toward the filesystem root and loads every CLAUDE.md it finds along the way. These files are loaded **immediately at startup**.
+当你的仓库是 monorepo，或者不同模块真的有明显不同的工作方式时，它就很有用。
 
-#### Descendant Loading (DOWN the directory tree)
+上游最值得抄的一点，是把 memory 的加载方式讲得很清楚：
 
-CLAUDE.md files in subdirectories below your current working directory are **NOT loaded at launch**. They are only included when Claude reads files in those subdirectories during your session. This is known as **lazy loading**.
+- 向上找祖先目录时会加载
+- 向下的子目录 memory 是按需加载
+- 兄弟目录不会无缘无故混进来
 
-### Example Monorepo Structure
+这件事对中文用户尤其重要，因为很多人会把所有说明都堆在根目录，最后谁都不爱看。
 
-Consider a typical monorepo with separate directories for different components:
+## 这个仓库怎么做的
 
-```
-/mymonorepo/
-├── CLAUDE.md          # Root-level instructions (shared across all components)
-├── frontend/
-│   └── CLAUDE.md      # Frontend-specific instructions
-├── backend/
-│   └── CLAUDE.md      # Backend-specific instructions
-└── api/
-    └── CLAUDE.md      # API-specific instructions
-```
+根 [`CLAUDE.md`](../CLAUDE.md) 做了三件事：
 
-### Scenario 1: Running Claude Code from the Root Directory
+1. 解释仓库是什么
+2. 规定读这个仓时优先查哪里
+3. 说明关键系统，比如 weather workflow、hooks、presentation rule
 
-When you run Claude Code from `/mymonorepo/`:
+这就是一个比较好的项目级记忆写法：
 
-```bash
-cd /mymonorepo
-claude
-```
+- 有方向
+- 不啰嗦
+- 能约束 Claude 的行为
 
-| File | Loaded at Launch? | Reason |
-|------|-------------------|--------|
-| `/mymonorepo/CLAUDE.md` | Yes | It's your current working directory |
-| `/mymonorepo/frontend/CLAUDE.md` | No | Loaded only when you read/edit files in `frontend/` |
-| `/mymonorepo/backend/CLAUDE.md` | No | Loaded only when you read/edit files in `backend/` |
-| `/mymonorepo/api/CLAUDE.md` | No | Loaded only when you read/edit files in `api/` |
+## 中文团队实战建议
 
-### Scenario 2: Running Claude Code from a Component Directory
+建议把 memory 拆成三层：
 
-When you run Claude Code from `/mymonorepo/frontend/`:
+### 层 1：根 `CLAUDE.md`
 
-```bash
-cd /mymonorepo/frontend
-claude
-```
+放团队共享规则和工作方式。
 
-| File | Loaded at Launch? | Reason |
-|------|-------------------|--------|
-| `/mymonorepo/CLAUDE.md` | Yes | It's an ancestor directory |
-| `/mymonorepo/frontend/CLAUDE.md` | Yes | It's your current working directory |
-| `/mymonorepo/backend/CLAUDE.md` | No | Different branch of the directory tree |
-| `/mymonorepo/api/CLAUDE.md` | No | Different branch of the directory tree |
+### 层 2：`.claude/rules/*.md`
 
-### Key Takeaways
+放可复用、可拆分、路径相关的规则。
 
-1. **Ancestors always load at startup** — Claude walks UP the directory tree and loads all CLAUDE.md files it finds. This ensures you always have access to root-level, repository-wide instructions.
+### 层 3：子目录 `CLAUDE.md`
 
-2. **Descendants load lazily** — Subdirectory CLAUDE.md files only load when you interact with files in those subdirectories. This prevents irrelevant context from bloating your session.
+放真正模块级的差异，不要乱建。
 
-3. **Siblings never load** — If you're working in `frontend/`, you won't get `backend/CLAUDE.md` or `api/CLAUDE.md` loaded into context.
+## 一句话判断
 
-4. **Global CLAUDE.md** — You can also place a CLAUDE.md at `~/.claude/CLAUDE.md` in your home folder, which applies to ALL Claude Code sessions regardless of project.
-
-### Why This Design Works for Monorepos
-
-- **Shared instructions propagate down** — Root-level CLAUDE.md contains repository-wide conventions, coding standards, and common patterns that apply everywhere.
-
-- **Component-specific instructions stay isolated** — Frontend developers don't need backend-specific instructions cluttering their context, and vice versa.
-
-- **Context is optimized** — By lazily loading descendant CLAUDE.md files, Claude Code avoids loading potentially hundreds of kilobytes of irrelevant instructions at startup.
-
-### Best Practices
-
-1. **Put shared conventions in root CLAUDE.md** — Coding standards, commit message formats, PR templates, and other repository-wide guidelines.
-
-2. **Put component-specific instructions in component CLAUDE.md** — Framework-specific patterns, component architecture, testing conventions unique to that component.
-
-3. **Use CLAUDE.local.md for personal preferences** — Add it to `.gitignore` for instructions that shouldn't be shared with the team.
-
----
-
-## Sources
-
-- [Claude Code Documentation - How Claude Looks Up Memories](https://code.claude.com/docs/en/memory#how-claude-looks-up-memories)
-- [Boris Cherny on X - Clarification on CLAUDE.md Loading](https://x.com/bcherny/status/2016339448863355206)
-- [Humanlayer - Writing a good Claude.md](https://www.humanlayer.dev/blog/writing-a-good-claude-md)
+memory 的重点不是“写更多”，而是“让 Claude 在正确的层读到正确的东西”。

@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 上游原仓
+    url: https://github.com/shanraisshan/claude-code-best-practice
+    about: 如果问题属于上游事实本身而不是中文本土化，可先查看或反馈到原仓。

@@ -1,199 +1,64 @@
 # Orchestration Workflow
 
-This document describes the **Command → Agent (with skill) → Skill** orchestration workflow, demonstrated through a weather data fetching and SVG rendering system.
+> 中文重编版
+> 上游原文：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/orchestration-workflow/orchestration-workflow.md>
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+## 这篇为什么重要
 
-## System Overview
+整个上游仓库其实都在反复讲同一件事：
 
-The weather system demonstrates two distinct skill patterns within a single orchestration workflow:
-- **Agent Skills** (preloaded): `weather-fetcher` is injected into the `weather-agent` at startup as domain knowledge
-- **Skills** (independent): `weather-svg-creator` is invoked directly by the command via the Skill tool
+> Claude Code 不只是“会聊天”，而是可以被组织成工作流。
 
-This showcases the **Command → Agent → Skill** architecture pattern, where:
-- A command orchestrates the workflow and handles user interaction
-- An agent fetches data using its preloaded skill
-- A skill creates the visual output independently
+这篇就是那套工作流的最小可执行样例。
 
-## Component Summary
+## 一张图讲清
 
-| Component | Role | Example |
-|-----------|------|---------|
-| **Command** | Entry point, user interaction | [`/weather-orchestrator`](../.claude/commands/weather-orchestrator.md) |
-| **Agent** | Fetches data with preloaded skill (agent skill) | [`weather-agent`](../.claude/agents/weather-agent.md) with [`weather-fetcher`](../.claude/skills/weather-fetcher/SKILL.md) |
-| **Skill** | Creates output independently (skill) | [`weather-svg-creator`](../.claude/skills/weather-svg-creator/SKILL.md) |
-
-## Flow Diagram
-
-```
-╔══════════════════════════════════════════════════════════════════╗
-║              ORCHESTRATION WORKFLOW                              ║
-║           Command  →  Agent  →  Skill                            ║
-╚══════════════════════════════════════════════════════════════════╝
-
-                         ┌───────────────────┐
-                         │  User Interaction │
-                         └─────────┬─────────┘
-                                   │
-                                   ▼
-         ┌─────────────────────────────────────────────────────┐
-         │  /weather-orchestrator — Command (Entry Point)      │
-         └─────────────────────────┬───────────────────────────┘
-                                   │
-                              Step 1
-                                   │
-                                   ▼
-                      ┌────────────────────────┐
-                      │  AskUser — C° or F°?   │
-                      └────────────┬───────────┘
-                                   │
-                         Step 2 — Agent tool
-                                   │
-                                   ▼
-         ┌─────────────────────────────────────────────────────┐
-         │  weather-agent — Agent ● skill: weather-fetcher     │
-         └─────────────────────────┬───────────────────────────┘
-                                   │
-                          Returns: temp + unit
-                                   │
-                         Step 3 — Skill tool
-                                   │
-                                   ▼
-         ┌─────────────────────────────────────────────────────┐
-         │  weather-svg-creator — Skill ● SVG card + output    │
-         └─────────────────────────┬───────────────────────────┘
-                                   │
-                          ┌────────┴────────┐
-                          │                 │
-                          ▼                 ▼
-                   ┌────────────┐    ┌────────────┐
-                   │weather.svg │    │ output.md  │
-                   └────────────┘    └────────────┘
+```text
+用户
+  ↓
+command：负责入口和编排
+  ↓
+agent：负责自治执行
+  ↓
+skill：负责复用知识或生成产物
 ```
 
-## Component Details
+## 用 weather 样例解释
 
-### 1. Command
+- `/weather-orchestrator`
+  - 问用户温度单位
+  - 调 `weather-agent`
+  - 再调 `weather-svg-creator`
+- `weather-agent`
+  - 带着 `weather-fetcher` 这套预加载知识去取数
+- `weather-svg-creator`
+  - 用已有上下文生成 SVG 和 markdown 输出
 
-#### `/weather-orchestrator` (Command)
-- **Location**: `.claude/commands/weather-orchestrator.md`
-- **Purpose**: Entry point — orchestrates the workflow and handles user interaction
-- **Actions**:
-  1. Asks user for temperature unit preference (Celsius/Fahrenheit)
-  2. Invokes weather-agent via Agent tool
-  3. Invokes weather-svg-creator via Skill tool
-- **Model**: haiku
+## 这个样例真正要教你的
 
-### 2. Agent with Preloaded Skill (Agent Skill)
+不是怎么做天气卡片。
 
-#### `weather-agent` (Agent)
-- **Location**: `.claude/agents/weather-agent.md`
-- **Purpose**: Fetch weather data using its preloaded skill
-- **Skills**: `weather-fetcher` (preloaded as domain knowledge)
-- **Tools Available**: WebFetch, Read
-- **Model**: sonnet
-- **Color**: green
-- **Memory**: project
+而是：
 
-The agent has `weather-fetcher` preloaded into its context at startup. It follows the skill's instructions to fetch the temperature and returns the value to the command.
+- 什么该放入口层
+- 什么该放自治层
+- 什么该放复用层
 
-### 3. Skill
+这三个层一旦分开，你后面再做：
 
-#### `weather-svg-creator` (Skill)
-- **Location**: `.claude/skills/weather-svg-creator/SKILL.md`
-- **Purpose**: Create a visual SVG weather card and write output files
-- **Invocation**: Via Skill tool from the command (not preloaded into any agent)
-- **Outputs**:
-  - `orchestration-workflow/weather.svg` — SVG weather card
-  - `orchestration-workflow/output.md` — Weather summary
+- review 工作流
+- spec 工作流
+- 发布工作流
+- 文档工作流
 
-### 4. Preloaded Skill
+思路都会顺很多。
 
-#### `weather-fetcher` (Skill)
-- **Location**: `.claude/skills/weather-fetcher/SKILL.md`
-- **Purpose**: Instructions for fetching real-time temperature data
-- **Data Source**: Open-Meteo API for Dubai, UAE
-- **Output**: Temperature value and unit (Celsius or Fahrenheit)
-- **Note**: This is an agent skill — preloaded into `weather-agent`, not invoked directly
+## 给中文读者的判断线
 
-## Execution Flow
+如果你在设计 Claude 工作流时脑子一团乱，可以先问自己这 3 个问题：
 
-1. **User Invocation**: User runs `/weather-orchestrator` command
-2. **User Prompt**: Command asks user for preferred temperature unit (Celsius/Fahrenheit)
-3. **Agent Invocation**: Command invokes `weather-agent` via Agent tool
-4. **Skill Execution** (within agent context):
-   - Agent follows `weather-fetcher` skill instructions to fetch temperature from Open-Meteo
-   - Agent returns the temperature value and unit to the command
-5. **SVG Creation**: Command invokes `weather-svg-creator` via Skill tool
-   - Skill creates SVG weather card at `orchestration-workflow/weather.svg`
-   - Skill writes summary to `orchestration-workflow/output.md`
-6. **Result Display**: Summary shown to user with:
-   - Temperature unit requested
-   - Temperature fetched
-   - SVG card location
-   - Output file location
+1. 用户是从哪里点火的
+2. 哪一步应该丢给独立上下文自治完成
+3. 哪部分知识或步骤值得沉淀成可复用 skill
 
-## Example Execution
-
-```
-Input: /weather-orchestrator
-├─ Step 1: Asks: Celsius or Fahrenheit?
-│  └─ User: Celsius
-├─ Step 2: Agent tool → weather-agent
-│  ├─ Preloaded Skill:
-│  │  └─ weather-fetcher (domain knowledge)
-│  ├─ Fetches from Open-Meteo → 26°C
-│  └─ Returns: temperature=26, unit=Celsius
-├─ Step 3: Skill tool → /weather-svg-creator
-│  ├─ Creates: orchestration-workflow/weather.svg
-│  └─ Writes: orchestration-workflow/output.md
-└─ Output:
-   ├─ Unit: Celsius
-   ├─ Temperature: 26°C
-   ├─ SVG: orchestration-workflow/weather.svg
-   └─ Summary: orchestration-workflow/output.md
-```
-
-## Key Design Principles
-
-1. **Two Skill Patterns**: Demonstrates both agent skills (preloaded) and skills (invoked directly)
-2. **Command as Orchestrator**: The command handles user interaction and coordinates the workflow
-3. **Agent for Data Fetching**: The agent uses its preloaded skill to fetch data, then returns it
-4. **Skill for Output**: The SVG creator runs independently, receiving data from the command context
-5. **Clean Separation**: Fetch (agent) → Render (skill) — each component has a single responsibility
-
-## Architecture Patterns
-
-### Agent Skill (Preloaded)
-
-```yaml
-# In agent definition (.claude/agents/weather-agent.md)
----
-name: weather-agent
-skills:
-  - weather-fetcher    # Preloaded into agent context at startup
----
-```
-
-- **Skills are preloaded**: Full skill content is injected into agent's context at startup
-- **Agent uses skill knowledge**: Agent follows instructions from preloaded skills
-- **No dynamic invocation**: Skills are reference material, not invoked separately
-
-### Skill (Direct Invocation)
-
-```yaml
-# In skill definition (.claude/skills/weather-svg-creator/SKILL.md)
----
-name: weather-svg-creator
-description: Creates an SVG weather card...
----
-```
-
-- **Invoked via Skill tool**: Command calls `Skill(skill: "weather-svg-creator")`
-- **Independent execution**: Runs in the command's context, not inside an agent
-- **Receives data from context**: Uses temperature data already available in the conversation
+这篇样例就是这 3 个问题的标准示范答案。

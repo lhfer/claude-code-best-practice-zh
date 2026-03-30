@@ -1,83 +1,33 @@
 # Commands Implementation
 
-![Last Updated](https://img.shields.io/badge/Last_Updated-Mar_02%2C_2026-white?style=flat&labelColor=555)
+> 中文重编版
+> 上游原文：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/implementation/claude-commands-implementation.md>
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+## 这篇看什么
 
----
+看 command 在这个仓里到底承担什么角色。
 
-<a href="#weather-orchestrator"><img src="../!/tags/implemented-hd.svg" alt="Implemented"></a>
+## 代表性样例
 
-The weather orchestrator command is implemented in this repo as the entry point of the **Command → Agent → Skill** architecture pattern, demonstrating how commands orchestrate multi-step workflows.
+`/weather-orchestrator`
 
----
+它不是“万能命令”，而是一个非常标准的工作流入口：
 
-## Weather Orchestrator
+1. 问用户一个必要问题
+2. 调 agent 去取数
+3. 调 skill 去生成结果
+4. 汇总输出
 
-**File**: [`.claude/commands/weather-orchestrator.md`](../.claude/commands/weather-orchestrator.md)
+## 为什么这个样例值得学
 
-```yaml
----
-description: Fetch weather data for Dubai and create an SVG weather card
-model: haiku
----
+因为它让 command 做 command 该做的事：
 
-# Weather Orchestrator Command
+- 组织流程
+- 调度能力
+- 兜住输出
 
-Fetch the current temperature for Dubai, UAE and create a visual SVG weather card.
+而没有让 command 既像 agent 又像 skill，最后什么都沾一点。
 
-## Workflow
+## 一句话
 
-### Step 1: Ask User Preference
-Use the AskUserQuestion tool to ask the user whether they want the temperature
-in Celsius or Fahrenheit.
-
-### Step 2: Fetch Weather Data
-Use the Agent tool to invoke the weather agent:
-- subagent_type: weather-agent
-- prompt: Fetch the current temperature for Dubai, UAE in [unit]...
-
-### Step 3: Create SVG Weather Card
-Use the Skill tool to invoke the weather-svg-creator skill:
-- skill: weather-svg-creator
-
-...
-```
-
-The command orchestrates the entire workflow: it asks the user for their temperature unit preference, invokes the `weather-agent` via the Agent tool, and then invokes the `weather-svg-creator` skill via the Skill tool.
-
----
-
-## ![How to Use](../!/tags/how-to-use.svg)
-
-```bash
-$ claude
-> /weather-orchestrator
-```
-
----
-
-## ![How to Implement](../!/tags/how-to-implement.svg)
-
-Ask Claude to create one for you — it will generate the markdown file with YAML frontmatter and body in `.claude/commands/<name>.md`
-
----
-
-<a href="https://github.com/shanraisshan/claude-code-best-practice#orchestration-workflow"><img src="../!/tags/orchestration-workflow-hd.svg" alt="Orchestration Workflow"></a>
-
-The weather orchestrator is the **Command** in the Command → Agent → Skill orchestration pattern. It serves as the entry point — handling user interaction (temperature unit preference), delegating data fetching to the `weather-agent`, and invoking the `weather-svg-creator` skill for visual output.
-
-<p align="center">
-  <img src="../orchestration-workflow/orchestration-workflow.svg" alt="Command Skill Agent Architecture Flow" width="100%">
-</p>
-
-| Component | Role | This Repo |
-|-----------|------|-----------|
-| **Command** | Entry point, user interaction | [`/weather-orchestrator`](../.claude/commands/weather-orchestrator.md) |
-| **Agent** | Fetches data with preloaded skill (agent skill) | [`weather-agent`](../.claude/agents/weather-agent.md) with [`weather-fetcher`](../.claude/skills/weather-fetcher/SKILL.md) |
-| **Skill** | Creates output independently (skill) | [`weather-svg-creator`](../.claude/skills/weather-svg-creator/SKILL.md) |
+如果你想知道“高质量 command 看起来应该像什么”，这个样例是很好的起点。
