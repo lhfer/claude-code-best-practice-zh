@@ -1,73 +1,58 @@
 # claude-code-best-practice
 
-> 给中国开发者的 Claude Code 中文参考仓。
-> 基于上游 [`shanraisshan/claude-code-best-practice`](https://github.com/shanraisshan/claude-code-best-practice) fork，并做了中文化、本土化、学习路径重编。
+> 一份给中文开发者的 Claude Code 实战参考仓。
+> 帮你从“会用一点”走到“真的能把 Claude 接进项目、工作流和团队协作里”。
 
 [![Upstream](https://img.shields.io/badge/upstream-shanraisshan%2Fclaude--code--best--practice-0969da?style=flat)](https://github.com/shanraisshan/claude-code-best-practice)
 [![License](https://img.shields.io/badge/license-MIT-2ea44f?style=flat)](LICENSE)
-[![Chinese First](https://img.shields.io/badge/docs-Chinese%20first-ffb703?style=flat)](#推荐阅读顺序)
-[![Keep Runtime in English](https://img.shields.io/badge/runtime-English%20unchanged-6c757d?style=flat)](LOCALIZATION_POLICY.md)
+[![Chinese First](https://img.shields.io/badge/docs-Chinese%20first-ffb703?style=flat)](#从哪里开始读)
 [![Sync Status](https://img.shields.io/badge/sync-major%20content%20done-8250df?style=flat)](SYNC_STATUS.md)
 [![Validator](https://img.shields.io/badge/validator-protected%20runtime-2f855a?style=flat)](scripts/validate_localization.py)
 
-## 这仓库是什么
+## 你来这个仓库能得到什么
 
-这不是一个“把英文 README 机翻成中文”的仓库。
+- 少踩坑：少走 prompt、权限、上下文、工作流设计上的弯路
+- 快上手：从安装、概念、样例到 workflow 都有清晰入口
+- 能照抄：仓库里不只是讲概念，还有可运行样例和结构化实现思路
+- 能进阶：当你不满足于“让 Claude 写两行代码”时，这里会告诉你怎么往工程化、团队化继续走
 
-它更像一个适合中文读者的 Claude Code 学习入口，目标是把上游仓库里最有价值的部分，重新组织成你能快速读懂、愿意继续点下去、也敢拿去参考自己项目的版本。
+## 这个仓库最适合谁
 
-如果你是下面两类人，这个 fork 是给你准备的：
+- 想认真学 Claude Code、但又不想被英文社区语境和术语门槛劝退的人
+- 已经在用 Claude Code，但感觉还停留在“想到啥问啥”的阶段，想升级工作流的人
+- 想把 `CLAUDE.md`、`skills`、`agents`、`commands`、`MCP`、`hooks` 真正接进项目的开发者和团队
 
-- 常年混 GitHub、看仓库很挑的开发者：你想知道这仓库到底靠不靠谱，值不值得 star，结构干不干净，维护姿态稳不稳。
-- 想认真学 Claude Code 的中文用户：你不想被术语、海外社区语境、直译腔和视觉噪音劝退，希望有一个真正“带你入门”的入口。
+## 从哪里开始读
 
-## 这仓库不是什么
+### 如果你今天就想先跑起来
 
-- 不是 Claude Code 官方中文版。
-- 不是“一键复制就能落地”的万能模板仓。
-- 不是把 `.claude/` 里的运行时文件全部翻成中文的实验品。
-- 不是对上游逐句逐段的忠实转录。
+1. [先把 Claude Code 装好并登录](tutorial/day0/README.md)
+2. [先看清这个仓能帮你什么](#你来这个仓库能得到什么)
+3. [先搞懂 Command / Agent / Skill 怎么分工](reports/claude-agent-command-skill.md)
 
-## 10 秒看懂
+### 如果你是第一次系统理解 Claude Code
 
-上游仓库真正厉害的地方，不是某一条 prompt 或某一个 agent，而是它把下面这些层分开设计了：
+1. [Subagents 到底是什么，什么时候该用](best-practice/claude-subagents.md)
+2. [Skills 到底是什么，怎么设计才好用](best-practice/claude-skills.md)
+3. [Settings 真正该怎么理解，而不是只会抄配置](best-practice/claude-settings.md)
+4. [Memory 和 CLAUDE.md 应该放什么](best-practice/claude-memory.md)
+5. [完整看一遍最小工作流样例](orchestration-workflow/orchestration-workflow.md)
 
-- `CLAUDE.md` / `rules`：决定 Claude 在这个仓里要遵守什么约束。
-- `settings` / `hooks` / `MCP`：决定 Claude 有什么权限、连接什么工具、在什么事件上触发什么行为。
-- `commands` / `agents` / `skills`：决定工作流如何被编排、自治和复用。
-- `implementation` / `orchestration-workflow`：把概念落成可运行样例。
-- `reports`：解释哪些概念容易混、哪些边界会漂移、哪些说法已经跟官方发生变化。
+### 如果你已经会用一点，想直接看“怎么落地”
 
-这份中文 fork 的核心任务，就是把这些层讲明白。
+1. [Command 的实现样例](implementation/claude-commands-implementation.md)
+2. [Skill 的实现样例](implementation/claude-skills-implementation.md)
+3. [Subagent 的实现样例](implementation/claude-subagents-implementation.md)
+4. [Agent Teams 的实现样例](implementation/claude-agent-teams-implementation.md)
+5. [Scheduled Tasks 的实现样例](implementation/claude-scheduled-tasks-implementation.md)
 
-## 推荐阅读顺序
+### 如果你更关心“高手到底怎么用它”
 
-如果你是第一次认真看 Claude Code，建议按这个顺序读：
-
-1. [README.md](README.md)
-2. [Agents vs Commands vs Skills](reports/claude-agent-command-skill.md)
-3. [Subagents Best Practice](best-practice/claude-subagents.md)
-4. [Skills Best Practice](best-practice/claude-skills.md)
-5. [Settings Best Practice](best-practice/claude-settings.md)
-6. [Memory Best Practice](best-practice/claude-memory.md)
-7. [Orchestration Workflow](orchestration-workflow/orchestration-workflow.md)
-
-如果你已经会用一点 Claude Code，想直接看“怎么落地”：
-
-1. [Commands Best Practice](best-practice/claude-commands.md)
-2. [Global vs Project Settings](reports/claude-global-vs-project-settings.md)
-3. [Skills in Monorepos](reports/claude-skills-for-larger-mono-repos.md)
-4. [Subagents Implementation](implementation/claude-subagents-implementation.md)
-5. [Skills Implementation](implementation/claude-skills-implementation.md)
-6. [Commands Implementation](implementation/claude-commands-implementation.md)
-
-如果你更在意“社区里的人到底怎么用它”，建议走这条路线：
-
-1. [tips/README.md](tips/README.md)
-2. [videos/README.md](videos/README.md)
-3. [development-workflows/README.md](development-workflows/README.md)
-4. [tutorial/README.md](tutorial/README.md)
-5. [agent-teams/README.md](agent-teams/README.md)
+1. [社区里的高频经验与建议](tips/README.md)
+2. [长视频 / 播客的中文导读](videos/README.md)
+3. [跨模型与结构化 workflow](development-workflows/README.md)
+4. [多 agent 协作怎么玩](agent-teams/README.md)
+5. [演示稿和分享材料](presentation/README.md)
 
 ## 核心概念速览
 
