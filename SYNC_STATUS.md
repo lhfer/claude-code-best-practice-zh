@@ -29,10 +29,14 @@
 | `best-practice/claude-commands.md` | 已中文化 | v1 重编 |
 | `best-practice/claude-settings.md` | 已中文化 | v1 重编 |
 | `best-practice/claude-memory.md` | 已中文化 | v1 重编 |
+| `best-practice/claude-mcp.md` | 已中文化 | v2 重编 |
+| `best-practice/claude-cli-startup-flags.md` | 已中文化 | v2 重编 |
 | `reports/README.md` | 已中文化 | 报告层索引 |
 | `reports/*.md` | 已中文化 | 关键长文已完成中文重编 |
 | `implementation/` weather 相关说明 | 已中文化 | 仅说明层 |
 | `orchestration-workflow/` 说明层 | 已中文化 | 仅说明层 |
+| `implementation/claude-agent-teams-implementation.md` | 已中文化 | v2 重编 |
+| `implementation/claude-scheduled-tasks-implementation.md` | 已中文化 | v2 重编 |
 | `tips/README.md` | 已中文化 | 社区经验索引 |
 | `tips/*.md` | 已中文化 | 改为中文导读 / 摘要版 |
 | `videos/README.md` | 已中文化 | 视频导读索引 |

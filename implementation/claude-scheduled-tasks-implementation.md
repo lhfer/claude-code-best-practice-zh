@@ -1,60 +1,58 @@
 # Scheduled Tasks Implementation
 
-![Last Updated](https://img.shields.io/badge/Last_Updated-Mar_10%2C_2026-white?style=flat&labelColor=555)
+> 中文重编版
+> 上游原文：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/implementation/claude-scheduled-tasks-implementation.md>
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+## 这篇看什么
 
----
+这篇展示的是：
 
-<a href="#loop-demo"><img src="../!/tags/implemented-hd.svg" alt="Implemented"></a>
+> Claude Code 的 `/loop` 到底是怎么进入日常工作流的。
 
-The `/loop` skill is used to schedule recurring tasks on a cron interval. Below is a demo of `/loop 1m "tell current time"` — a simple recurring task that fires every minute.
+## `/loop` 的实际价值
 
----
+它不是“定时器玩具”，而是：
 
-## Loop Demo
+- 定时提醒
+- 周期性检查
+- 轻量监控
+- 自动重复某类 prompt
 
-### 1. Scheduling the Task
+在个人工作流里非常实用。
 
-<p align="center">
-  <img src="assets/impl-loop-1.png" alt="/loop 1m tell current time — scheduling and cron setup" width="100%">
-</p>
+## 样例里发生了什么
 
-`/loop 1m "tell current time"` parses the interval (`1m` → every 1 minute), creates a cron job, and confirms the schedule. Key notes:
-
-- Cron's minimum granularity is **1 minute** — `1m` maps to `*/1 * * * *`
-- Recurring tasks **auto-expire after 3 days**
-- Jobs are **session-scoped** — they live in memory only and stop when Claude exits
-- Cancel anytime with `cron cancel <job-id>`
-
----
-
-### 2. Loop in Action
-
-<p align="center">
-  <img src="assets/impl-loop-2.png" alt="Recurring task firing every minute" width="100%">
-</p>
-
-The task fires every minute, running `date` and reporting the current time. Each iteration triggers async **UserPromptSubmit** and **Stop** hooks — the same hook system used throughout this repo for sound notifications.
-
----
-
-## ![How to Use](../!/tags/how-to-use.svg)
+这里用的是：
 
 ```bash
-$ claude
-> /loop 1m "tell current time"
-> /loop 5m /simplify
-> /loop 10m "check deploy status"
+/loop 1m "tell current time"
 ```
 
----
+它会：
 
-## ![How to Implement](../!/tags/how-to-implement.svg)
+- 把 `1m` 解析成每 1 分钟
+- 创建对应的 cron 任务
+- 在会话里周期性触发
 
-`/loop` is a built-in Claude Code skill — no setup required. It uses the cron tools (`CronCreate`, `CronList`, `CronDelete`) under the hood to manage recurring schedules.
+## 这篇最值得记住的几个事实
+
+- 最小粒度是 1 分钟
+- 任务会自动过期
+- 任务是 session scoped 的
+- 随时可以取消
+
+也就是说，它很适合“短期循环任务”，不适合拿来当永久调度系统。
+
+## 对中文用户最有价值的启发
+
+如果你经常做这些事：
+
+- 每隔几分钟看部署状态
+- 周期性跑某个简单检查
+- 定时提醒自己看一个变化结果
+
+那 `/loop` 很可能比你想象中有用得多。
+
+## 一句话总结
+
+`/loop` 的最佳位置不是“云端任务系统”，而是“会话内的轻量自动化助手”。

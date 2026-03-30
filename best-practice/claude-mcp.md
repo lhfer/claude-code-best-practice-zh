@@ -1,132 +1,96 @@
 # MCP Servers Best Practice
 
-![Last Updated](https://img.shields.io/badge/Last_Updated-Mar%2002%2C%202026%2012%3A30%20PM%20PKT-white?style=flat&labelColor=555)<br>
-[![Implemented](https://img.shields.io/badge/Implemented-2ea44f?style=flat)](../.mcp.json)
+> 中文重编版
+> 上游原文：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/best-practice/claude-mcp.md>
 
-MCP (Model Context Protocol) servers extend Claude Code with connections to external tools, databases, and APIs. This guide covers recommended servers for daily use and configuration best practices.
+## 先讲人话
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+MCP 不是“Claude 变得更强”的抽象说法，而是：
 
----
+> 让 Claude 接上外部工具、文档、浏览器、数据库和 API 的标准方式。
 
-## MCP Servers for Daily Use
+但真正的最佳实践不是“接越多越好”，而是：
 
-> *"Went overboard with 15 MCP servers thinking more = better. Ended up using only 4 daily."* — [r/mcp](https://reddit.com/r/mcp/comments/1mj0fxs/) (682 upvotes)
+> 只接你真的高频会用、而且能明显降低幻觉或人工切换成本的那几类。
 
-| MCP Server | What It Does | Resources |
-|------------|-------------|-----------|
-| [**Context7**](https://github.com/upstash/context7) | Fetches up-to-date library docs into context. Prevents hallucinated APIs from outdated training data | [Reddit: "by far the best MCP for coding"](https://reddit.com/r/mcp/comments/1qarjqm/) · [npm](https://www.npmjs.com/package/@upstash/context7-mcp) |
-| [**Playwright**](https://github.com/microsoft/playwright-mcp) | Browser automation — implement, test, and verify UI features autonomously. Screenshots, navigation, form testing | [Reddit: essential for frontend](https://reddit.com/r/mcp/comments/1m59pk0/) · [Docs](https://playwright.dev/) |
-| [**Claude in Chrome**](https://github.com/nicobailon/claude-code-in-chrome-mcp) | Connects Claude to your real Chrome browser — inspect console, network, DOM. Debug what users actually see | [Reddit: "game changer" for debugging](https://reddit.com/r/mcp/comments/1qarjqm/5_mcps_that_have_genuinely_made_me_10x_faster/nza0i7t/) · [Comparison Report](../reports/claude-in-chrome-v-chrome-devtools-mcp.md) |
-| [**DeepWiki**](https://github.com/devanshusemwal/deepwiki-mcp) | Fetches structured wiki-style documentation for any GitHub repo — architecture, API surface, relationships | [Reddit: "put it behind a gateway with Context7"](https://reddit.com/r/mcp/comments/1qarjqm/) |
-| [**Excalidraw**](https://github.com/antonpk1/excalidraw-mcp-app) | Generate architecture diagrams, flowcharts, and system designs as hand-drawn Excalidraw sketches from prompts | [GitHub](https://github.com/antonpk1/excalidraw-mcp-app) |
+## 这个仓库为什么值得看
 
-Research (Context7/DeepWiki) -> Debug (Playwright/Chrome) -> Document (Excalidraw)
+因为它对 MCP 的态度很克制。
 
----
+`.mcp.json` 里只放了少量高频项，而不是把 MCP 当收藏夹：
 
-## Configuration
+- Context7
+- Playwright
+- DeepWiki
 
-MCP servers are configured in `.mcp.json` at the project root (project-scoped) or in `~/.claude.json` (user-scoped).
+这其实就是很成熟的判断：
 
-### Server Types
+- 研究层：Context7 / DeepWiki
+- 浏览器验证层：Playwright
 
-| Type | Transport | Example |
-|------|-----------|---------|
-| **stdio** | Spawns a local process | `npx`, `python`, binary |
-| **http** | Connects to a remote URL | HTTP/SSE endpoint |
+## 日常最值得先接的几类 MCP
 
-### Example `.mcp.json`
+### 1. 文档类
 
-```json
-{
-  "mcpServers": {
-    "context7": {
-      "command": "npx",
-      "args": ["-y", "@upstash/context7-mcp"]
-    },
-    "playwright": {
-      "command": "npx",
-      "args": ["-y", "@playwright/mcp"]
-    },
-    "deepwiki": {
-      "command": "npx",
-      "args": ["-y", "deepwiki-mcp"]
-    },
-    "remote-api": {
-      "type": "http",
-      "url": "https://mcp.example.com/mcp"
-    }
-  }
-}
-```
+代表：Context7、DeepWiki
 
-Use environment variable expansion for secrets instead of committing API keys in `.mcp.json`:
+适合：
 
-```json
-{
-  "mcpServers": {
-    "remote-api": {
-      "type": "http",
-      "url": "https://mcp.example.com/mcp?token=${MCP_API_TOKEN}"
-    }
-  }
-}
-```
+- 查库文档
+- 查第三方 API
+- 查仓库结构和 wiki
 
-### Settings for MCP Servers
+### 2. 浏览器 / 调试类
 
-These settings in `.claude/settings.json` control MCP server approval:
+代表：Playwright、Chrome 相关 MCP
 
-| Key | Type | Description |
-|-----|------|-------------|
-| `enableAllProjectMcpServers` | boolean | Auto-approve all `.mcp.json` servers without prompting |
-| `enabledMcpjsonServers` | array | Allowlist of specific server names to auto-approve |
-| `disabledMcpjsonServers` | array | Blocklist of specific server names to reject |
+适合：
 
-### Permission Rules for MCP Tools
+- 页面验证
+- 自动化测试
+- console / network 调试
 
-MCP tools follow the `mcp__<server>__<tool>` naming convention in permission rules:
+### 3. 图形 / 说明类
 
-```json
-{
-  "permissions": {
-    "allow": [
-      "mcp__*",
-      "mcp__context7__*",
-      "mcp__playwright__browser_snapshot"
-    ],
-    "deny": [
-      "mcp__dangerous-server__*"
-    ]
-  }
-}
-```
+代表：Excalidraw 这类
 
----
+适合：
 
-## MCP Scopes
+- 生成架构图
+- 产出流程图
 
-MCP servers can be defined at three levels:
+## 配置怎么理解
 
-| Scope | Location | Purpose |
-|-------|----------|---------|
-| **Project** | `.mcp.json` (repo root) | Team-shared servers, committed to git |
-| **User** | `~/.claude.json` (`mcpServers` key) | Personal servers across all projects |
-| **Subagent** | Agent frontmatter (`mcpServers` field) | Servers scoped to a specific subagent |
+最关键的是三件事：
 
-Precedence: Subagent > Project > User
+### 1. 放在哪一层
 
----
+- 项目级：`.mcp.json`
+- 用户级：`~/.claude.json`
+- agent 级：agent frontmatter
 
-## Sources
+### 2. 怎么控制启用
 
-- [MCP Servers — Claude Code Docs](https://code.claude.com/docs/en/mcp)
-- [Model Context Protocol Specification](https://modelcontextprotocol.io/)
-- [5 MCPs that have genuinely made me 10x faster — r/mcp](https://reddit.com/r/mcp/comments/1qarjqm/)
-- [MCP Server Overload Discussion — r/mcp](https://reddit.com/r/mcp/comments/1mj0fxs/)
+和 `.claude/settings.json` 配合：
+
+- `enableAllProjectMcpServers`
+- `enabledMcpjsonServers`
+- `disabledMcpjsonServers`
+
+### 3. 怎么配权限
+
+MCP 工具最终还是要落到权限规则里，例如：
+
+- `mcp__*`
+- `mcp__context7__*`
+- `mcp__playwright__browser_snapshot`
+
+## 中文团队最值得抄的原则
+
+- 先接高频 MCP，再接“看起来很酷”的 MCP
+- 先解决文档真实性和浏览器可见性，再扩展更多玩法
+- 不要让 MCP 数量本身变成上下文噪音
+
+## 一句话总结
+
+好的 MCP 策略不是“全都接”，而是“把最关键的外部能力稳稳接上”。

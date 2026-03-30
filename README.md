@@ -78,7 +78,7 @@
 | `Command` | 用户明确触发的工作流入口，适合把一串固定动作收成 `/xxx` | [best-practice/claude-commands.md](best-practice/claude-commands.md) |
 | `Settings` | 决定权限、模型、hooks、MCP、status line 等运行时行为的配置层 | [best-practice/claude-settings.md](best-practice/claude-settings.md) |
 | `Memory` | Claude 读哪些记忆文件、怎么分层加载、根目录和子目录各放什么 | [best-practice/claude-memory.md](best-practice/claude-memory.md) |
-| `MCP` | 给 Claude 接外部工具和数据源，不是越多越好，而是要克制地接高频能力 | [best-practice/claude-mcp.md](https://github.com/shanraisshan/claude-code-best-practice/blob/main/best-practice/claude-mcp.md) |
+| `MCP` | 给 Claude 接外部工具和数据源，不是越多越好，而是要克制地接高频能力 | [best-practice/claude-mcp.md](best-practice/claude-mcp.md) |
 | `Hooks` | 在 Claude 的生命周期事件上挂外部动作，比如通知、日志、格式化或保护逻辑 | [上游 Hooks 仓](https://github.com/shanraisshan/claude-code-hooks) |
 
 ## 第一批已经中文化的内容
@@ -97,6 +97,8 @@
 - [best-practice/claude-commands.md](best-practice/claude-commands.md)
 - [best-practice/claude-settings.md](best-practice/claude-settings.md)
 - [best-practice/claude-memory.md](best-practice/claude-memory.md)
+- [best-practice/claude-mcp.md](best-practice/claude-mcp.md)
+- [best-practice/claude-cli-startup-flags.md](best-practice/claude-cli-startup-flags.md)
 
 ### 关键解释层
 
@@ -117,6 +119,8 @@
 - [implementation/claude-subagents-implementation.md](implementation/claude-subagents-implementation.md)
 - [implementation/claude-skills-implementation.md](implementation/claude-skills-implementation.md)
 - [implementation/claude-commands-implementation.md](implementation/claude-commands-implementation.md)
+- [implementation/claude-agent-teams-implementation.md](implementation/claude-agent-teams-implementation.md)
+- [implementation/claude-scheduled-tasks-implementation.md](implementation/claude-scheduled-tasks-implementation.md)
 
 ### 社区内容层
 

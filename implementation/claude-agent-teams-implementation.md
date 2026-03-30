@@ -1,103 +1,56 @@
 # Agent Teams Implementation
 
-![Last Updated](https://img.shields.io/badge/Last_Updated-Mar_12%2C_2026-white?style=flat&labelColor=555)
+> 中文重编版
+> 上游原文：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/implementation/claude-agent-teams-implementation.md>
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+## 这篇看什么
 
----
+这篇不是在讲“多 agent 听起来多酷”，而是在讲：
 
-<a href="#time-orchestration"><img src="../!/tags/implemented-hd.svg" alt="Implemented"></a>
+> 当多个 Claude 会话像小团队一样协作时，仓库里应该长成什么样。
 
-<p align="center">
-  <img src="assets/impl-agent-teams.png" alt="Agent Teams in action — split pane mode with tmux" width="100%">
-</p>
+## 它和 subagent 的区别
 
-Agent Teams spawn **multiple independent Claude Code sessions** that coordinate via a shared task list. Unlike subagents (isolated context forks within one session), each teammate gets its own full context window with CLAUDE.md, MCP servers, and skills loaded automatically.
+最关键的一点：
 
----
+- subagent 是单会话里的隔离上下文
+- agent teams 是多个独立 Claude 会话协作
 
-## ![How to Use](../!/tags/how-to-use.svg)
+也就是说，agent teams 的粒度更大，协作感更强，维护成本也更高。
 
-The time orchestration workflow was built entirely by an agent team. To run the finished product:
+## 这个仓库里的样例
 
-```bash
-cd agent-teams
-claude
-/time-orchestrator
-```
+这里用的是一个 `time orchestration workflow`：
 
-This invokes the **Command → Agent → Skill** pipeline: the agent fetches Dubai's current time, and the skill renders an SVG time card to `agent-teams/output/dubai-time.svg`.
+- command 负责编排
+- agent 负责取时间
+- skill 负责渲染 SVG
 
----
+但更值得看的不是“时间卡片”本身，而是它怎么拆角色：
 
-## ![How to Implement](../!/tags/how-to-implement.svg)
+- Command Architect
+- Agent Engineer
+- Skill Designer
 
-You can create a replica of the weather orchestration workflow using agent teams — in this example, the time orchestration workflow was built entirely by an agent team.
+再通过共享任务清单去对齐数据契约。
 
-### 1. Install [iTerm2](https://iterm2.com/) and tmux
+## 这套实现最值得抄的地方
 
-```bash
-brew install --cask iterm2
-brew install tmux
-```
+### 1. 角色拆分清楚
 
-### 2. Start iTerm2 → tmux → Claude
+不是泛泛地说“你们几个并行干”，而是明确每个角色负责哪个文件、哪个接口。
 
-```bash
-tmux new -s dev
-CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1 claude
-```
+### 2. 数据契约先对齐
 
-### 3. Prompt with team structure
+这一点非常重要。
+多 agent 协作最怕不是代码不会写，而是接口说不清楚。
 
-<a id="time-orchestration"></a>
+### 3. 工作目录隔离
 
-Paste this prompt into Claude to bootstrap a complete time orchestrator workflow using agent teams:
+`agent-teams/.claude/` 的自包含设计很值得学，因为它不会污染仓库根部运行层。
 
-Main prompt: **[agent-teams-prompt.md](../agent-teams/agent-teams-prompt.md)**
+## 一句话总结
 
-### Team Coordination Flow
+agent teams 的实现价值不在于“并行”两个字，而在于：
 
-```
-┌──────────────────────────────────────────────────────────────┐
-│                         LEAD (You)                           │
-│       "Create an agent team to build time orchestration"     │
-└──────────────────────────┬───────────────────────────────────┘
-                           │ spawns team (all parallel)
-              ┌────────────┼────────────┐
-              ▼            ▼            ▼
-   ┌────────────────┐ ┌──────────┐ ┌──────────────┐
-   │ Command        │ │ Agent    │ │ Skill        │
-   │ Architect      │ │ Engineer │ │ Designer     │
-   │                │ │          │ │              │
-   │ agent-teams/   │ │ agent-   │ │ agent-teams/ │
-   │ .claude/       │ │ teams/   │ │ .claude/     │
-   │ commands/      │ │ .claude/ │ │ skills/      │
-   │ time-          │ │ agents/  │ │ time-svg-    │
-   │ orchestrator.md│ │ time-    │ │ creator/     │
-   │                │ │ agent.md │ │              │
-   └───────┬────────┘ └────┬─────┘ └──────┬───────┘
-           │               │              │
-           ▼               ▼              ▼
-   ┌──────────────────────────────────────────────────┐
-   │            Shared Task List                      │
-   │  ☐ Agree on data contract: {time, tz, formatted} │
-   │  ☐ Command uses Agent tool (not bash)            │
-   │  ☐ Agent preloads time-fetcher skill             │
-   │  ☐ Skill reads time from context (no re-fetch)   │
-   │  ☐ All files inside agent-teams/.claude/         │
-   └──────────────────────────────────────────────────┘
-                       │
-                       ▼
-          ┌──────────────────────────────┐
-          │  cd agent-teams && claude    │
-          │    /time-orchestrator        │
-          │   Command → Agent → Skill    │
-          └──────────────────────────────┘
-```
-
+> 角色、文件归属、数据契约和协作边界是否一开始就写清楚。
