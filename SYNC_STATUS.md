@@ -71,6 +71,14 @@
 - 备注:
 ```
 
+### 2026-03-31
+
+- upstream commit: `7cde3f3232817c781b8ba0fd39cb2d707fd547c7`
+- 受影响模块: 无新增 upstream commits
+- 已同步: 完成一次真实 upstream dry-run；本地 `HEAD` 已领先中文 fork 提交，`upstream/main` 无新增变化
+- 待处理: 继续推进 presentation/index.html 的整套中文可见文案
+- 备注: 已新增 `scripts/check_upstream_sync.py` 作为长期维护演练脚本
+
 ## 当前待办
 
 - 继续扩展更多 `reports/` 的中文版本

@@ -173,6 +173,7 @@
 
 ```bash
 python3 scripts/validate_localization.py
+python3 scripts/check_upstream_sync.py
 ```
 
 ## 如何跟上游同步

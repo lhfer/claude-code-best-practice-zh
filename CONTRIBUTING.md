@@ -33,6 +33,7 @@
    - `community`
 5. 运行本地校验：
    - `python3 scripts/validate_localization.py`
+   - `python3 scripts/check_upstream_sync.py`
 
 ## 提交建议
 
