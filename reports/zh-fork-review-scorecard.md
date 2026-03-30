@@ -108,21 +108,21 @@
 1. **演示稿还没达到“直接拿去中文分享”的完成度**
    - 现象：`presentation/index.html` 仍残留较多英文表头、说明句、命令示例注释、appendix 文案。
    - 典型位置：
-     - [presentation/index.html](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/presentation/index.html):271
-     - [presentation/index.html](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/presentation/index.html):398
-     - [presentation/index.html](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/presentation/index.html):644
-     - [presentation/index.html](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/presentation/index.html):1453
+     - [presentation/index.html](../presentation/index.html):271
+     - [presentation/index.html](../presentation/index.html):398
+     - [presentation/index.html](../presentation/index.html):644
+     - [presentation/index.html](../presentation/index.html):1453
    - 影响：传播层完成度不足，拉低 GitHub 老开发者和新手读者两边的观感。
 
 2. **部分长文被压缩得太狠，和 upstream 相比信息损失明显**
    - 典型位置：
-     - [best-practice/claude-settings.md](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/best-practice/claude-settings.md)
-     - [reports/claude-agent-sdk-vs-cli-system-prompts.md](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/reports/claude-agent-sdk-vs-cli-system-prompts.md)
-     - [reports/llm-day-to-day-degradation.md](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/reports/llm-day-to-day-degradation.md)
+     - [best-practice/claude-settings.md](../best-practice/claude-settings.md)
+     - [reports/claude-agent-sdk-vs-cli-system-prompts.md](claude-agent-sdk-vs-cli-system-prompts.md)
+     - [reports/llm-day-to-day-degradation.md](llm-day-to-day-degradation.md)
    - 影响：对于想深读、对照官方或做进一步研究的人，中文版本会显得“更顺手，但不够厚”。
 
 3. **README 的进度信号落后于真实完成度**
-   - 位置：[README.md](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/README.md):10
+   - 位置：[README.md](../README.md):10
    - 现象：badge 仍是 `sync v1 in progress`，但实际覆盖已远超 v1。
    - 影响：仓库首屏的可信度和专业感被轻微拉低。
 
@@ -130,15 +130,15 @@
 
 1. **演示稿存在不少中英混排，虽然不影响理解，但会影响沉浸感**
    - 典型位置：
-     - [presentation/index.html](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/presentation/index.html):570
-     - [presentation/index.html](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/presentation/index.html):783
-     - [presentation/index.html](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/presentation/index.html):1560
+     - [presentation/index.html](../presentation/index.html):570
+     - [presentation/index.html](../presentation/index.html):783
+     - [presentation/index.html](../presentation/index.html):1560
    - 说明：这些有些是示例代码块里的注释，有些是可见文案，优先级低于 P1，但值得继续清。
 
 2. **社区层更像高质量导读，不是完整“平行中文版原文”**
    - 典型位置：
-     - [tips/claude-boris-13-tips-03-jan-26.md](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/tips/claude-boris-13-tips-03-jan-26.md)
-     - [videos/claude-cat-every-29-oct-25.md](/Users/xiaoli/Documents/Codex/claude%20best%20practice/claude-code-best-practice-zh/videos/claude-cat-every-29-oct-25.md)
+     - [tips/claude-boris-13-tips-03-jan-26.md](../tips/claude-boris-13-tips-03-jan-26.md)
+     - [videos/claude-cat-every-29-oct-25.md](../videos/claude-cat-every-29-oct-25.md)
    - 说明：这不是错误，而是当前 fork 的策略选择；但对想逐条核对原文的人来说，会感觉“导读强，原文保真度一般”。
 
 3. **部分英文术语保留策略还没在演示层完全统一**
