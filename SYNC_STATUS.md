@@ -6,7 +6,7 @@
 - Upstream 地址：<https://github.com/shanraisshan/claude-code-best-practice>
 - 当前对齐 commit：`7cde3f3232817c781b8ba0fd39cb2d707fd547c7`
 - 当前对齐日期：`2026-03-30`
-- Fork 仓库：`lhfer/claude-code-best-practice`
+- Fork 仓库：`lhfer/claude-code-best-practice-zh`
 
 ## 当前策略
 

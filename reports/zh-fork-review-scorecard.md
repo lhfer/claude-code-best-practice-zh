@@ -1,6 +1,6 @@
 # 中文 Fork 双角色审查与评分
 
-基于 `2026-03-31` 的当前工作树，对 `lhfer/claude-code-best-practice` 相对 upstream `shanraisshan/claude-code-best-practice` 的状态做一次双角色审查。
+基于 `2026-03-31` 的当前工作树，对 `lhfer/claude-code-best-practice-zh` 相对 upstream `shanraisshan/claude-code-best-practice` 的状态做一次双角色审查。
 
 ## A. 当前完成度快照
 
