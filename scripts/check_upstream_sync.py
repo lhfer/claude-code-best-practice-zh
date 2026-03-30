@@ -50,6 +50,29 @@ def main() -> int:
     print("\nChanged files since local HEAD:")
     diff = run("git", "diff", "--name-only", "HEAD..upstream/main")
     print(diff)
+
+    reader_layers = [
+        "README.md",
+        "best-practice/",
+        "reports/",
+        "implementation/",
+        "orchestration-workflow/",
+        "development-workflows/",
+        "agent-teams/",
+        "tips/",
+        "videos/",
+        "tutorial/",
+        "changelog/",
+        "presentation/",
+        ".claude/hooks/HOOKS-README.md",
+        ".codex/hooks/HOOKS-README.md",
+    ]
+    reader_hits = [
+        line for line in diff.splitlines()
+        if any(line == prefix or line.startswith(prefix) for prefix in reader_layers)
+    ]
+    print("\nReader-layer files to review:")
+    print("\n".join(reader_hits) if reader_hits else "(none)")
     return 0
 
 

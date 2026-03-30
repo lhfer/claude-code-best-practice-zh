@@ -384,7 +384,7 @@ todoapp/
 
     <!-- Slide 10: Section Divider - Better Prompting -->
     <div class="slide section-slide" data-slide="10" data-level="low">
-        <p class="section-number">Part 2</p>
+        <p class="section-number">第 2 部分</p>
         <h1>更好的提示词</h1>
         <p class="section-desc">等级：低阶。目标是让你的提示词真正产出可落地、可交付的结果。</p>
     </div>
@@ -414,7 +414,7 @@ todoapp/
             <div class="col-card bad">
                 <h4>Vibe Coding</h4>
                 <div class="code-block"><span class="cmd">&gt;</span> add a notes feature</div>
-                <p style="margin-top: 12px;">Claude creates a random <code>/api/notes</code> endpoint with a new schema that doesn't match <code>models/todo.py</code>. Frontend page has no sidebar nav.</p>
+                <p style="margin-top: 12px;">Claude 会随手创建一个新的 <code>/api/notes</code> 接口，schema 也不一定和 <code>models/todo.py</code> 对齐，前端页面还可能没有侧边栏入口。</p>
                 <p style="color: #c62828;">模糊、没上下文、没约束。</p>
             </div>
             <div class="col-card good">
@@ -505,9 +505,9 @@ todoapp/
         </div>
     </div>
 
-    <!-- Slide 16: 档位 Mode 怎么落地 -->
+    <!-- Slide 16: Plan Mode 怎么落地 -->
     <div class="slide" data-slide="16">
-        <h1>档位 Mode 怎么落地</h1>
+        <h1>Plan Mode 怎么落地</h1>
         <div class="how-to-trigger">
             <h4>一步一步来</h4>
             <div class="code-block"><span class="comment"># 第 1 步：进入 plan mode</span>
@@ -547,7 +547,7 @@ todoapp/
 
     <!-- Slide 18: Section Divider - 项目 Memory -->
     <div class="slide section-slide" data-slide="18" data-level="medium">
-        <p class="section-number">Part 3</p>
+        <p class="section-number">第 3 部分</p>
         <h1>项目记忆</h1>
         <p class="section-desc">等级：中阶。让 Claude 记住你的项目、约定和偏好。</p>
     </div>
@@ -690,7 +690,7 @@ When writing tests for the backend:
 
     <!-- Slide 25: Section Divider - Structured Workflows -->
     <div class="slide section-slide" data-slide="25">
-        <p class="section-number">Part 4</p>
+        <p class="section-number">第 4 部分</p>
         <h1>结构化工作流</h1>
         <p class="section-desc">等级：中阶。用系统化流程减少无效返工。</p>
     </div>
@@ -749,7 +749,7 @@ When writing tests for the backend:
 
     <!-- Slide 29: Section Divider - Domain Knowledge -->
     <div class="slide section-slide" data-slide="29" data-level="high">
-        <p class="section-number">Part 5</p>
+        <p class="section-number">第 5 部分</p>
         <h1>领域知识</h1>
         <p class="section-desc">等级：高阶。把可复用知识沉淀成 Claude 按需加载的能力。</p>
     </div>
@@ -863,7 +863,7 @@ When creating or modifying frontend components:
 
     <!-- Slide 34: Section Divider - Agentic Engineering -->
     <div class="slide section-slide" data-slide="34" data-level="high">
-        <p class="section-number">Part 6</p>
+        <p class="section-number">第 6 部分</p>
         <h1>Agentic Engineering</h1>
         <p class="section-desc">等级：高阶。让定制 agent 真正理解你的代码库和工作方式。</p>
     </div>
@@ -1253,7 +1253,7 @@ Task(
             <div class="info-card">
                 <h4>日常使用</h4>
                 <p><code>/model</code> &mdash; 切模型</p>
-                <p><code>/plan</code> &mdash; 档位 before coding</p>
+                <p><code>/plan</code> &mdash; 先计划再写</p>
                 <p><code>/compact</code> &mdash; 释放上下文</p>
                 <p><code>/cost</code> &mdash; 看花费</p>
             </div>
@@ -1485,12 +1485,12 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
   <span class="key">"agent"</span>: <span class="string">"frontend-engineer"</span>
 }</div>
         </div>
-        <p>Now every time you run <code>claude</code> in this project, you'll talk to the <code>frontend-engineer</code> agent instead of default Claude.</p>
+        <p>现在你在这个项目里每次运行 <code>claude</code>，默认对话的就会是 <code>frontend-engineer</code>，而不是原始 Claude。</p>
         <h3>Per-会话 Override</h3>
         <div class="code-block"><span class="cmd">$</span> claude --agent backend-engineer</div>
         <div class="trigger-box">
             <h4>管理 Agents</h4>
-            <p>Run <code>/agents</code> to view, create, edit, or delete agents interactively.</p>
+            <p>运行 <code>/agents</code> 可以交互式地查看、创建、编辑和删除 agents。</p>
         </div>
     </div>
 
@@ -1499,7 +1499,7 @@ Read(.env)             <span class="comment">// Block reading secrets</span></di
         <h1>settings.json 总览</h1>
         <div class="trigger-box">
             <h4>Settings 层级</h4>
-            <p>Settings cascade from most specific to least specific. Higher priority wins.</p>
+            <p>Settings 会从最具体的层一路向下覆盖，优先级更高的设置会生效。</p>
         </div>
         <div class="code-block"><span class="comment"># User-writable override order (highest to lowest):</span>
 1. Command line flags              <span class="comment"># --model opus</span>
@@ -1515,7 +1515,7 @@ managed-settings.json              <span class="comment"># Organization policy (
     <!-- Slide 66: Spinner Verbs -->
     <div class="slide" data-slide="66">
         <h1>Spinner Verbs</h1>
-        <p>Customize the loading messages that appear while Claude thinks:</p>
+        <p>你可以自定义 Claude 思考时看到的加载提示语：</p>
         <div class="code-block"><span class="comment">// .claude/settings.json</span>
 {
   <span class="key">"spinnerVerbs"</span>: {
@@ -1534,7 +1534,7 @@ managed-settings.json              <span class="comment"># Organization policy (
     <!-- Slide 67: Status Line -->
     <div class="slide" data-slide="67">
         <h1>Status Line</h1>
-        <p>A custom info bar below the composer showing model, context, cost, git branch, etc.</p>
+        <p>这是输入框下方的一条信息栏，可以显示模型、上下文、成本、git 分支等信息。</p>
         <div class="how-to-trigger">
             <h4>快速设置</h4>
             <div class="code-block"><span class="cmd">&gt;</span> /statusline</div>
@@ -1593,12 +1593,12 @@ managed-settings.json              <span class="comment"># Organization policy (
             <div class="col-card">
                 <h4>/terminal-setup</h4>
                 <div class="code-block"><span class="cmd">&gt;</span> /terminal-setup</div>
-                <p>Enables <code>Shift+Enter</code> for newlines in IDE terminals.</p>
+                <p>让 IDE 终端里的 <code>Shift+Enter</code> 支持换行。</p>
             </div>
             <div class="col-card">
                 <h4>/vim</h4>
                 <div class="code-block"><span class="cmd">&gt;</span> /vim</div>
-                <p>Enables vim-style editing mode in the Claude Code prompt.</p>
+                <p>在 Claude Code 输入框里启用 vim 风格编辑模式。</p>
             </div>
         </div>
     </div>
@@ -1609,17 +1609,17 @@ managed-settings.json              <span class="comment"># Organization policy (
         <div class="info-grid">
             <div class="info-card">
                 <h4>快速收益项</h4>
-                <p><code>spinnerVerbs</code> &mdash; Fun loading messages</p>
-                <p><code>/statusline</code> &mdash; Info bar</p>
+                <p><code>spinnerVerbs</code> &mdash; 更有个性的加载提示词</p>
+                <p><code>/statusline</code> &mdash; 信息栏</p>
                 <p><code>/config</code> &rarr; 输出风格</p>
-                <p><code>/keybindings</code> &mdash; Custom keys</p>
+                <p><code>/keybindings</code> &mdash; 自定义按键</p>
             </div>
             <div class="info-card">
                 <h4>高阶能力</h4>
-                <p>Hooks &mdash; Custom lifecycle scripts</p>
-                <p>Plugins &mdash; Installable packages</p>
-                <p>MCP Servers &mdash; External tools</p>
-                <p>Sandbox &mdash; Security isolation</p>
+                <p>Hooks &mdash; 自定义生命周期脚本</p>
+                <p>Plugins &mdash; 可安装扩展包</p>
+                <p>MCP Servers &mdash; 外部工具接入</p>
+                <p>Sandbox &mdash; 安全隔离</p>
             </div>
         </div>
     </div>
@@ -1631,7 +1631,7 @@ managed-settings.json              <span class="comment"># Organization policy (
             <div class="use-case-item"><span class="use-case-icon">&#129658;</span><div class="use-case-text"><strong>先跑 /doctor</strong><span>出问题时优先先跑一遍</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128421;</span><div class="use-case-text"><strong>把日志跑成后台任务</strong><span>让 Claude 把服务跑成后台任务，边看日志边工作</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#127760;</span><div class="use-case-text"><strong>用浏览器 MCP 看 console 日志</strong><span>用 Playwright、Chrome DevTools 或 Claude in Chrome 让 Claude 看到浏览器控制台</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">&#128248;</span><div class="use-case-text"><strong>界面问题直接贴截图</strong><span>粘贴截图 directly &mdash; Ctrl+V. Worth a thousand words.</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">&#128248;</span><div class="use-case-text"><strong>界面问题直接贴截图</strong><span>直接 Ctrl+V 粘贴截图，往往比一大段描述更有用。</span></div></div>
         </div>
     </div>
 
@@ -1639,12 +1639,12 @@ managed-settings.json              <span class="comment"># Organization policy (
     <div class="slide" data-slide="73">
         <h1>黄金规则</h1>
         <div class="use-cases">
-            <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>复杂任务永远先 plan mode</strong><span>只要不是小修补，都值得先计划. Review the plan before Claude writes code.</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">2&#65039;&#8419;</span><div class="use-case-text"><strong>Keep CLAUDE.md 尽量控制在 150 行内</strong><span>Longer instructions get diluted. Use skills and rules for detail.</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">3&#65039;&#8419;</span><div class="use-case-text"><strong>在 50% 左右手动 /compact</strong><span>不要等自动 compact. Stay in control of what's preserved.</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">4&#65039;&#8419;</span><div class="use-case-text"><strong>每个子任务后都提交</strong><span>Small, frequent commits. Clean rollback points.</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">5&#65039;&#8419;</span><div class="use-case-text"><strong>一次只做一件事</strong><span>小而聚焦的请求，往往比大杂烩 prompt 更稳.</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">6&#65039;&#8419;</span><div class="use-case-text"><strong>文件要说具体</strong><span>"Fix the null check in backend/routes/todos.py line 42" not "fix the bug".</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>复杂任务永远先 plan mode</strong><span>只要不是小修补，都值得先计划。先看计划，再让 Claude 开始写代码。</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">2&#65039;&#8419;</span><div class="use-case-text"><strong>Keep CLAUDE.md 尽量控制在 150 行内</strong><span>太长的说明会被稀释，细节请交给 skills 和 rules。</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">3&#65039;&#8419;</span><div class="use-case-text"><strong>在 50% 左右手动 /compact</strong><span>不要等自动 compact，自己掌控到底保留什么。</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">4&#65039;&#8419;</span><div class="use-case-text"><strong>每个子任务后都提交</strong><span>小而频繁地提交，回滚点也会更清晰。</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">5&#65039;&#8419;</span><div class="use-case-text"><strong>一次只做一件事</strong><span>小而聚焦的请求，往往比大杂烩 prompt 更稳。</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">6&#65039;&#8419;</span><div class="use-case-text"><strong>文件要说具体</strong><span>比如说“修 backend/routes/todos.py 第 42 行的 null check”，而不是笼统地说“修这个 bug”。</span></div></div>
         </div>
     </div>
 
@@ -1654,7 +1654,7 @@ managed-settings.json              <span class="comment"># Organization policy (
         <div class="use-cases">
             <div class="use-case-item"><span class="use-case-icon">&#128214;</span><div class="use-case-text"><strong>Claude Code Docs</strong><span>code.claude.com/docs/en</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128161;</span><div class="use-case-text"><strong>Boris 的 12 条建议</strong><span>tips/claude-boris-12-tips-12-feb-26.md</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">&#127959;</span><div class="use-case-text"><strong>这个仓库</strong><span>里面有 skills、agents、hooks 以及 Command → Agent → Skills 模式的真实样例</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">&#127959;</span><div class="use-case-text"><strong>这个仓库</strong><span>里面有 skills、agents、hooks，以及 Command → Agent → Skills 模式的真实样例</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">&#128295;</span><div class="use-case-text"><strong>Claude Code Hooks</strong><span>github.com/shanraisshan/claude-code-hooks</span></div></div>
         </div>
     </div>
@@ -1663,11 +1663,11 @@ managed-settings.json              <span class="comment"># Organization policy (
     <div class="slide" data-slide="75">
         <h1>你的下一步</h1>
         <div class="use-cases">
-            <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>先装好并登录</strong><span>今天就把 Claude Code 在你机器上跑起来</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">1&#65039;&#8419;</span><div class="use-case-text"><strong>先装好并登录</strong><span>今天就把 Claude Code 真正跑起来</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">2&#65039;&#8419;</span><div class="use-case-text"><strong>在你的项目上跑 /init</strong><span>生成一份 CLAUDE.md，让 Claude 知道你的代码库背景</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">3&#65039;&#8419;</span><div class="use-case-text"><strong>第一次真正做事时先用 plan mode</strong><span>找一个 bug 或小功能，按规划流程走一遍</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">3&#65039;&#8419;</span><div class="use-case-text"><strong>第一次真正做事时先用 plan mode</strong><span>找一个 bug 或小功能，完整走一遍计划式工作流</span></div></div>
             <div class="use-case-item"><span class="use-case-icon">4&#65039;&#8419;</span><div class="use-case-text"><strong>创建你的第一个 skill</strong><span>把团队重复流程沉淀成 skill</span></div></div>
-            <div class="use-case-item"><span class="use-case-icon">5&#65039;&#8419;</span><div class="use-case-text"><strong>做一个面向具体功能的 agent</strong><span>让 Claude 对你的代码库拥有特定领域知识</span></div></div>
+            <div class="use-case-item"><span class="use-case-icon">5&#65039;&#8419;</span><div class="use-case-text"><strong>做一个面向具体功能的 agent</strong><span>让 Claude 对你的代码库拥有更明确的领域知识</span></div></div>
         </div>
     </div>
 
