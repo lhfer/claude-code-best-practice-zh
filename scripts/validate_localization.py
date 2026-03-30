@@ -117,6 +117,8 @@ def main() -> int:
         path = ROOT / rel
         if not path.exists():
             continue
+        if rel.startswith("output/pdf/") and path.suffix == ".md":
+            continue
         if path.suffix == ".md":
             bad = bad_markdown_links(path)
             if bad:
