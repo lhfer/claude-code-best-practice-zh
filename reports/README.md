@@ -13,15 +13,16 @@
 
 ## 建议阅读顺序
 
-1. [claude-agent-command-skill.md](claude-agent-command-skill.md)
-2. [claude-global-vs-project-settings.md](claude-global-vs-project-settings.md)
-3. [claude-skills-for-larger-mono-repos.md](claude-skills-for-larger-mono-repos.md)
-4. [claude-agent-memory.md](claude-agent-memory.md)
-5. [claude-usage-and-rate-limits.md](claude-usage-and-rate-limits.md)
-6. [claude-advanced-tool-use.md](claude-advanced-tool-use.md)
-7. [claude-in-chrome-v-chrome-devtools-mcp.md](claude-in-chrome-v-chrome-devtools-mcp.md)
-8. [claude-agent-sdk-vs-cli-system-prompts.md](claude-agent-sdk-vs-cli-system-prompts.md)
-9. [llm-day-to-day-degradation.md](llm-day-to-day-degradation.md)
+1. [zh-fork-review-scorecard.md](zh-fork-review-scorecard.md)
+2. [claude-agent-command-skill.md](claude-agent-command-skill.md)
+3. [claude-global-vs-project-settings.md](claude-global-vs-project-settings.md)
+4. [claude-skills-for-larger-mono-repos.md](claude-skills-for-larger-mono-repos.md)
+5. [claude-agent-memory.md](claude-agent-memory.md)
+6. [claude-usage-and-rate-limits.md](claude-usage-and-rate-limits.md)
+7. [claude-advanced-tool-use.md](claude-advanced-tool-use.md)
+8. [claude-in-chrome-v-chrome-devtools-mcp.md](claude-in-chrome-v-chrome-devtools-mcp.md)
+9. [claude-agent-sdk-vs-cli-system-prompts.md](claude-agent-sdk-vs-cli-system-prompts.md)
+10. [llm-day-to-day-degradation.md](llm-day-to-day-degradation.md)
 
 ## 这层最适合谁
 
