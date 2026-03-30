@@ -1,48 +1,38 @@
-# Squash Merging & PR Size Distribution — Tips from Boris Cherny
+# 为什么要 Squash Merge，以及为什么 PR 要更小
 
-A summary of insights shared by Boris Cherny ([@bcherny](https://x.com/bcherny)), creator of Claude Code, on March 25, 2026.
+> 中文重编版
+> 原始来源：
+> - Boris 原帖：<https://x.com/bcherny/status/2038552880018538749>
+> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-boris-2-tips-25-mar-26.md>
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+## 这篇最核心的两个观点
 
----
+### 1. 高速 AI 开发下，PR 越小越好
 
-## 1/ 266 Contributions in a Single Day — Always Squash
+当产出速度上来后，大 PR 并不会显得“更高效”，反而会：
 
-Boris shared his GitHub contribution graph showing **266 contributions on March 24th** — from **141 PRs, always squashed** with a median of **118 lines** per PR.
+- 更难 review
+- 更难回滚
+- 更难定位问题
 
-- Squash merging combines all branch commits into a single commit on the target branch — keeping history clean and linear
-- Each PR = one commit makes it easy to revert entire features and simplifies `git bisect`
-- At high-velocity AI-assisted workflows (141 PRs/day), squash is the pragmatic choice — individual "fix lint", "try this" commits within a branch are noise
+### 2. Squash merge 是更务实的默认选项
 
-<a href="https://x.com/bcherny/status/2038552880018538749"><img src="assets/boris-25-mar-26/1.png" alt="Boris Cherny — 266 contributions, always squashed" width="50%" /></a>
+因为在高频 AI 辅助开发里，分支内会出现大量：
 
----
+- fix lint
+- retry
+- 再试一次
+- 小修小补
 
-## 2/ PR Size Distribution — Keep PRs Small
+这些 commit 对主分支历史几乎没有信息价值。
 
-Boris shared the size distribution across those 141 PRs, totaling **45,032 lines changed** (additions + deletions):
+## 对中文团队的启发
 
-| Metric | Lines (add+del) | Meaning |
-|--------|---------------:|---------|
-| **p50** | **118** | Median PR size — half of all PRs were 118 lines or fewer |
-| p90 | 498 | 90% of PRs were under 500 lines |
-| **p99** | **2,978** | Only ~1 PR exceeded ~3K lines |
-| min | 2 | Smallest PR — a quick 2-line fix |
-| max | 10,459 | Largest single PR — likely a migration or generated code |
+- AI 时代更要重视 PR 粒度
+- “一个 PR = 一个可理解改动”比“保留所有中间提交”更重要
+- 想让 review 真正跟上产出速度，小 PR 和 squash 几乎是标配
 
-- A **median of 118 lines** means most PRs are focused and reviewable, even at 141 PRs/day
-- The distribution is heavily right-skewed — the occasional large PR is inevitable (bulk renames, migrations), but the norm is tight
-- Small PRs reduce merge conflict risk, are easier to review, and pair perfectly with squash merging for clean reverts
+## 一句话总结
 
-<a href="https://x.com/bcherny/status/2038552880018538749"><img src="assets/boris-25-mar-26/2.png" alt="Boris Cherny — PR size distribution table" width="50%" /></a>
-
----
-
-## Sources
-
-- [Boris Cherny (@bcherny) on X — March 25, 2026](https://x.com/bcherny)
+Claude 写得更快，不代表你可以把更多变化塞进一个 PR。
+恰恰相反，越快越要把 PR 切小。

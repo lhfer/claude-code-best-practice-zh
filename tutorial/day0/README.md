@@ -1,61 +1,69 @@
-# Day 0 — Claude Code Setup
+# Day 0 — 第一天把 Claude Code 跑起来
 
-This guide walks you through installing Claude Code on your machine and authenticating so you can start using it.
+这篇只做一件事：
 
-## Step 1: Install Claude Code
+> 带你把 Claude Code 安装好、验证好、能真正开始用。
 
-Choose your operating system:
+## 第 1 步：按系统安装
 
-| OS | Guide |
+请选择你的系统：
+
+| 系统 | 指南 |
 |----|-------|
 | Windows | [windows.md](windows.md) |
 | Linux | [linux.md](linux.md) |
 | macOS | [mac.md](mac.md) |
 
-Follow the guide for your OS, then come back here for authentication.
+装完后再回到这里。
 
 ---
 
-## Step 2: Verify Installation
-
-After following your OS-specific guide, confirm everything is working:
+## 第 2 步：验证安装
 
 ```bash
-node --version    # Should show v18.x or higher
-claude --version  # Should show the installed Claude Code version
+node --version
+claude --version
 ```
+
+你希望看到的是：
+
+- `node --version` 至少是 `v18.x`
+- `claude --version` 能正常返回版本号
 
 ---
 
-## Step 3: Login
+## 第 3 步：第一次登录
 
 <img src="assets/login.png" alt="Claude Code login screen" width="50%">
 
-Run `claude` in your terminal. On first launch, it will ask you to choose a login method.
+第一次运行：
 
-### Method 1: Subscription (Claude Pro / Max)
+```bash
+claude
+```
 
-- Select **Claude.ai account**
-- Browser opens — sign in and authorize
-- Return to terminal, you're logged in
+Claude Code 会让你选择登录方式。
 
-### Method 2a: API Key (Team Invite)
+### 方式 1：订阅账号
 
-Your team admin invites you from the Anthropic dashboard.
+- 选择 **Claude.ai account**
+- 浏览器会打开授权页
+- 登录并授权
+- 回到终端即可
 
-- You receive an **invite email** — accept it and create your Anthropic account
-- Run `claude` in your terminal
-- Select **Anthropic API Key**
-- Your key is **auto-generated** on the dashboard — no manual setup needed
-- Claude Code starts working immediately
+### 方式 2：API Key
 
-### Method 2b: API Key (You have the key)
+如果你的团队管理员已经邀请你，或者你自己有 key：
 
-If someone shared the key with you (via Slack, email, etc.) or you created your own:
+- 选择 **Anthropic API Key**
+- 粘贴 `sk-ant-` 开头的 key
+- 之后 Claude Code 会记住它
 
-- Run `claude` in your terminal
-- Select **Anthropic API Key**
-- Paste your key (starts with `sk-ant-`)
-- The key is **stored permanently** — you won't be asked again
+## 新手提醒
+
+- 第一天先别急着折腾 `.claude/`
+- 先把工具跑起来
+- 先感受一轮默认体验
+- 再回根 README 去读更系统的内容
 
 ---

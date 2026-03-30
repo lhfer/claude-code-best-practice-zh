@@ -2,100 +2,69 @@
 
 **RPI** = **R**esearch → **P**lan → **I**mplement
 
-A systematic development workflow with validation gates at each phase. Prevents wasted effort on non-viable features and ensures comprehensive documentation.
+这条 workflow 的核心思想很朴素：
 
-<table width="100%">
-<tr>
-<td><a href="../../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+> 不要在需求还没想清楚时就开始写。
 
----
+它把事情拆成 3 个阶段，每个阶段都有明确产物和验证门槛。
 
-## Overview
+## 为什么值得学
+
+RPI 最有价值的地方不是目录结构，而是阶段边界：
+
+- 先研究能不能做
+- 再规划怎么做
+- 最后实现
+
+这样能大幅降低下面这类浪费：
+
+- 写到一半推倒重来
+- UI 和后端各写各的
+- 实现完才发现验收标准没定义
+
+## 流程图
 
 ![RPI Workflow](rpi-workflow.svg)
 
----
+## 目录结构
 
-## Installation
-
-Copy the `.claude` folder (containing `agents/` and `commands/rpi/`) to your repository root, then create the `rpi/plans` directory.
-
----
-
-## Example Workflow
-
-### Feature: User Authentication
-
-**Step 1: Describe**
-```
-User: "Add OAuth2 authentication with Google and GitHub providers"
-
-1. Claude generates plan
-   → Output: rpi/plans/oauth2-authentication.md
-2. Create feature folder: rpi/oauth2-authentication/
-3. Copy the plan into the feature folder
-4. Rename the plan to REQUEST.md
-   → Final: rpi/oauth2-authentication/REQUEST.md
-```
-
-**Step 2: Research**
-```bash
-/rpi:research rpi/oauth2-authentication/REQUEST.md
-```
-Output:
-- `research/RESEARCH.md` with analysis
-- Verdict: **GO** (feasible, aligned with strategy)
-
-**Step 3: Plan**
-```bash
-/rpi:plan oauth2-authentication
-```
-Output:
-- `plan/pm.md` - User stories and acceptance criteria
-- `plan/ux.md` - Login UI flows
-- `plan/eng.md` - Technical architecture
-- `plan/PLAN.md` - 3 phases, 15 tasks
-
-**Step 4: Implement**
-```bash
-/rpi:implement oauth2-authentication
-```
-Progress:
-- Phase 1: Backend Foundation → PASS
-- Phase 2: Frontend Integration → PASS
-- Phase 3: Testing & Polish → PASS
-
-Result: Feature complete, ready for PR.
-
----
-
-## Feature Folder Structure
-
-All feature work lives in `rpi/{feature-slug}/`:
-
-```
+```text
 rpi/{feature-slug}/
-├── REQUEST.md              # Step 1: Initial feature description
-├── research/
-│   └── RESEARCH.md         # Step 2: GO/NO-GO analysis
-├── plan/
-│   ├── PLAN.md             # Step 3: Implementation roadmap
-│   ├── pm.md               # Product requirements
-│   ├── ux.md               # UX design
-│   └── eng.md              # Technical specification
-└── implement/
-    └── IMPLEMENT.md        # Step 4: Implementation record
+├── REQUEST.md
+├── research/RESEARCH.md
+├── plan/PLAN.md
+├── plan/pm.md
+├── plan/ux.md
+├── plan/eng.md
+└── implement/IMPLEMENT.md
 ```
 
----
+## 三个阶段分别做什么
 
-## Agents and Commands
+### Research
 
-| Command | Agents Used |
-|---------|-------------|
-| `/rpi:research` | requirement-parser, product-manager, Explore, senior-software-engineer, technical-cto-advisor, documentation-analyst-writer |
-| `/rpi:plan` | senior-software-engineer, product-manager, ux-designer, documentation-analyst-writer |
-| `/rpi:implement` | Explore, senior-software-engineer, code-reviewer |
+- 判断需求是否可行
+- 判断是否值得做
+- 先识别约束和风险
+
+### Plan
+
+- 把产品、体验、工程拆开
+- 形成可执行的阶段计划
+
+### Implement
+
+- 按阶段落地
+- 每阶段都要过验证
+
+## 适合谁
+
+- 需求不是一次性小修补
+- 团队需要可追踪的中间产物
+- 不想继续靠“边写边想”推进复杂功能
+
+## 对中文团队最有价值的启发
+
+- 先把 plan 变成工件，再让模型写代码
+- 研究、规划、实现的职责不要混
+- workflow 的价值不在“命令名”，而在“阶段门槛”

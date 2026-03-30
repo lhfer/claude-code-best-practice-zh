@@ -83,6 +83,15 @@
 4. 优先修正事实漂移
 5. 最后再润色中文表达
 
+## 受保护路径
+
+执行层的保护清单写在：
+
+- [PROTECTED_RUNTIME_PATHS.txt](PROTECTED_RUNTIME_PATHS.txt)
+
+这些路径默认不允许做中文改写。
+如果某次改动必须触碰它们，必须在 PR 里明确解释为什么不会影响运行语义。
+
 ## 提交规则
 
 建议 commit message 显式标明类型：

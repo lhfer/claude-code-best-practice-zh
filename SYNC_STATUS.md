@@ -18,10 +18,12 @@
 
 | 模块 | 状态 | 说明 |
 |---|---|---|
-| `README.md` | 已中文化 | 作为中文主入口重写 |
-| `LOCALIZATION_POLICY.md` | 新增 | 中文 fork 治理文件 |
-| `GLOSSARY.md` | 新增 | 统一术语 |
-| `CONTRIBUTING.md` | 新增 | 面向中文贡献者 |
+| `README.md` | 已中文化 | 中文主入口，已补社区层入口与校验说明 |
+| `LOCALIZATION_POLICY.md` | 已中文化 | 中文 fork 治理文件 |
+| `GLOSSARY.md` | 已中文化 | 统一术语 |
+| `CONTRIBUTING.md` | 已中文化 | 面向中文贡献者 |
+| `PROTECTED_RUNTIME_PATHS.txt` | 新增 | 受保护路径清单 |
+| `scripts/validate_localization.py` | 新增 | 本地化校验脚本 |
 | `best-practice/claude-subagents.md` | 已中文化 | v1 重编 |
 | `best-practice/claude-skills.md` | 已中文化 | v1 重编 |
 | `best-practice/claude-commands.md` | 已中文化 | v1 重编 |
@@ -32,8 +34,22 @@
 | `reports/claude-skills-for-larger-mono-repos.md` | 已中文化 | v1 重编 |
 | `implementation/` weather 相关说明 | 已中文化 | 仅说明层 |
 | `orchestration-workflow/` 说明层 | 已中文化 | 仅说明层 |
-| `tips/` 全量正文 | 待处理 | 先不逐篇翻译，优先保留原始来源 |
-| `presentation/` | 待处理 | 暂不中文化执行层和视觉资产 |
+| `tips/README.md` | 已中文化 | 社区经验索引 |
+| `tips/*.md` | 已中文化 | 改为中文导读 / 摘要版 |
+| `videos/README.md` | 已中文化 | 视频导读索引 |
+| `videos/*.md` | 已中文化 | 改为中文导读版 |
+| `tutorial/README.md` | 已中文化 | 中文 onboarding 入口 |
+| `tutorial/day0/*` | 已中文化 | 命令保持英文，说明改中文 |
+| `development-workflows/README.md` | 已中文化 | 工作流索引 |
+| `development-workflows/**/*.md` | 已中文化 | 说明层改为中文 |
+| `agent-teams/README.md` | 已中文化 | 团队编排索引 |
+| `agent-teams/agent-teams-prompt.md` | 已中文化 | 仅提示词说明层 |
+| `changelog/README.md` | 已中文化 | 维护者入口 |
+| `changelog/**/*.md` | 已中文化 | 标题 / 导语 / 结构提示中文化 |
+| `.claude/hooks/HOOKS-README.md` | 已中文化 | docs-only 文件 |
+| `.codex/hooks/HOOKS-README.md` | 已中文化 | docs-only 文件 |
+| `presentation/README.md` | 已中文化 | 演示层说明 |
+| `presentation/index.html` | 已中文化 | 已翻译主要可见文案，结构 / 脚本 / 资源路径保持不变 |
 | `.claude/` | 保持英文 | 运行时不翻译 |
 | `.codex/` | 保持英文 | 运行时不翻译 |
 | `.mcp.json` | 保持英文 | 运行时不翻译 |
@@ -54,6 +70,5 @@
 
 ## 当前待办
 
-- 给 `tips/` 做中文摘要索引，而不是逐篇机翻
-- 增加更多中文 report
-- 评估是否需要补一个“适合中国团队怎么抄这个仓”的落地指南
+- 继续扩展更多 `reports/` 的中文版本
+- 评估是否补一个“适合中国团队怎么抄这个仓”的落地指南

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/svg+xml" href="../!/claude-jumping.svg">
-    <title>Claude Code — From Vibe Coding to Agentic Engineering</title>
+    <title>Claude Code：从 Vibe Coding 到 Agentic Engineering</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #fff; color: #1a1a1a; line-height: 1.6; }
@@ -96,13 +96,13 @@
         <div class="journey-track-wrap">
             <div class="journey-track"><div class="journey-fill" id="journeyFill"></div></div>
             <div class="journey-ticks">
-                <span class="journey-tick">Pro</span>
-                <span class="journey-tick">High</span>
-                <span class="journey-tick">Med</span>
-                <span class="journey-tick">Low</span>
+                <span class="journey-tick">高阶</span>
+                <span class="journey-tick">高</span>
+                <span class="journey-tick">中</span>
+                <span class="journey-tick">低</span>
             </div>
         </div>
-        <span class="journey-level-label" id="journeyLevelLabel">Current = <strong>Low</strong></span>
+        <span class="journey-level-label" id="journeyLevelLabel">当前等级 = <strong>低</strong></span>
     </div>
 
     <!-- ============================================================ -->
@@ -115,20 +115,20 @@
             <img src="../!/claude-jumping.svg" alt="Claude Code mascot jumping" />
         </div>
         <h1>Claude Code</h1>
-        <p class="subtitle">From Vibe Coding to Agentic Engineering</p>
-        <p style="margin-top: 60px; font-size: 0.95rem; color: #888;">A journey through every best practice — with a real project.</p>
+        <p class="subtitle">从 Vibe Coding 到 Agentic Engineering</p>
+        <p style="margin-top: 60px; font-size: 0.95rem; color: #888;">用一个真实项目，把整套最佳实践串起来。</p>
     </div>
 
     <!-- Slide 2: The Example Project -->
     <div class="slide" data-slide="2">
-        <h1>The Example Project: TodoApp</h1>
+        <h1>示例项目：TodoApp</h1>
         <div class="trigger-box">
-            <h4>Running Example</h4>
-            <p>Every technique in this presentation is demonstrated on a <strong>TodoApp monorepo</strong> — showing the transformation from a plain project to one with full Claude Code configuration.</p>
+            <h4>贯穿全程的示例</h4>
+            <p>整份演示都会围绕一个 <strong>TodoApp monorepo</strong> 展开，展示它如何从“普通项目”一步步长成“带完整 Claude Code 配置的项目”。</p>
         </div>
         <div class="two-col">
             <div>
-                <h3 style="text-align: center; color: #c62828; margin-bottom: 16px;">Before (Vibe Coding)</h3>
+                <h3 style="text-align: center; color: #c62828; margin-bottom: 16px;">之前（Vibe Coding）</h3>
                 <div class="code-block"><span class="comment"># Plain TodoApp</span>
 todoapp/
   <span class="key">backend/</span>
@@ -152,7 +152,7 @@ todoapp/
       api.ts</div>
             </div>
             <div>
-                <h3 style="text-align: center; color: #2e7d32; margin-bottom: 16px;">After (Agentic Engineering)</h3>
+                <h3 style="text-align: center; color: #2e7d32; margin-bottom: 16px;">之后（Agentic Engineering）</h3>
                 <div class="code-block"><span class="comment"># With Claude Code Best Practices</span>
 todoapp/
   <span class="claude-file">.claude/</span>                  <span class="claude-file comment"># Claude Code config</span>
@@ -192,11 +192,11 @@ todoapp/
 
     <!-- Slide 3: What is Vibe Coding? -->
     <div class="slide" data-slide="3">
-        <h1>What is Vibe Coding?</h1>
-        <p>This is where everyone starts. The question is: how fast can you move beyond it?</p>
+        <h1>什么是 Vibe Coding？</h1>
+        <p>几乎每个人都是从这里开始的。真正的问题是：你多久能走出这一步。</p>
         <div class="two-col">
             <div class="col-card bad">
-                <h4>What Happens (Low Level)</h4>
+                <h4>低阶状态下会发生什么</h4>
                 <p><code>&gt; add a notes feature</code></p>
                 <p>Claude creates <code>/api/notes</code> with a random schema</p>
                 <p>Frontend gets a standalone page with no sidebar nav</p>
@@ -204,7 +204,7 @@ todoapp/
                 <p style="margin-top: 16px; color: #c62828;">Every new feature is a coin flip. Code entropy increases with every prompt.</p>
             </div>
             <div class="col-card good">
-                <h4>What We Want (High Level)</h4>
+                <h4>我们真正想要的高阶状态</h4>
                 <p>Claude knows the TodoApp architecture</p>
                 <p>New routes follow existing patterns in <code>routes/todos.py</code></p>
                 <p>Frontend uses <code>Sidebar.tsx</code> nav and Tailwind tokens</p>
@@ -216,18 +216,18 @@ todoapp/
 
     <!-- Slide 4: Journey Map -->
     <div class="slide" data-slide="4">
-        <h1>The Journey</h1>
+        <h1>这段升级之路</h1>
         <div class="trigger-box">
-            <h4>From Low to High</h4>
+            <h4>从低阶到高阶</h4>
             <p>Each section adds techniques that move you from vibe coding toward fully agentic engineering.</p>
         </div>
         <div class="toc-list" style="margin-top: 24px;">
             <div class="toc-item" onclick="goToSlide(5)"><span class="toc-number">1</span><span class="toc-name">Prerequisites</span></div>
-            <div class="toc-item" onclick="goToSlide(10)"><span class="toc-number">2</span><span class="toc-name">Better Prompting &mdash; Low</span></div>
-            <div class="toc-item" onclick="goToSlide(18)"><span class="toc-number">3</span><span class="toc-name">Project Memory &mdash; Medium</span></div>
-            <div class="toc-item" onclick="goToSlide(25)"><span class="toc-number">4</span><span class="toc-name">Structured Workflows &mdash; Medium</span></div>
-            <div class="toc-item" onclick="goToSlide(29)"><span class="toc-number">5</span><span class="toc-name">Domain Knowledge &mdash; High</span></div>
-            <div class="toc-item" onclick="goToSlide(34)"><span class="toc-number">6</span><span class="toc-name">Agentic Engineering &mdash; High</span></div>
+            <div class="toc-item" onclick="goToSlide(10)"><span class="toc-number">2</span><span class="toc-name">更好的提示词 &mdash; 低阶</span></div>
+            <div class="toc-item" onclick="goToSlide(18)"><span class="toc-number">3</span><span class="toc-name">项目记忆 &mdash; 中阶</span></div>
+            <div class="toc-item" onclick="goToSlide(25)"><span class="toc-number">4</span><span class="toc-name">结构化工作流 &mdash; 中阶</span></div>
+            <div class="toc-item" onclick="goToSlide(29)"><span class="toc-number">5</span><span class="toc-name">领域知识 &mdash; 高阶</span></div>
+            <div class="toc-item" onclick="goToSlide(34)"><span class="toc-number">6</span><span class="toc-name">Agentic Engineering &mdash; 高阶</span></div>
         </div>
     </div>
 
@@ -237,7 +237,7 @@ todoapp/
 
     <!-- Slide 5: Installing -->
     <div class="slide" data-slide="5">
-        <h1>Installing Claude Code</h1>
+        <h1>安装 Claude Code</h1>
         <div class="trigger-box">
             <h4>Prerequisite</h4>
             <p>Homebrew must be installed on your Mac.</p>
@@ -256,7 +256,7 @@ todoapp/
 
     <!-- Slide 6: Login — Subscription -->
     <div class="slide" data-slide="6">
-        <h1>Login Option A: Subscription</h1>
+        <h1>登录方式 A：订阅账号</h1>
         <p>Use your Claude Pro or Max subscription via OAuth login:</p>
         <div class="code-block"><span class="cmd">claude</span>
 <span class="comment"># Select "Claude.ai" at the login prompt</span>
@@ -301,7 +301,7 @@ todoapp/
 
     <!-- Slide 7: Login — API Key -->
     <div class="slide" data-slide="7">
-        <h1>Login Option B: API Key</h1>
+        <h1>登录方式 B：API Key</h1>
         <p>Pay per token with an Anthropic API key &mdash; no weekly caps:</p>
         <h3>Token Pricing <span style="font-weight: 400; font-size: 0.8rem; color: #888;">(per million tokens)</span></h3>
         <table style="width: 100%; border-collapse: collapse; font-size: 0.85rem; margin-top: 8px;">
@@ -344,7 +344,7 @@ todoapp/
 
     <!-- Slide 8: First Session (this IS vibe coding) -->
     <div class="slide" data-slide="8">
-        <h1>Your First Session</h1>
+        <h1>你的第一个会话</h1>
         <div class="how-to-trigger">
             <h4>Start Claude Code</h4>
             <p>Navigate to your project and run:</p>
@@ -361,7 +361,7 @@ todoapp/
 
     <!-- Slide 9: The Interface -->
     <div class="slide" data-slide="9">
-        <h1>The Interface</h1>
+        <h1>界面长什么样</h1>
         <div class="code-block"><span class="comment">+-----------------------------------------+</span>
 <span class="comment">|</span>  <span class="string">Claude Code</span> v2.1.33
 <span class="comment">|</span>  Model: claude-opus-4-6
@@ -385,8 +385,8 @@ todoapp/
     <!-- Slide 10: Section Divider - Better Prompting -->
     <div class="slide section-slide" data-slide="10" data-level="low">
         <p class="section-number">Part 2</p>
-        <h1>Better Prompting</h1>
-        <p class="section-desc">Level: Low &mdash; effective prompting that produces real, production-quality results.</p>
+        <h1>更好的提示词</h1>
+        <p class="section-desc">等级：低阶。目标是让你的提示词真正产出可落地、可交付的结果。</p>
     </div>
 
     <!-- Slide 11: Your First Prompt -->
@@ -548,8 +548,8 @@ todoapp/
     <!-- Slide 18: Section Divider - Project Memory -->
     <div class="slide section-slide" data-slide="18" data-level="medium">
         <p class="section-number">Part 3</p>
-        <h1>Project Memory</h1>
-        <p class="section-desc">Level: Medium &mdash; make Claude remember your project, conventions, and preferences.</p>
+        <h1>项目记忆</h1>
+        <p class="section-desc">等级：中阶。让 Claude 记住你的项目、约定和偏好。</p>
     </div>
 
     <!-- Slide 19: CLAUDE.md & /init -->
@@ -691,8 +691,8 @@ When writing tests for the backend:
     <!-- Slide 25: Section Divider - Structured Workflows -->
     <div class="slide section-slide" data-slide="25">
         <p class="section-number">Part 4</p>
-        <h1>Structured Workflows</h1>
-        <p class="section-desc">Level: Medium &mdash; systematic approaches that prevent wasted effort.</p>
+        <h1>结构化工作流</h1>
+        <p class="section-desc">等级：中阶。用系统化流程减少无效返工。</p>
     </div>
 
     <!-- Slide 26: Task Lists -->
@@ -750,8 +750,8 @@ When writing tests for the backend:
     <!-- Slide 29: Section Divider - Domain Knowledge -->
     <div class="slide section-slide" data-slide="29" data-level="high">
         <p class="section-number">Part 5</p>
-        <h1>Domain Knowledge</h1>
-        <p class="section-desc">Level: High &mdash; reusable knowledge that Claude loads on-demand.</p>
+        <h1>领域知识</h1>
+        <p class="section-desc">等级：高阶。把可复用知识沉淀成 Claude 按需加载的能力。</p>
     </div>
 
     <!-- Slide 30: What Are Skills -->
@@ -865,7 +865,7 @@ When creating or modifying frontend components:
     <div class="slide section-slide" data-slide="34" data-level="high">
         <p class="section-number">Part 6</p>
         <h1>Agentic Engineering</h1>
-        <p class="section-desc">Level: High &mdash; custom agents that know your codebase and follow your patterns.</p>
+        <p class="section-desc">等级：高阶。让定制 agent 真正理解你的代码库和工作方式。</p>
     </div>
 
     <!-- Slide 35: What Are Agents -->

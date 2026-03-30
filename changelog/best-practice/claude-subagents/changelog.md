@@ -1,6 +1,9 @@
-# Subagents Report — Changelog History
+# Subagents 报告更新日志
 
-## Status Legend
+> 中文说明：本文件记录 subagents 报告如何与官方和本仓实现保持同步。
+> 下方历史 action 表为原始技术日志。
+
+## 状态说明
 
 | Status | Meaning |
 |--------|---------|

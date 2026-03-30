@@ -1,8 +1,8 @@
-# Verification Checklist — README CONCEPTS Section
+# README CONCEPTS 校验清单
 
-Rules for verifying CONCEPTS table accuracy. Each rule is checked during every workflow run.
+这份清单用于验证 CONCEPTS 表的准确性。每次 workflow 运行时都要逐条检查。
 
-## Rules
+## 规则
 
 ### 1. External URL Liveness
 - **Category**: URL Accuracy

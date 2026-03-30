@@ -1,8 +1,8 @@
-# Changelog — README CONCEPTS Section
+# README CONCEPTS 更新日志
 
-Tracks drift between the README CONCEPTS table and official Claude Code documentation.
+用于追踪 README 里的 CONCEPTS 表与 Claude Code 官方文档之间的漂移。
 
-## Status Legend
+## 状态说明
 
 | Status | Meaning |
 |--------|---------|

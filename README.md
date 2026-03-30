@@ -8,6 +8,7 @@
 [![Chinese First](https://img.shields.io/badge/docs-Chinese%20first-ffb703?style=flat)](#推荐阅读顺序)
 [![Keep Runtime in English](https://img.shields.io/badge/runtime-English%20unchanged-6c757d?style=flat)](LOCALIZATION_POLICY.md)
 [![Sync Status](https://img.shields.io/badge/sync-v1%20in%20progress-8250df?style=flat)](SYNC_STATUS.md)
+[![Validator](https://img.shields.io/badge/validator-protected%20runtime-2f855a?style=flat)](scripts/validate_localization.py)
 
 ## 这仓库是什么
 
@@ -60,6 +61,14 @@
 5. [Skills Implementation](implementation/claude-skills-implementation.md)
 6. [Commands Implementation](implementation/claude-commands-implementation.md)
 
+如果你更在意“社区里的人到底怎么用它”，建议走这条路线：
+
+1. [tips/README.md](tips/README.md)
+2. [videos/README.md](videos/README.md)
+3. [development-workflows/README.md](development-workflows/README.md)
+4. [tutorial/README.md](tutorial/README.md)
+5. [agent-teams/README.md](agent-teams/README.md)
+
 ## 核心概念速览
 
 | 概念 | 一句话解释 | 从哪里开始读 |
@@ -102,6 +111,16 @@
 - [implementation/claude-skills-implementation.md](implementation/claude-skills-implementation.md)
 - [implementation/claude-commands-implementation.md](implementation/claude-commands-implementation.md)
 
+### 社区内容层
+
+- [tips/README.md](tips/README.md)
+- [videos/README.md](videos/README.md)
+- [development-workflows/README.md](development-workflows/README.md)
+- [tutorial/README.md](tutorial/README.md)
+- [agent-teams/README.md](agent-teams/README.md)
+- [changelog/README.md](changelog/README.md)
+- [presentation/README.md](presentation/README.md)
+
 ## 中文化原则
 
 这份 fork 只有一个核心原则：**执行层不乱动，说明层彻底重编。**
@@ -118,9 +137,32 @@
 - reports
 - implementation
 - orchestration-workflow
-- 面向读者的 tips 摘要与说明
+- tips
+- videos
+- tutorial
+- development-workflows
+- agent-teams
+- changelog
+- presentation（仅可见文案）
 
 详细规则见 [LOCALIZATION_POLICY.md](LOCALIZATION_POLICY.md)。
+
+## 零功能漂移校验
+
+这份 fork 不是“中文看起来更顺”，而是要做到：
+
+> 中文化之后，原仓的执行层能力不能被我改坏。
+
+为此仓库新增了两层保护：
+
+- 受保护路径清单：[PROTECTED_RUNTIME_PATHS.txt](PROTECTED_RUNTIME_PATHS.txt)
+- 本地校验脚本：[scripts/validate_localization.py](scripts/validate_localization.py)
+
+提交前建议运行：
+
+```bash
+python3 scripts/validate_localization.py
+```
 
 ## 如何跟上游同步
 

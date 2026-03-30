@@ -1,123 +1,99 @@
-# HOOKS-README
-contains all the details, scripts, and instructions for the hooks
+# Hooks（Claude Code）
 
-## Hook Events Overview - [Official 22 Hooks](https://code.claude.com/docs/en/hooks)
-Claude Code provides several hook events that run at different points in the workflow:
+这个目录保存的是 Claude Code hooks 的说明、配置和声音素材。
 
-| # | Hook | Description | Options |
-|:-:|------|-------------|---------|
-| 1 | `PreToolUse` | Runs before tool calls (can block them) | `async`, `timeout: 5000`, `tool_use_id` |
-| 2 | `PermissionRequest` | Runs when Claude Code requests permission from the user | `async`, `timeout: 5000`, `permission_suggestions` |
-| 3 | `PostToolUse` | Runs after tool calls complete successfully | `async`, `timeout: 5000`, `tool_response`, `tool_use_id` |
-| 4 | `PostToolUseFailure` | Runs after tool calls fail | `async`, `timeout: 5000`, `error`, `is_interrupt`, `tool_use_id` |
-| 5 | `UserPromptSubmit` | Runs when the user submits a prompt, before Claude processes it | `async`, `timeout: 5000`, `prompt` |
-| 6 | `Notification` | Runs when Claude Code sends notifications | `async`, `timeout: 5000`, `notification_type`, `message`, `title` |
-| 7 | `Stop` | Runs when Claude Code finishes responding | `async`, `timeout: 5000`, `last_assistant_message`, `stop_hook_active` |
-| 8 | `SubagentStart` | Runs when subagent tasks start | `async`, `timeout: 5000`, `agent_id`, `agent_type` |
-| 9 | `SubagentStop` | Runs when subagent tasks complete | `async`, `timeout: 5000`, `agent_id`, `agent_type`, `last_assistant_message`, `agent_transcript_path`, `stop_hook_active` |
-| 10 | `PreCompact` | Runs before Claude Code is about to run a compact operation | `async`, `timeout: 5000`, `once`, `trigger`, `custom_instructions` |
-| 11 | `PostCompact` | Runs after Claude Code completes a compact operation | `async`, `timeout: 5000`, `trigger`, `compact_summary` |
-| 12 | `SessionStart` | Runs when Claude Code starts a new session or resumes an existing session | `async`, `timeout: 5000`, `once`, `agent_type`, `model`, `source` |
-| 13 | `SessionEnd` | Runs when Claude Code session ends | `async`, `timeout: 5000`, `once`, `reason` |
-| 14 | `Setup` | Runs when Claude Code runs the /setup command for project initialization | `async`, `timeout: 30000` |
-| 15 | `TeammateIdle` | Runs when a teammate agent becomes idle (experimental agent teams) | `async`, `timeout: 5000`, `teammate_name`, `team_name` |
-| 16 | `TaskCompleted` | Runs when a background task completes (experimental agent teams) | `async`, `timeout: 5000`, `task_id`, `task_subject`, `task_description`, `teammate_name`, `team_name` |
-| 17 | `ConfigChange` | Runs when a configuration file changes during a session | `async`, `timeout: 5000`, `file_path`, `source` |
-| 18 | `WorktreeCreate` | Runs when agent worktree isolation creates worktrees for custom VCS setup | `async`, `timeout: 5000`, `name` |
-| 19 | `WorktreeRemove` | Runs when agent worktree isolation removes worktrees for custom VCS teardown | `async`, `timeout: 5000`, `worktree_path` |
-| 20 | `InstructionsLoaded` | Runs when CLAUDE.md or `.claude/rules/*.md` files are loaded into context | `async`, `timeout: 5000`, `file_path`, `memory_type`, `load_reason`, `globs`, `trigger_file_path`, `parent_file_path` |
-| 21 | `Elicitation` | Runs when an MCP server requests user input during a tool call | `async`, `timeout: 5000`, `mcp_server_name`, `message`, `mode`, `url`, `elicitation_id`, `requested_schema` |
-| 22 | `ElicitationResult` | Runs after a user responds to an MCP elicitation, before the response is sent back to the server | `async`, `timeout: 5000`, `mcp_server_name`, `action`, `content`, `mode`, `elicitation_id` |
+要先分清两层：
 
-> **Note:** Hooks 15-16 (`TeammateIdle` and `TaskCompleted`) require the experimental agent teams feature. Set `CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS=1` when launching Claude Code to enable them.
+- `HOOKS-README.md` 是说明层，可以中文化
+- `config/`、`scripts/`、`sounds/` 是运行时层，不要为了翻译去乱改
 
-### Not in Official Docs
+## hooks 是什么
 
-The following items exist in the [Claude Code Changelog](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) but are **not listed** in the [Official Hooks Reference](https://code.claude.com/docs/en/hooks):
+hooks 可以理解成：
 
-| Item | Added In | Changelog Reference | Notes |
-|------|----------|-------------------|-------|
-| `Setup` hook | [v2.1.10](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#2110) | "Added new Setup hook event that can be triggered via `--init`, `--init-only`, or `--maintenance` CLI flags for repository setup and maintenance operations" | Not listed in official hooks reference page (21 hooks listed, Setup excluded) |
-| Agent frontmatter hooks | [v2.1.0](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md#210) | "Added hooks support to agent frontmatter, allowing agents to define PreToolUse, PostToolUse, and Stop hooks scoped to the agent's lifecycle" | Changelog only mentions 3 hooks, but testing confirms **6 hooks** actually fire in agent sessions: PreToolUse, PostToolUse, PermissionRequest, PostToolUseFailure, Stop, SubagentStop. Not all 16 hooks are supported. |
+> Claude Code 在某些生命周期事件发生时，顺手去跑一段外部逻辑。
 
-## Prerequisites
+常见用途：
 
-Before using hooks, ensure you have **Python 3** installed on your system.
+- 播放提示音
+- 记日志
+- 自动格式化
+- 在 session 开始或结束时做额外动作
+- 对某些风险操作做保护
 
-### Required Software
+## 这个仓库的实现方式
 
-#### All Platforms (Windows, macOS, Linux)
-- **Python 3**: Required for running the hook scripts
-- Verify installation: `python3 --version`
+这里用的是“单入口脚本 + 配置开关”的组织法：
 
-**Installation Instructions:**
-- **Windows**: Download from [python.org](https://www.python.org/downloads/) or install via `winget install Python.Python.3`
-- **macOS**: Install via `brew install python3` (requires [Homebrew](https://brew.sh/))
-- **Linux**: Install via `sudo apt install python3` (Ubuntu/Debian) or `sudo yum install python3` (RHEL/CentOS)
+- 入口脚本：`.claude/hooks/scripts/hooks.py`
+- 配置文件：`.claude/hooks/config/hooks-config.json`
+- 资源目录：`.claude/hooks/sounds/`
+- 触发接入：`.claude/settings.json`
 
-### Audio Players (Optional - Automatically Detected)
+这套结构的优点是：
 
-The hook scripts automatically detect and use the appropriate audio player for your platform:
+- 逻辑集中
+- 配置集中
+- 事件和声音资源统一管理
 
-- **macOS**: Uses `afplay` (built-in, no installation needed)
-- **Linux**: Uses `paplay` from `pulseaudio-utils` - install via `sudo apt install pulseaudio-utils`
-- **Windows**: Uses built-in `winsound` module (included with Python)
+## 最值得先理解的几个事件
 
-### How Hooks Are Executed
+| Hook | 什么时候触发 |
+|---|---|
+| `PreToolUse` | 调工具前 |
+| `PostToolUse` | 工具成功后 |
+| `PostToolUseFailure` | 工具失败后 |
+| `PermissionRequest` | 需要授权时 |
+| `SessionStart` | 会话开始时 |
+| `Stop` | Claude 回合结束时 |
+| `SubagentStart` | 子 agent 启动时 |
+| `SubagentStop` | 子 agent 结束时 |
 
-The hooks are configured in `.claude/settings.json` to run directly with Python 3:
+完整事件列表请看官方：
+
+- <https://code.claude.com/docs/en/hooks>
+
+## 怎么执行
+
+在这个仓里，hooks 通过 Python 入口脚本执行：
 
 ```json
 {
   "type": "command",
-  "command": "python3 .claude/hooks/scripts/hooks.py"
+  "command": "python3 ${CLAUDE_PROJECT_DIR}/.claude/hooks/scripts/hooks.py"
 }
 ```
 
-## Configuring Hooks (Enable/Disable)
+## 怎么关掉
 
-Hooks can be easily enabled or disabled at both the global and individual levels.
+### 全部关掉
 
-### Disable All Hooks at Once
+在 `.claude/settings.local.json` 里写：
 
-Edit `.claude/settings.local.json` and set:
 ```json
 {
   "disableAllHooks": true
 }
 ```
 
-**Note:** The `.claude/settings.local.json` file is git-ignored, so each user can configure their own hook preferences without affecting the team's shared settings in `.claude/settings.json`.
+### 单独关某个 hook
 
-> **Managed Settings:** If an administrator has configured hooks through managed policy settings, `disableAllHooks` set in user, project, or local settings cannot disable those managed hooks (fixed in v2.1.49).
+改：
 
-### Disable Individual Hooks
+- `.claude/hooks/config/hooks-config.json`
+- 或你自己的 `.claude/hooks/config/hooks-config.local.json`
 
-For granular control, you can disable specific hooks by editing the hooks configuration files.
+## 对中文团队最重要的提醒
 
-#### Configuration Files
+- hooks 很强，但也是最容易把仓库复杂度拉高的一层
+- 第一版只接高价值事件
+- 不要因为事件多，就全部挂上
 
-There are two configuration files for managing individual hooks:
+## 相关文件
 
-1. **`.claude/hooks/config/hooks-config.json`** - The shared/default configuration that is committed to git
-2. **`.claude/hooks/config/hooks-config.local.json`** - Your personal overrides (git-ignored)
-
-The local config file (`.local.json`) takes precedence over the shared config, allowing each developer to customize their hook behavior without affecting the team.
-
-#### Shared Configuration
-
-Edit `.claude/hooks/config/hooks-config.json` for team-wide defaults:
-
-```json
-{
-  "disableLogging": false,
-  "disablePreToolUseHook": false,
-  "disablePermissionRequestHook": false,
-  "disablePostToolUseHook": false,
-  "disablePostToolUseFailureHook": false,
-  "disableUserPromptSubmitHook": false,
-  "disableNotificationHook": false,
-  "disableStopHook": false,
+- 配置：`config/hooks-config.json`
+- 脚本：`scripts/hooks.py`
+- 资源：`sounds/`
   "disableSubagentStartHook": false,
   "disableSubagentStopHook": false,
   "disablePreCompactHook": false,

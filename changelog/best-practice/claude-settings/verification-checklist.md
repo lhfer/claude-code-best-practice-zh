@@ -1,8 +1,9 @@
-# Verification Checklist — Settings Report
+# Settings 报告校验清单
 
-Rules accumulate over time. Each workflow-changelog run MUST execute ALL rules at the specified depth. When a new type of drift is caught that an existing rule should have caught (but didn't exist or was too shallow), append a new rule here.
+这份清单会持续累积。每次 workflow-changelog 运行时，都必须按指定深度执行全部规则。
+如果某次 drift 理应被现有规则提前发现，但没有被覆盖，就要把新规则补进来。
 
-## Depth Levels
+## 校验深度
 
 | Depth | Meaning | Example |
 |-------|---------|---------|

@@ -1,6 +1,9 @@
-# Skills Report Changelog
+# Skills 报告更新日志
 
-**Status Legend:**
+> 中文说明：本文件记录 skills 报告与官方文档之间的漂移追踪。
+> 具体 action 行继续保留原始技术表述。
+
+**状态说明：**
 
 | Status | Meaning |
 |--------|---------|

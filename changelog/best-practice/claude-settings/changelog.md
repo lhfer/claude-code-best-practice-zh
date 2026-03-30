@@ -1,6 +1,9 @@
-# Settings Report — Changelog History
+# Settings 报告更新日志
 
-## Status Legend
+> 中文说明：本文件记录 settings 报告如何随着官方版本变动而修正。
+> 历史 action 行保留原始技术用词，便于与上游 drift 对照。
+
+## 状态说明
 
 | Status | Meaning |
 |--------|---------|

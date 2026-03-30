@@ -1,40 +1,36 @@
-# Code Review & Test Time Compute — Tips from Boris Cherny
+# Code Review 与 Test Time Compute：Boris 的两条高信号建议
 
-A summary of insights shared by Boris Cherny ([@bcherny](https://x.com/bcherny)), creator of Claude Code, on March 10, 2026.
+> 中文重编版
+> 原始来源：
+> - Boris 原帖：<https://x.com/bcherny/status/2031089411820228645>
+> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-boris-2-tips-10-mar-26.md>
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+## 这篇其实在讲两件事
 
----
+### 1. Code Review
 
-## 1/ Introducing Code Review
+Claude Code 的代码审查价值，不是“省一个 reviewer”，而是：
 
-New in Claude Code: **Code Review**. A team of agents runs a deep review on every PR.
+- 多 agent 视角并行审查
+- 能补到人眼容易漏掉的问题
+- 当代码产出速度大幅增加后，review 成为新的瓶颈
 
-- Built for Anthropic's own team first — code output per engineer is up **200% this year**, and reviews were the bottleneck
-- Boris has been using it for a few weeks and found it catches many real bugs he would not have noticed otherwise
-- When a PR opens, Claude dispatches a team of agents to hunt for bugs
+### 2. Test Time Compute
 
-<a href="https://x.com/bcherny/status/2031089411820228645"><img src="assets/boris-10-mar-26/0.png" alt="Boris Cherny announcing Code Review" width="50%" /></a>
+同一个模型在不同上下文窗口里做交叉验证，本身就是一种额外算力投入。
 
----
+换句话说：
 
-## 2/ Test Time Compute & Multiple Context Windows
+> 不是只有训练时算力重要，验证时怎么算、开几个上下文，也很重要。
 
-Roughly, the more tokens you throw at a coding problem, the better the result. Boris calls this **test time compute**.
+## 对中文团队最有价值的启发
 
-- Using **separate context windows** makes the result even better — this is what makes subagents work, and why one agent can cause bugs and another (using the same exact model) can find them
-- Similar to engineering teams: if Boris causes a bug, his coworker reviewing the code might find it more reliably than he can
-- In the limit, agents will probably write perfect bug-free code — until then, **multiple uncorrelated context windows** tends to be a good approach
+- 当 AI 产出代码越来越快，review 会越来越成为瓶颈
+- “多上下文交叉验证”是一种非常实用的防幻觉方法
+- 即使是同一个模型，放在不同上下文里也能互相纠错
 
-<a href="https://x.com/bcherny/status/2031151689219321886"><img src="assets/boris-10-mar-26/1.png" alt="Boris Cherny on test time compute" width="50%" /></a>
+## 适合谁看
 
----
-
-## Sources
-
-- [Boris Cherny (@bcherny) on X — March 10, 2026](https://x.com/bcherny)
+- 开始把 Claude 写出来的代码送进 PR 流程的人
+- 正在 고민怎么提高代码审查质量的人
+- 想理解“多个 context window 值不值得”的人

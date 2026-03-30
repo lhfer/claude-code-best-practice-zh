@@ -1,123 +1,73 @@
-# HOOKS-README
-Contains all the details, scripts, and instructions for the Codex CLI hooks.
+# Hooks（Codex CLI）
 
-## Hook Events Overview
+这个目录是 Codex CLI hooks 的说明和资源层。
 
-Codex CLI provides **3 hooks** across two configuration systems:
+和 `.claude/hooks/` 一样，也要先分清两层：
 
-| # | Hook | Event Type | Config File | Description |
-|:-:|------|------------|-------------|-------------|
-| 1 | `agent-turn-complete` | `agent-turn-complete` | `config.toml` | Runs when the Codex agent finishes responding |
-| 2 | `SessionStart` | `SessionStart` | `hooks.json` | Runs once at session start — injects context + plays sound |
-| 3 | `Stop` | `stop` | `hooks.json` | Runs when the session ends — plays sound |
+- `HOOKS-README.md` 是说明层，可以中文化
+- `config/`、`scripts/`、`sounds/` 是运行时层，不要乱改
 
-> Hooks 2 and 3 require **Codex CLI v0.114.0+** with the hooks engine enabled:
-> ```bash
-> codex -c features.codex_hooks=true
-> ```
+## Codex 这边有几个 hook
 
-### How Hooks Are Called
+当前主要是 3 个：
 
-**agent-turn-complete hook** (config.toml) — JSON passed as CLI argument:
-```
-python3 .codex/hooks/scripts/hooks.py '{"type":"agent-turn-complete"}'
-```
+| Hook | 配置来源 | 作用 |
+|---|---|---|
+| `agent-turn-complete` | `config.toml` | agent 回合完成后触发 |
+| `SessionStart` | `hooks.json` | 会话开始时注入上下文并播放声音 |
+| `Stop` | `hooks.json` | 会话结束时触发 |
 
-**SessionStart / Stop hooks** (hooks.json) — called with `--hook` flag:
-```
-python3 .codex/hooks/scripts/hooks.py --hook SessionStart
-python3 .codex/hooks/scripts/hooks.py --hook Stop
-```
+## 和 Claude Code 的区别
 
-### SessionStart Context Injection
+Codex hooks 明显更轻：
 
-The SessionStart hook outputs context to **stdout**, which feeds directly into the model's context window. This includes:
-- Current date/time
-- Git branch name
-- Working tree status (clean or uncommitted changes)
-- Working directory path
+- 事件更少
+- 配置更简单
+- 更适合做轻量提示和上下文注入
 
-> **Key difference from Claude Code:** Claude Code passes JSON via **stdin**, while Codex CLI passes it as a **CLI argument**. The new hooks.json system uses `--hook` flags.
+## 运行方式
 
-## Prerequisites
+### `agent-turn-complete`
 
-Before using hooks, ensure you have **Python 3** installed on your system.
-
-### Required Software
-
-#### All Platforms (Windows, macOS, Linux)
-- **Python 3**: Required for running the hook script
-- Verify installation: `python3 --version`
-
-**Installation Instructions:**
-- **Windows**: Download from [python.org](https://www.python.org/downloads/) or install via `winget install Python.Python.3`
-- **macOS**: Install via `brew install python3` (requires [Homebrew](https://brew.sh/))
-- **Linux**: Install via `sudo apt install python3` (Ubuntu/Debian) or `sudo yum install python3` (RHEL/CentOS)
-
-### Audio Players (Automatically Detected)
-
-The hook script automatically detects and uses the appropriate audio player for your platform:
-
-- **macOS**: Uses `afplay` (built-in, no installation needed)
-- **Linux**: Uses `paplay` from `pulseaudio-utils` - install via `sudo apt install pulseaudio-utils`
-- **Windows**: Uses built-in `winsound` module (included with Python)
-
-### Configuration Files
-
-There are **three** configuration files:
-
-1. **`.codex/config.toml`** — Registers the `agent-turn-complete` hook (via `notify`)
-2. **`.codex/hooks.json`** — Registers `SessionStart` and `Stop` hooks (v0.114.0+)
-3. **`.codex/hooks/config/hooks-config.json`** — Enable/disable individual hooks and logging
-
-#### config.toml (agent-turn-complete hook)
+通过 `config.toml` 注册：
 
 ```toml
 notify = ["python3", ".codex/hooks/scripts/hooks.py"]
 ```
 
-#### hooks.json (SessionStart + Stop hooks)
+### `SessionStart` / `Stop`
+
+通过 `hooks.json` 注册：
 
 ```json
 {
   "hooks": {
     "SessionStart": [
       {
-        "type": "shell",
-        "command": "python3 .codex/hooks/scripts/hooks.py --hook SessionStart",
-        "statusMessage": "Initializing session hooks...",
-        "timeout": 10
+        "command": "python3 .codex/hooks/scripts/hooks.py --hook SessionStart"
       }
     ],
     "Stop": [
       {
-        "type": "shell",
-        "command": "python3 .codex/hooks/scripts/hooks.py --hook Stop",
-        "statusMessage": "Running session stop hook...",
-        "timeout": 10
+        "command": "python3 .codex/hooks/scripts/hooks.py --hook Stop"
       }
     ]
   }
 }
 ```
 
-## Configuring Hooks (Enable/Disable)
+## 有什么用
 
-### Disable Individual Hooks
+- 会话开始时注入一点上下文
+- 回合结束时给清晰反馈
+- 让 Codex 和 Claude 的使用体验更接近
 
-Edit `.codex/hooks/config/hooks-config.json`:
-```json
-{
-  "disableAgentTurnCompleteHook": false,
-  "disableSessionStartHook": false,
-  "disableStopHook": false,
-  "disableLogging": true
-}
-```
+## 相关文件
 
-**Configuration Options:**
-- `disableAgentTurnCompleteHook`: Set to `true` to disable the agent-turn-complete sound
-- `disableSessionStartHook`: Set to `true` to disable the session start context injection and sound
+- `config.toml`
+- `hooks.json`
+- `config/hooks-config.json`
+- `scripts/hooks.py`
 - `disableStopHook`: Set to `true` to disable the session stop sound
 - `disableLogging`: Set to `true` to disable logging hook events to `.codex/hooks/logs/hooks-log.jsonl`
 

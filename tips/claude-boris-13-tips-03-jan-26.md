@@ -1,150 +1,44 @@
-# How I Use Claude Code — 13 Tips from Boris Cherny
+# Boris 的 13 条 Claude Code 日常工作流建议
 
-A summary of setup tips shared by Boris Cherny ([@bcherny](https://x.com/bcherny)), creator of Claude Code, on January 3, 2026.
+> 中文重编版
+> 原始来源：
+> - Boris 原帖：<https://x.com/bcherny/status/2007179832300581177>
+> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-boris-13-tips-03-jan-26.md>
 
-<table width="100%">
-<tr>
-<td><a href="../">← Back to Claude Code Best Practice</a></td>
-<td align="right"><img src="../!/claude-jumping.svg" alt="Claude" width="60" /></td>
-</tr>
-</table>
+## 为什么这篇特别值得看
 
----
+因为它最接近“一个真正高频用户每天怎么用 Claude Code”。
 
-## Context
+不是官方功能清单，也不是理想化教程，而是比较贴近日常工作的默认姿势。
 
-Boris shared his personal Claude Code setup, noting it's "surprisingly vanilla" — Claude Code works great out of the box, so he doesn't customize it much. There's no one correct way to use it: the team intentionally builds it so you can use, customize, and hack it however you like. Each person on the Claude Code team uses it very differently.
+## 13 条建议，压缩成中文版
 
-<a href="https://x.com/bcherny/status/2007179832300581177"><img src="assets/boris-3-jan-26/0.png" alt="Boris Cherny intro tweet" width="50%" /></a>
+1. **同时跑 5 个 Claude**
+2. **不够就继续并行到网页端**
+3. **复杂任务优先用更强模型和思考模式**
+4. **团队共享一份 `CLAUDE.md`**
+5. **在 PR 里用 @claude 反向更新规范**
+6. **大多数 session 都从 plan mode 开始**
+7. **把高频流程变成 slash command**
+8. **把常见流程自动化给 subagent**
+9. **用 PostToolUse hook 做自动格式化**
+10. **别乱用 `--dangerously-skip-permissions`**
+11. **MCP 让 Claude 真正接上你的工具**
+12. **长任务交给后台 agent 验证**
+13. **永远给 Claude 一个验证自己工作的办法**
 
----
+## 对中文用户最重要的 3 条
 
-## 1/ Run 5 Claudes in Parallel
+如果你现在只想记 3 条，我建议是：
 
-Run 5 Claudes in parallel in your terminal. Number your tabs 1–5, and use system notifications to know when a Claude needs input.
+1. plan mode
+2. shared `CLAUDE.md`
+3. 给 Claude 一个验证路径
 
-See: [Terminal Setup Docs](https://code.claude.com/docs/en/terminal)
+这 3 件事能直接把“vibe coding”拉向“工程化协作”。
 
-<a href="https://x.com/bcherny/status/2007179833990885678"><img src="assets/boris-3-jan-26/1.png" alt="Run 5 Claudes in parallel" width="50%" /></a>
+## 适合谁看
 
----
-
-## 2/ Use claude.ai/code for Even More Parallelism
-
-Run 5–10 Claudes on claude.ai/code in parallel with your local Claudes. Hand off local sessions to web sessions using `claude.ai/code`, manually kick off sessions in Chrome, and teleport back and forth.
-
-<a href="https://x.com/bcherny/status/2007179836704600237"><img src="assets/boris-3-jan-26/2.png" alt="claude.ai/code parallelism" width="50%" /></a>
-
----
-
-## 3/ Use Opus with Thinking for Everything
-
-Use Opus 4.5 with thinking for everything. It's the best coding model Boris has ever used — even though it's bigger and slower than Sonnet, since you have to steer it less and it's better at tool use, it is almost always faster than using a smaller model in the end.
-
-<a href="https://x.com/bcherny/status/2007179838864666847"><img src="assets/boris-3-jan-26/3.png" alt="Opus with thinking" width="50%" /></a>
-
----
-
-## 4/ Share a Single CLAUDE.md with Your Team
-
-Share a single `CLAUDE.md` for the repo. Check it into git, and have the whole team contribute multiple times a week. Anytime Claude does something incorrectly, add it to the `CLAUDE.md` so Claude knows not to do it next time.
-
-<a href="https://x.com/bcherny/status/2007179840848597422"><img src="assets/boris-3-jan-26/4.png" alt="Shared CLAUDE.md" width="50%" /></a>
-
----
-
-## 5/ Tag @claude on PRs to Update CLAUDE.md
-
-During code review, tag `@claude` on your coworkers' PRs to add something to the `CLAUDE.md` as part of the PR. Use the Claude Code GitHub action ([install-@hub-action](https://github.com/apps/claude)) for this — it's Boris's version of Compounding Engineering.
-
-<a href="https://x.com/bcherny/status/2007179842928947333"><img src="assets/boris-3-jan-26/5.png" alt="Tag @claude on PRs" width="50%" /></a>
-
----
-
-## 6/ Start Most Sessions in Plan Mode
-
-Start most sessions in Plan mode (shift+tab twice). If the goal is to write a Pull Request, use Plan mode and go back and forth with Claude until you like its plan. From there, switch into auto-accept edits mode and Claude can usually 1-shot it. A good plan is really important.
-
-<a href="https://x.com/bcherny/status/2007179845336527000"><img src="assets/boris-3-jan-26/6.png" alt="Plan mode" width="50%" /></a>
-
----
-
-## 7/ Use Slash Commands for Inner Loop Workflows
-
-Use slash commands for every "inner loop" workflow that you do many times a day. This saves you from repeated prompting, and makes it so Claude can use these workflows too. Commands are checked into git and live in `.claude/commands/`.
-
-Example: `/commit-push-pr` — Commit, push, and open a PR.
-
-<a href="https://x.com/bcherny/status/2007179847949500714"><img src="assets/boris-3-jan-26/7.png" alt="Slash commands" width="50%" /></a>
-
----
-
-## 8/ Use Subagents to Automate Common Workflows
-
-Use a few subagents regularly: `code-simplifier` simplifies the code after Claude is done working, `verify-app` has detailed instructions for testing Claude Code end to end, and so on. Think of subagents as automating the most common workflows — similar to slash commands.
-
-Subagents live in `.claude/agents/`.
-
-<a href="https://x.com/bcherny/status/2007179850139000872"><img src="assets/boris-3-jan-26/8.png" alt="Subagents" width="50%" /></a>
-
----
-
-## 9/ Use a PostToolUse Hook to Auto-Format Code
-
-Use a `PostToolUse` hook to format Claude's code. Claude usually generates well-formatted code out of the box, and the hook handles the last 10% to avoid formatting errors in CI later.
-
-```json
-"PostToolUse": [
-  {
-    "matcher": "Write|Edit",
-    "hooks": [
-      {
-        "type": "command",
-        "command": "bun run format || true"
-      }
-    ]
-  }
-]
-```
-
-<a href="https://x.com/bcherny/status/2007179852047335529"><img src="assets/boris-3-jan-26/9.png" alt="PostToolUse hook for formatting" width="50%" /></a>
-
----
-
-## 10/ Pre-allow Permissions Instead of --dangerously-skip-permissions
-
-Don't use `--dangerously-skip-permissions`. Instead, use `/permissions` to pre-allow common bash commands that you know are safe in your environment, to avoid unnecessary permission prompts. Most of these are checked into `.claude/settings.json` and shared with the team.
-
-<a href="https://x.com/bcherny/status/2007179854077407667"><img src="assets/boris-3-jan-26/10.png" alt="Pre-allow permissions" width="50%" /></a>
-
----
-
-## 11/ Let Claude Use All Your Tools via MCP
-
-Claude Code uses all your tools. It often searches and posts to Slack (via the MCP server), runs BigQuery queries to answer analytics questions (using `bq` CLI), grabs error logs from Sentry, etc. The Slack MCP configuration is checked into `.mcp.json` and shared with the team.
-
-<a href="https://x.com/bcherny/status/2007179856266789204"><img src="assets/boris-3-jan-26/11.png" alt="MCP tools" width="50%" /></a>
-
----
-
-## 12/ Verify Long-Running Tasks with Background Agents
-
-For very long-running tasks, either (a) prompt Claude to verify its work with a background agent when it's done, (b) use an agent Stop hook to do that more deterministically, or (c) use the ralph-wiggum plugin (originally dreamt up by @GeoffreyHuntley).
-
-<a href="https://x.com/bcherny/status/2007179858435281082"><img src="assets/boris-3-jan-26/12.png" alt="Long-running tasks verification" width="50%" /></a>
-
----
-
-## 13/ Give Claude a Way to Verify Its Work
-
-Probably the most important thing to get great results out of Claude Code — give Claude a way to verify its work. If Claude has that feedback loop, it will 2–3x the quality of the final result.
-
-Claude tests every single change Boris lands.
-
-<a href="https://x.com/bcherny/status/2007179861115511237"><img src="assets/boris-3-jan-26/13.png" alt="Give Claude a way to verify" width="50%" /></a>
-
----
-
-## Sources
-
-- [Boris Cherny (@bcherny) on X — January 3, 2026](https://x.com/bcherny/status/2007179832300581177)
+- 想从“偶尔用”升级到“日常重度使用”的人
+- 已经开始在团队里共享 Claude 工作方式的人
+- 想知道高级用户默认姿势长什么样的人

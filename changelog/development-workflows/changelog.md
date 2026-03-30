@@ -1,6 +1,9 @@
-# Development Workflows Changelog
+# Development Workflows 更新日志
 
-**Status Legend:**
+> 中文说明：本文件记录 README 中 DEVELOPMENT WORKFLOWS 表和交叉工作流报告的更新历史。
+> 历史 action 行保留原始技术表述，方便和上游研究结果对照。
+
+**状态说明：**
 
 | Status | Meaning |
 |--------|---------|

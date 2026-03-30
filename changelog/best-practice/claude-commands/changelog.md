@@ -1,6 +1,9 @@
-# Commands Report — Changelog History
+# Commands 报告更新日志
 
-## Status Legend
+> 中文说明：本文件记录 commands 报告如何追踪上游变化。
+> 为了保留历史精度，下面的 action / status 表格继续保留原始技术术语。
+
+## 状态说明
 
 | Status | Meaning |
 |--------|---------|
