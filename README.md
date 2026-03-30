@@ -8,6 +8,7 @@
 [![Chinese First](https://img.shields.io/badge/docs-Chinese%20first-ffb703?style=flat)](#从哪里开始读)
 [![Sync Status](https://img.shields.io/badge/sync-major%20content%20done-8250df?style=flat)](SYNC_STATUS.md)
 [![Validator](https://img.shields.io/badge/validator-protected%20runtime-2f855a?style=flat)](scripts/validate_localization.py)
+[![Learning PDF](https://img.shields.io/badge/pdf-learning%20guide-d97706?style=flat)](output/pdf/claude-code-best-practice-zh-learning-guide.pdf)
 
 ## 你来这个仓库能得到什么
 

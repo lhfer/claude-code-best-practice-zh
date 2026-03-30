@@ -1,1 +1,3 @@
 plan/
+.venv-pdf/
+tmp/pdfs/
