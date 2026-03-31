@@ -1,6 +1,5 @@
 # Cat 与 Boris 上 Every：Claude Code 是如何被工程化出来的
 
-> 中文导读版
 > 视频：<https://youtu.be/IDSAMqip6ms>
 > 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-cat-every-29-oct-25.md>
 

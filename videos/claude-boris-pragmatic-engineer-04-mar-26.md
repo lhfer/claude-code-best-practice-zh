@@ -1,6 +1,5 @@
 # Boris 上 The Pragmatic Engineer：Claude Code 是怎么做出来的
 
-> 中文导读版
 > 视频：<https://youtu.be/julbw1JuAz0>
 > 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-boris-pragmatic-engineer-04-mar-26.md>
 

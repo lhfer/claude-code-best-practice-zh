@@ -1,6 +1,5 @@
 # Boris 上 Ryan Peterman：职业成长、产品判断与 Claude Code
 
-> 中文导读版
 > 视频：<https://youtu.be/AmdLVWMdjOk>
 > 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-boris-ryan-peterman-15-dec-25.md>
 

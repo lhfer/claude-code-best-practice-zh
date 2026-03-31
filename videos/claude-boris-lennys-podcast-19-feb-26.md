@@ -1,6 +1,5 @@
 # Boris 上 Lenny's Podcast：编码问题被解决之后，会发生什么？
 
-> 中文导读版
 > 视频：<https://youtu.be/We7BZVKbCVw>
 > 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-boris-lennys-podcast-19-feb-26.md>
 

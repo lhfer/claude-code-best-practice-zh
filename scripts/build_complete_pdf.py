@@ -57,7 +57,6 @@ MANIFEST = [
     (
         "第 1 部分：安装与入门",
         [
-            ROOT / "tutorial" / "README.md",
             ROOT / "tutorial" / "day0" / "README.md",
             ROOT / "tutorial" / "day0" / "mac.md",
             ROOT / "tutorial" / "day0" / "linux.md",
@@ -104,17 +103,14 @@ MANIFEST = [
     (
         "第 5 部分：工作流与协作",
         [
-            ROOT / "development-workflows" / "README.md",
             ROOT / "development-workflows" / "cross-model-workflow" / "cross-model-workflow.md",
             ROOT / "development-workflows" / "rpi" / "rpi-workflow.md",
-            ROOT / "agent-teams" / "README.md",
             ROOT / "agent-teams" / "agent-teams-prompt.md",
         ],
     ),
     (
         "第 6 部分：社区经验与导读",
         [
-            ROOT / "tips" / "README.md",
             ROOT / "tips" / "claude-boris-10-tips-01-feb-26.md",
             ROOT / "tips" / "claude-boris-12-tips-12-feb-26.md",
             ROOT / "tips" / "claude-boris-13-tips-03-jan-26.md",
@@ -122,7 +118,6 @@ MANIFEST = [
             ROOT / "tips" / "claude-boris-2-tips-10-mar-26.md",
             ROOT / "tips" / "claude-boris-2-tips-25-mar-26.md",
             ROOT / "tips" / "claude-thariq-tips-17-mar-26.md",
-            ROOT / "videos" / "README.md",
             ROOT / "videos" / "claude-boris-lennys-podcast-19-feb-26.md",
             ROOT / "videos" / "claude-boris-pragmatic-engineer-04-mar-26.md",
             ROOT / "videos" / "claude-boris-ryan-peterman-15-dec-25.md",
@@ -142,7 +137,6 @@ MANIFEST = [
 
 
 TITLE_MAP = {
-    "tutorial/README.md": "教程入口",
     "tutorial/day0/README.md": "Day 0：第一天把 Claude Code 跑起来",
     "tutorial/day0/mac.md": "macOS 安装",
     "tutorial/day0/linux.md": "Linux 安装",
@@ -169,13 +163,9 @@ TITLE_MAP = {
     "implementation/claude-subagents-implementation.md": "Subagents 实现样例",
     "implementation/claude-agent-teams-implementation.md": "Agent Teams 实现样例",
     "implementation/claude-scheduled-tasks-implementation.md": "Scheduled Tasks 实现样例",
-    "development-workflows/README.md": "工作流入口",
     "development-workflows/cross-model-workflow/cross-model-workflow.md": "Cross-model workflow",
     "development-workflows/rpi/rpi-workflow.md": "RPI workflow",
-    "agent-teams/README.md": "Agent Teams 入口",
     "agent-teams/agent-teams-prompt.md": "Agent Teams 提示词样例",
-    "tips/README.md": "社区经验入口",
-    "videos/README.md": "视频导读入口",
 }
 
 PART_INTROS = {
@@ -187,6 +177,7 @@ PART_INTROS = {
     "第 1 部分：安装与入门": [
         "这一部分只解决一个问题：先把 Claude Code 真的跑起来。",
         "先别急着折腾配置、agent 或 workflow；把安装、验证和第一次登录走通，后面所有内容才有意义。",
+        "这部分内容按“先总览，再分平台”的顺序组织，适合作为你第一次上手时的安装讲义。",
     ],
     "第 2 部分：核心概念与最佳实践": [
         "这一部分负责建立 Claude Code 的基本脑图。",
@@ -203,10 +194,12 @@ PART_INTROS = {
     "第 5 部分：工作流与协作": [
         "这一部分聚焦于更大粒度的流程设计。",
         "从单条 prompt 到多阶段 workflow、多模型协作、多 agent 协作，都会在这里出现。",
+        "如果你已经不满足于让 Claude 写几个函数，而是想让它进入完整研发流程，这部分最重要。",
     ],
     "第 6 部分：社区经验与导读": [
         "这一部分不是正式规范，而是高信号经验层。",
         "适合在你已经理解基本概念之后，看高手和产品团队是怎么把 Claude Code 真正用顺的。",
+        "这里保留的是最值得中文开发者吸收的方法，而不是把原始长帖和长视频逐字搬过来。",
     ],
     "第 7 部分：哪些值得直接抄，哪些不要直接抄": [
         "这一部分是为了避免你把中文仓库当成“万能模板”。",
@@ -275,23 +268,17 @@ CUSTOM_PART_CONTENT = {
 
 ### 我只想快速学会
 
-- `tutorial/day0/README.md`
-- `reports/claude-agent-command-skill.md`
-- `best-practice/claude-subagents.md`
-- `best-practice/claude-skills.md`
+- 先看安装与登录
+- 再看 Command / Agent / Skill 的分工
+- 再看 Subagents 和 Skills 两章
 
 ### 我想搭自己的团队工作流
 
-- `best-practice/claude-settings.md`
-- `best-practice/claude-mcp.md`
-- `development-workflows/rpi/rpi-workflow.md`
-- `development-workflows/cross-model-workflow/cross-model-workflow.md`
+- 重点看 Settings、MCP、RPI workflow、Cross-model workflow
 
 ### 我想继续深挖
 
-- `reports/README.md`
-- `reports/zh-fork-review-scorecard.md`
-- upstream 原仓
+- 重点看深度 reports、实现样例，以及 upstream 原仓
 """,
 }
 
@@ -435,7 +422,9 @@ def clean_lines(path: Path) -> list[str]:
             continue
         if "回到根 README" in stripped or "head back to [README.md]" in stripped or "装好后回到 [README.md]" in stripped or "装好后再回到 [README.md]" in stripped:
             continue
-        if stripped.startswith("> 中文重编版") or stripped.startswith("> 上游原文：") or stripped.startswith("> 上游整理：") or stripped.startswith("> 视频："):
+        if stripped.startswith("> 中文重编版") or stripped.startswith("> 中文导读版") or stripped.startswith("> 上游原文：") or stripped.startswith("> 上游整理：") or stripped.startswith("> 视频：") or stripped.startswith("> 原始来源："):
+            continue
+        if "原始来源：" in stripped or "上游整理：" in stripped or "上游 transcript：" in stripped or "Boris 原帖：" in stripped or "视频：" in stripped:
             continue
         if stripped.startswith("<table") or stripped.startswith("</table>") or stripped.startswith("<tr>") or stripped.startswith("</tr>") or stripped.startswith("<td") or stripped.startswith("</td>"):
             continue
@@ -450,6 +439,8 @@ def clean_lines(path: Path) -> list[str]:
         if stripped.startswith("## Table of Contents"):
             continue
         if stripped == "---":
+            continue
+        if "回到这里" in stripped or "回到 README" in stripped:
             continue
         if path.relative_to(ROOT).as_posix() == "tutorial/README.md" and stripped == "- [day0/README.md](day0/README.md)":
             out.append("- Day 0：第一天把 Claude Code 跑起来")
@@ -737,6 +728,7 @@ def build_pdf():
         canvas.saveState()
         canvas.setFont("STSong-Light", 9)
         canvas.setFillColor(HexColor("#666666"))
+        canvas.drawString(18 * mm, 10 * mm, "Claude Code 中文完整手册")
         canvas.drawRightString(A4[0] - 18 * mm, 10 * mm, f"{canvas.getPageNumber()}")
         canvas.restoreState()
 

@@ -1,6 +1,5 @@
 # Boris 上 YC：为什么要为 6 个月后的模型设计
 
-> 中文导读版
 > 视频：<https://youtu.be/PQU9o_5rHC4>
 > 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-boris-y-combinator-17-feb-26.md>
 

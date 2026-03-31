@@ -19,16 +19,7 @@
 
 这一部分只解决一个问题：先把 Claude Code 真的跑起来。
 先别急着折腾配置、agent 或 workflow；把安装、验证和第一次登录走通，后面所有内容才有意义。
-
-## 教程入口
-
-
-这个目录是中文 onboarding 层。
-
-如果你是第一次用 Claude Code，建议从这里开始：
-
-- Day 0：第一天把 Claude Code 跑起来
-
+这部分内容按“先总览，再分平台”的顺序组织，适合作为你第一次上手时的安装讲义。
 
 ## Day 0：第一天把 Claude Code 跑起来
 
@@ -47,7 +38,7 @@
 | Linux | [linux.md](linux.md) |
 | macOS | [mac.md](mac.md) |
 
-装完后再回到这里。
+装完后继续下一步。
 
 
 ## 第 2 步：验证安装
@@ -94,7 +85,7 @@ Claude Code 会让你选择登录方式。
 - 第一天先别急着折腾 `.claude/`
 - 先把工具跑起来
 - 先感受一轮默认体验
-- 再回根 README 去读更系统的内容
+- 再继续读更系统的内容
 
 
 ## macOS 安装
@@ -131,6 +122,7 @@ brew install --cask claude-code
 claude --version
 ```
 
+装好后继续做登录和后续学习。
 
 ## Linux 安装
 
@@ -223,6 +215,7 @@ npm install -g @anthropic-ai/claude-code
 claude --version
 ```
 
+装好后继续做登录和后续学习。
 
 # 第 2 部分：核心概念与最佳实践
 
@@ -2074,20 +2067,7 @@ agent teams 的实现价值不在于“并行”两个字，而在于：
 
 这一部分聚焦于更大粒度的流程设计。
 从单条 prompt 到多阶段 workflow、多模型协作、多 agent 协作，都会在这里出现。
-
-## 工作流入口
-
-
-这个目录看的不是“Claude 会不会写代码”，而是：
-
-> 当你把 Claude 放进完整研发流程里时，工作流要怎么设计。
-
-## 当前两条主线
-
-- [cross-model-workflow/cross-model-workflow.md](cross-model-workflow/cross-model-workflow.md)
-- [rpi/rpi-workflow.md](rpi/rpi-workflow.md)
-
-一个解决“多模型怎么配合”，一个解决“单流程怎么分阶段”。
+如果你已经不满足于让 Claude 写几个函数，而是想让它进入完整研发流程，这部分最重要。
 
 ## Cross-model workflow
 
@@ -2229,22 +2209,6 @@ rpi/{feature-slug}/
 - 研究、规划、实现的职责不要混
 - workflow 的价值不在“命令名”，而在“阶段门槛”
 
-## Agent Teams 入口
-
-
-这个目录展示的是“多个 agent 像一个小团队一样协作”的样例。
-
-当前最值得看的文件：
-
-- [agent-teams-prompt.md](agent-teams-prompt.md)
-
-它不是最适合新手照抄的模板，而是一个高密度的团队编排示例：
-
-- 怎么拆角色
-- 怎么约定数据契约
-- 哪些事情可以并行
-- 哪些东西要在共享任务清单里对齐
-
 ## Agent Teams 提示词样例
 
 为一个“迪拜时间 SVG 卡片”工作流创建一支 agent team。
@@ -2305,40 +2269,11 @@ rpi/{feature-slug}/
 
 这一部分不是正式规范，而是高信号经验层。
 适合在你已经理解基本概念之后，看高手和产品团队是怎么把 Claude Code 真正用顺的。
-
-## 社区经验入口
-
-
-这个目录收录的是“社区经验层”。
-
-它和 `best-practice/` 最大的区别在于：
-
-- `best-practice/` 更像体系化知识
-- `tips/` 更像高信号经验总结
-
-这里的内容大多来自 Boris、Thariq 等人的公开分享。
-中文化的重点不是逐条转述，而是帮你快速判断：
-
-- 这条建议到底值不值得试
-- 它适合你现在这个阶段吗
-- 它会不会改变你的日常工作流
-
-## 推荐阅读顺序
-
-1. [claude-boris-13-tips-03-jan-26.md](claude-boris-13-tips-03-jan-26.md)
-2. [claude-boris-10-tips-01-feb-26.md](claude-boris-10-tips-01-feb-26.md)
-3. [claude-boris-12-tips-12-feb-26.md](claude-boris-12-tips-12-feb-26.md)
-4. [claude-boris-2-tips-10-mar-26.md](claude-boris-2-tips-10-mar-26.md)
-5. [claude-thariq-tips-17-mar-26.md](claude-thariq-tips-17-mar-26.md)
-6. [claude-boris-2-tips-25-mar-26.md](claude-boris-2-tips-25-mar-26.md)
-7. [claude-boris-15-tips-30-mar-26.md](claude-boris-15-tips-30-mar-26.md)
+这里保留的是最值得中文开发者吸收的方法，而不是把原始长帖和长视频逐字搬过来。
 
 ## Claude Code 团队的 10 条实战建议
 
 
-> 原始来源：
-> - Boris 原帖：<https://x.com/bcherny/status/2017742741636321619>
-> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-boris-10-tips-01-feb-26.md>
 
 ## 这篇值不值得看
 
@@ -2396,9 +2331,6 @@ rpi/{feature-slug}/
 ## Boris 的 12 条 Claude Code 定制建议
 
 
-> 原始来源：
-> - Boris 原帖：<https://x.com/bcherny/status/2021699851499798911>
-> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-boris-12-tips-12-feb-26.md>
 
 ## 这篇在讲什么
 
@@ -2450,9 +2382,6 @@ rpi/{feature-slug}/
 ## Boris 的 13 条 Claude Code 日常工作流建议
 
 
-> 原始来源：
-> - Boris 原帖：<https://x.com/bcherny/status/2007179832300581177>
-> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-boris-13-tips-03-jan-26.md>
 
 ## 为什么这篇特别值得看
 
@@ -2495,9 +2424,6 @@ rpi/{feature-slug}/
 ## Boris 的 15 个隐藏但高价值的 Claude Code 功能
 
 
-> 原始来源：
-> - Boris 原帖：<https://x.com/bcherny/status/2038454336355999749>
-> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-boris-15-tips-30-mar-26.md>
 
 ## 这篇适合谁
 
@@ -2544,9 +2470,6 @@ rpi/{feature-slug}/
 ## Code Review 与 Test Time Compute：Boris 的两条高信号建议
 
 
-> 原始来源：
-> - Boris 原帖：<https://x.com/bcherny/status/2031089411820228645>
-> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-boris-2-tips-10-mar-26.md>
 
 ## 这篇其实在讲两件事
 
@@ -2581,9 +2504,6 @@ Claude Code 的代码审查价值，不是“省一个 reviewer”，而是：
 ## 为什么要 Squash Merge，以及为什么 PR 要更小
 
 
-> 原始来源：
-> - Boris 原帖：<https://x.com/bcherny/status/2038552880018538749>
-> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-boris-2-tips-25-mar-26.md>
 
 ## 这篇最核心的两个观点
 
@@ -2620,9 +2540,7 @@ Claude 写得更快，不代表你可以把更多变化塞进一个 PR。
 ## Thariq：Anthropic 内部是怎么用 Skills 的
 
 
-> 原始来源：
 > - Thariq 原文：<https://x.com/trq212/status/2033949937936085378>
-> - 上游整理：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/tips/claude-thariq-tips-17-mar-26.md>
 
 ## 这篇为什么重要
 
@@ -2675,32 +2593,9 @@ Claude 写得更快，不代表你可以把更多变化塞进一个 PR。
 
 真正高级的 skill，不是写得最长，而是触发得准、边界清、能复用。
 
-## 视频导读入口
-
-
-这个目录把长视频和播客转成中文导读层。
-
-原始 transcript 很长，也带有大量口语噪音。
-这里更关心的是：
-
-- 节目在讲什么
-- 哪几个观点值得记住
-- 它适合谁看
-- 你看完后应该回到仓库哪篇文档继续深入
-
-## 推荐顺序
-
-1. [claude-cat-every-29-oct-25.md](claude-cat-every-29-oct-25.md)
-2. [claude-boris-y-combinator-17-feb-26.md](claude-boris-y-combinator-17-feb-26.md)
-3. [claude-boris-lennys-podcast-19-feb-26.md](claude-boris-lennys-podcast-19-feb-26.md)
-4. [claude-boris-pragmatic-engineer-04-mar-26.md](claude-boris-pragmatic-engineer-04-mar-26.md)
-5. [claude-boris-ryan-peterman-15-dec-25.md](claude-boris-ryan-peterman-15-dec-25.md)
-
 ## Boris 上 Lenny's Podcast：编码问题被解决之后，会发生什么？
 
 
-> 中文导读版
-> 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-boris-lennys-podcast-19-feb-26.md>
 
 ## 这期讲什么
 
@@ -2728,8 +2623,6 @@ Claude 写得更快，不代表你可以把更多变化塞进一个 PR。
 ## Boris 上 The Pragmatic Engineer：Claude Code 是怎么做出来的
 
 
-> 中文导读版
-> 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-boris-pragmatic-engineer-04-mar-26.md>
 
 ## 这期最值得听什么
 
@@ -2753,8 +2646,6 @@ Claude 写得更快，不代表你可以把更多变化塞进一个 PR。
 ## Boris 上 Ryan Peterman：职业成长、产品判断与 Claude Code
 
 
-> 中文导读版
-> 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-boris-ryan-peterman-15-dec-25.md>
 
 ## 这期更偏什么
 
@@ -2782,8 +2673,6 @@ Claude 写得更快，不代表你可以把更多变化塞进一个 PR。
 ## Boris 上 YC：为什么要为 6 个月后的模型设计
 
 
-> 中文导读版
-> 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-boris-y-combinator-17-feb-26.md>
 
 ## 这期最有代表性的观点
 
@@ -2807,8 +2696,6 @@ Claude 写得更快，不代表你可以把更多变化塞进一个 PR。
 ## Cat 与 Boris 上 Every：Claude Code 是如何被工程化出来的
 
 
-> 中文导读版
-> 上游 transcript：<https://github.com/shanraisshan/claude-code-best-practice/blob/main/videos/claude-cat-every-29-oct-25.md>
 
 ## 这期为什么推荐排第一
 
@@ -2899,20 +2786,14 @@ Claude 写得更快，不代表你可以把更多变化塞进一个 PR。
 
 ### 我只想快速学会
 
-- `tutorial/day0/README.md`
-- `reports/claude-agent-command-skill.md`
-- `best-practice/claude-subagents.md`
-- `best-practice/claude-skills.md`
+- 先看安装与登录
+- 再看 Command / Agent / Skill 的分工
+- 再看 Subagents 和 Skills 两章
 
 ### 我想搭自己的团队工作流
 
-- `best-practice/claude-settings.md`
-- `best-practice/claude-mcp.md`
-- `development-workflows/rpi/rpi-workflow.md`
-- `development-workflows/cross-model-workflow/cross-model-workflow.md`
+- 重点看 Settings、MCP、RPI workflow、Cross-model workflow
 
 ### 我想继续深挖
 
-- `reports/README.md`
-- `reports/zh-fork-review-scorecard.md`
-- upstream 原仓
+- 重点看深度 reports、实现样例，以及 upstream 原仓

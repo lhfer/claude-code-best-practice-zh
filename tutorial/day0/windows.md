@@ -32,4 +32,4 @@ npm install -g @anthropic-ai/claude-code
 claude --version
 ```
 
-装好后回到 [README.md](README.md) 继续做登录和后续学习。
+装好后继续做登录和后续学习。
