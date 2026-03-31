@@ -4,6 +4,7 @@ from __future__ import annotations
 import html
 import re
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from reportlab.lib.colors import HexColor
 from reportlab.lib.enums import TA_CENTER
@@ -12,6 +13,7 @@ from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+from reportlab.pdfgen.canvas import Canvas
 from reportlab.platypus import (
     KeepTogether,
     ListFlowable,
@@ -30,6 +32,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT_DIR = ROOT / "output" / "pdf"
 SOURCE_MD = OUTPUT_DIR / "claude-code-best-practice-zh-complete-handbook.md"
 TARGET_PDF = OUTPUT_DIR / "claude-code-best-practice-zh-complete-handbook.pdf"
+COVER_IMAGE = ROOT / "assets" / "pdf" / "claude-code-best-practice-cover.png"
 
 
 class HandbookDocTemplate(SimpleDocTemplate):
@@ -625,21 +628,23 @@ def build_pdf():
     SOURCE_MD.write_text(source)
 
     story = []
-    story.append(Spacer(1, 18 * mm))
-    story.append(Paragraph("Claude Code 中文完整手册", styles["title"]))
-    story.append(
-        Paragraph(
-            "把这份中文 fork 中最值得学、最适合离线阅读的内容，按学习路径重新编排成一本可独立阅读的 PDF。",
-            styles["subtitle"],
+    has_cover = COVER_IMAGE.exists()
+    if not has_cover:
+        story.append(Spacer(1, 18 * mm))
+        story.append(Paragraph("Claude Code 中文完整手册", styles["title"]))
+        story.append(
+            Paragraph(
+                "把这份中文 fork 中最值得学、最适合离线阅读的内容，按学习路径重新编排成一本可独立阅读的 PDF。",
+                styles["subtitle"],
+            )
         )
-    )
-    story.append(
-        Paragraph(
-            "适合：想系统入门、搭项目工作流、做团队分享，或者只想一份不依赖 GitHub 跳转的完整中文资料。",
-            styles["subtitle"],
+        story.append(
+            Paragraph(
+                "适合：想系统入门、搭项目工作流、做团队分享，或者只想一份不依赖 GitHub 跳转的完整中文资料。",
+                styles["subtitle"],
+            )
         )
-    )
-    story.append(PageBreak())
+        story.append(PageBreak())
 
     toc_entries: list[tuple[str, str]] = []
     for part_title, files in MANIFEST:
@@ -732,17 +737,54 @@ def build_pdf():
         canvas.drawRightString(A4[0] - 18 * mm, 10 * mm, f"{canvas.getPageNumber()}")
         canvas.restoreState()
 
-    doc = HandbookDocTemplate(
-        str(TARGET_PDF),
-        pagesize=A4,
-        leftMargin=18 * mm,
-        rightMargin=18 * mm,
-        topMargin=18 * mm,
-        bottomMargin=18 * mm,
-        title="Claude Code 中文完整手册",
-        author="Codex",
-    )
-    doc.build(story, onFirstPage=draw_page_number, onLaterPages=draw_page_number)
+    def draw_cover(cover_pdf: Path):
+        canvas = Canvas(str(cover_pdf), pagesize=A4)
+        page_w, page_h = A4
+        margin = 18 * mm
+        avail_w = page_w - 2 * margin
+        avail_h = page_h - 2 * margin
+        from PIL import Image as PILImage
+        with PILImage.open(COVER_IMAGE) as im:
+            iw, ih = im.size
+        scale = min(avail_w / iw, avail_h / ih)
+        draw_w = iw * scale
+        draw_h = ih * scale
+        x = (page_w - draw_w) / 2
+        y = (page_h - draw_h) / 2
+        canvas.drawImage(str(COVER_IMAGE), x, y, width=draw_w, height=draw_h, preserveAspectRatio=True, mask='auto')
+        canvas.showPage()
+        canvas.save()
+
+    def build_body(path: Path):
+        doc = HandbookDocTemplate(
+            str(path),
+            pagesize=A4,
+            leftMargin=18 * mm,
+            rightMargin=18 * mm,
+            topMargin=18 * mm,
+            bottomMargin=18 * mm,
+            title="Claude Code 中文完整手册",
+            author="Codex",
+        )
+        doc.build(story, onFirstPage=draw_page_number, onLaterPages=draw_page_number)
+
+    with TemporaryDirectory() as td:
+        body_pdf = Path(td) / "complete-body.pdf"
+        build_body(body_pdf)
+        if has_cover:
+            cover_pdf = Path(td) / "complete-cover.pdf"
+            draw_cover(cover_pdf)
+            from pypdf import PdfReader, PdfWriter
+            writer = PdfWriter()
+            for src in [cover_pdf, body_pdf]:
+                reader = PdfReader(str(src))
+                for page in reader.pages:
+                    writer.add_page(page)
+            writer.add_metadata({"/Title": "Claude Code 中文完整手册", "/Author": "Codex"})
+            with open(TARGET_PDF, "wb") as fh:
+                writer.write(fh)
+        else:
+            TARGET_PDF.write_bytes(body_pdf.read_bytes())
 
 
 if __name__ == "__main__":

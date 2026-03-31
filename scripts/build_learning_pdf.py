@@ -2,18 +2,21 @@
 from __future__ import annotations
 
 from pathlib import Path
+from tempfile import TemporaryDirectory
 from reportlab.lib.enums import TA_CENTER
 from reportlab.lib.pagesizes import A4
 from reportlab.lib.styles import ParagraphStyle, getSampleStyleSheet
 from reportlab.lib.units import mm
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.cidfonts import UnicodeCIDFont
+from reportlab.pdfgen.canvas import Canvas
 from reportlab.platypus import ListFlowable, ListItem, PageBreak, Paragraph, SimpleDocTemplate, Spacer
 
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "output/pdf/claude-code-best-practice-zh-learning-guide.md"
 TARGET = ROOT / "output/pdf/claude-code-best-practice-zh-learning-guide.pdf"
+COVER_IMAGE = ROOT / "assets" / "pdf" / "claude-code-best-practice-cover.png"
 
 
 def styles():
@@ -117,17 +120,71 @@ def build():
         elif kind == "list":
             items = [ListItem(Paragraph(item, s["bullet"])) for item in content]
             story.append(ListFlowable(items, bulletType="bullet", leftIndent=14))
-    doc = SimpleDocTemplate(
-        str(TARGET),
-        pagesize=A4,
-        leftMargin=18 * mm,
-        rightMargin=18 * mm,
-        topMargin=18 * mm,
-        bottomMargin=18 * mm,
-        title="Claude Code 中文学习路径手册",
-        author="Codex",
-    )
-    doc.build(story)
+    def draw_cover(canvas, doc):
+        canvas.saveState()
+        page_w, page_h = A4
+        margin = 18 * mm
+        avail_w = page_w - 2 * margin
+        avail_h = page_h - 2 * margin
+        from PIL import Image as PILImage
+        with PILImage.open(COVER_IMAGE) as im:
+            iw, ih = im.size
+        scale = min(avail_w / iw, avail_h / ih)
+        draw_w = iw * scale
+        draw_h = ih * scale
+        x = (page_w - draw_w) / 2
+        y = (page_h - draw_h) / 2
+        canvas.drawImage(str(COVER_IMAGE), x, y, width=draw_w, height=draw_h, preserveAspectRatio=True, mask='auto')
+        canvas.restoreState()
+
+    def draw_cover(cover_pdf: Path):
+        c = Canvas(str(cover_pdf), pagesize=A4)
+        page_w, page_h = A4
+        margin = 18 * mm
+        avail_w = page_w - 2 * margin
+        avail_h = page_h - 2 * margin
+        from PIL import Image as PILImage
+        with PILImage.open(COVER_IMAGE) as im:
+            iw, ih = im.size
+        scale = min(avail_w / iw, avail_h / ih)
+        draw_w = iw * scale
+        draw_h = ih * scale
+        x = (page_w - draw_w) / 2
+        y = (page_h - draw_h) / 2
+        c.drawImage(str(COVER_IMAGE), x, y, width=draw_w, height=draw_h, preserveAspectRatio=True, mask='auto')
+        c.showPage()
+        c.save()
+
+    def build_body(path: Path):
+        doc = SimpleDocTemplate(
+            str(path),
+            pagesize=A4,
+            leftMargin=18 * mm,
+            rightMargin=18 * mm,
+            topMargin=18 * mm,
+            bottomMargin=18 * mm,
+            title="Claude Code 中文学习路径手册",
+            author="Codex",
+        )
+        doc.build(story)
+
+    with TemporaryDirectory() as td:
+        body_pdf = Path(td) / "learning-body.pdf"
+        build_body(body_pdf)
+        if COVER_IMAGE.exists():
+            cover_pdf = Path(td) / "learning-cover.pdf"
+            draw_cover(cover_pdf)
+            from pypdf import PdfReader, PdfWriter
+            writer = PdfWriter()
+            for src in [cover_pdf, body_pdf]:
+                reader = PdfReader(str(src))
+                for page in reader.pages:
+                    writer.add_page(page)
+            writer.add_metadata({"/Title": "Claude Code 中文学习路径手册", "/Author": "Codex"})
+            with open(TARGET, "wb") as fh:
+                writer.write(fh)
+        else:
+            TARGET.write_bytes(body_pdf.read_bytes())
 
 
 if __name__ == "__main__":
